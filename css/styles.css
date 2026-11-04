@@ -1,0 +1,72 @@
+/* Custom Styles & Micro-animations for JA Mixstore inspired theme */
+
+/* Custom subtle animation for floating elements */
+@keyframes bounceSubtle {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.animate-bounce-subtle {
+    animation: bounceSubtle 4s ease-in-out infinite;
+}
+
+/* Filter buttons */
+.filter-btn {
+    background-color: #f3f4f6;
+    color: #4b5563;
+    border: 1px solid #e5e7eb;
+}
+
+.filter-btn:hover {
+    background-color: #e5e7eb;
+    color: #000080;
+}
+
+.filter-btn.active {
+    background-color: #000080;
+    color: #e9dc83;
+    border-color: #000080;
+    box-shadow: 0 4px 12px rgba(0, 0, 128, 0.15);
+}
+
+/* Card hover transitions */
+.catalog-card {
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.catalog-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 128, 0.08), 0 8px 10px -6px rgba(0, 0, 128, 0.04);
+}
+
+/* Image zoom effect on hover */
+.img-zoom-container img {
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.catalog-card:hover .img-zoom-container img {
+    transform: scale(1.08);
+}
+
+/* Smooth custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #000080;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #00005a;
+}
+
