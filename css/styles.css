@@ -1,13 +1,13 @@
 /* Custom Styles & Micro-animations for JA Mixstore inspired theme */
 
 :root {
-    /* Paleta por defecto: Azul Marino Real & Oro Clásico (Original guardada en Git) */
-    --color-navy: 0 0 128;          /* #000080 */
-    --color-navy-dark: 0 0 90;      /* #00005a */
-    --color-navy-light: 13 27 76;   /* #0d1b4c */
-    --color-gold: 233 220 131;      /* #e9dc83 */
-    --color-gold-hover: 216 202 109;/* #d8ca6d */
-    --color-cream: 251 250 245;     /* #fbfaf5 */
+    /* Paleta Activa: Midnight Navy, Oro Bronce & Champagne (Inspiración de la foto del Cliente) */
+    --color-navy: 19 37 61;          /* #13253D (Azul Marino Elegante) */
+    --color-navy-dark: 6 19 32;      /* #061320 (Azul Noche Profundo) */
+    --color-navy-light: 30 53 87;    /* #1E3557 (Azul Zafiro Suave) */
+    --color-gold: 194 171 139;       /* #C2AB8B (Champagne Cálido) */
+    --color-gold-hover: 141 104 59;  /* #8D683B (Oro Bronce Antiguo) */
+    --color-cream: 255 240 217;      /* #FFF0D9 (Marfil Cálido) */
 }
 
 /* Custom subtle animation for floating elements */

@@ -7,6 +7,38 @@
     // Definición de paletas curadas para exhibición textil y confección
     const PALETTES = [
         {
+            id: 'client-navy-champagne',
+            name: 'Cliente: Midnight Navy & Champagne',
+            badge: 'Sugerida por el Cliente ⭐',
+            badgeClass: 'bg-amber-100 text-amber-900 border-amber-300 font-bold',
+            primaryHex: '#13253D',
+            accentHex: '#C2AB8B',
+            primaryRgb: '19 37 61',
+            primaryDarkRgb: '6 19 32',
+            primaryLightRgb: '30 53 87',
+            accentRgb: '194 171 139',
+            accentHoverRgb: '141 104 59',
+            creamRgb: '255 240 217',
+            swatches: ['#061320', '#13253D', '#8D683B', '#C2AB8B', '#FFF0D9'],
+            tagline: 'Basada exactamente en tu imagen: Midnight Navy, Oro Bronce, Champagne y Marfil.'
+        },
+        {
+            id: 'client-navy-bronze',
+            name: 'Cliente: Midnight & Oro Bronce',
+            badge: 'Sugerida por el Cliente ⭐',
+            badgeClass: 'bg-amber-100 text-amber-900 border-amber-300 font-bold',
+            primaryHex: '#13253D',
+            accentHex: '#8D683B',
+            primaryRgb: '19 37 61',
+            primaryDarkRgb: '6 19 32',
+            primaryLightRgb: '30 53 87',
+            accentRgb: '141 104 59',
+            accentHoverRgb: '194 171 139',
+            creamRgb: '255 240 217',
+            swatches: ['#061320', '#13253D', '#8D683B', '#C2AB8B', '#FFF0D9'],
+            tagline: 'Variante con acento en Oro Bronce envejecido (#8D683B) para mayor contraste.'
+        },
+        {
             id: 'original-navy',
             name: 'Azul Marino Real & Oro Clásico',
             badge: 'Original en Git',
@@ -19,6 +51,7 @@
             accentRgb: '233 220 131',
             accentHoverRgb: '216 202 109',
             creamRgb: '251 250 245',
+            swatches: ['#00005a', '#000080', '#e9dc83', '#fbfaf5'],
             tagline: 'Paleta original de la marca. Clásica, prestigiosa y formal.'
         },
         {
@@ -113,7 +146,7 @@
         }
     ];
 
-    const STORAGE_KEY = 'textil_selected_palette';
+    const STORAGE_KEY = 'textil_selected_palette_v2';
     let currentPalette = null;
 
     // Utilidades de color
@@ -341,9 +374,13 @@
                                 <div class="palette-card-option p-3 rounded-xl border border-gray-200 hover:border-gray-400 bg-white hover:bg-gray-50/50 transition cursor-pointer flex items-center justify-between group" data-palette-id="${p.id}">
                                     <div class="flex items-center gap-3">
                                         <!-- Color Swatches -->
-                                        <div class="flex items-center -space-x-2 shrink-0">
-                                            <span class="w-7 h-7 rounded-full border-2 border-white shadow-md inline-block" style="background-color: ${p.primaryHex};" title="Primario: ${p.primaryHex}"></span>
-                                            <span class="w-6 h-6 rounded-full border-2 border-white shadow-md inline-block" style="background-color: ${p.accentHex};" title="Acento: ${p.accentHex}"></span>
+                                        <div class="flex items-center -space-x-1.5 shrink-0">
+                                            ${p.swatches ? p.swatches.map(c => `
+                                                <span class="w-5 h-5 rounded-full border-2 border-white shadow-sm inline-block" style="background-color: ${c};" title="${c}"></span>
+                                            `).join('') : `
+                                                <span class="w-6 h-6 rounded-full border-2 border-white shadow-md inline-block" style="background-color: ${p.primaryHex};" title="Primario: ${p.primaryHex}"></span>
+                                                <span class="w-6 h-6 rounded-full border-2 border-white shadow-md inline-block" style="background-color: ${p.accentHex};" title="Acento: ${p.accentHex}"></span>
+                                            `}
                                         </div>
                                         <div>
                                             <div class="flex items-center gap-2">
@@ -541,3 +578,4 @@
         getCurrent: () => currentPalette
     };
 })();
+
