@@ -7,36 +7,68 @@
     // Definición de paletas curadas para exhibición textil y confección
     const PALETTES = [
         {
-            id: 'client-navy-champagne',
-            name: 'Cliente: Midnight Navy & Champagne',
-            badge: 'Sugerida por el Cliente ⭐',
+            id: 'client-navy-sand',
+            name: 'Midnight Navy & Arena Dorada',
+            badge: 'Paleta Base ⭐',
             badgeClass: 'bg-amber-100 text-amber-900 border-amber-300 font-bold',
-            primaryHex: '#13253D',
-            accentHex: '#C2AB8B',
-            primaryRgb: '19 37 61',
-            primaryDarkRgb: '6 19 32',
-            primaryLightRgb: '30 53 87',
-            accentRgb: '194 171 139',
-            accentHoverRgb: '141 104 59',
-            creamRgb: '255 240 217',
-            swatches: ['#061320', '#13253D', '#8D683B', '#C2AB8B', '#FFF0D9'],
-            tagline: 'Basada exactamente en tu imagen: Midnight Navy, Oro Bronce, Champagne y Marfil.'
+            primaryHex: '#152942',
+            accentHex: '#BBA88B',
+            primaryRgb: '21 41 66',
+            primaryDarkRgb: '6 14 17',
+            primaryLightRgb: '36 62 96',
+            accentRgb: '187 168 139',
+            accentHoverRgb: '138 106 65',
+            creamRgb: '250 236 218',
+            swatches: ['#060E11', '#152942', '#8A6A41', '#BBA88B', '#FAECDA'],
+            tagline: 'Paleta base: Azul Medianoche (#060E11), Azul Marino Profundo (#152942), Arena Dorada y Marfil.'
+        },
+        {
+            id: 'client-navy-dusty-rose',
+            name: 'Midnight Navy & Palo de Rosa',
+            badge: 'Variante Rosado Textil 🌸',
+            badgeClass: 'bg-rose-100 text-rose-900 border-rose-300 font-bold',
+            primaryHex: '#152942',
+            accentHex: '#D48C95',
+            primaryRgb: '21 41 66',
+            primaryDarkRgb: '6 14 17',
+            primaryLightRgb: '36 62 96',
+            accentRgb: '212 140 149',
+            accentHoverRgb: '179 101 115',
+            creamRgb: '250 236 218',
+            swatches: ['#060E11', '#152942', '#B36573', '#D48C95', '#FAECDA'],
+            tagline: 'Misma base oscura con Palo de Rosa (#D48C95) armónico y Rosa Cenizo (#B36573).'
+        },
+        {
+            id: 'client-navy-rose-gold',
+            name: 'Midnight Navy & Oro Rosa (Rose Gold)',
+            badge: 'Variante Rosado Cálido 🌸',
+            badgeClass: 'bg-pink-100 text-pink-900 border-pink-300 font-bold',
+            primaryHex: '#152942',
+            accentHex: '#E2A39B',
+            primaryRgb: '21 41 66',
+            primaryDarkRgb: '6 14 17',
+            primaryLightRgb: '36 62 96',
+            accentRgb: '226 163 155',
+            accentHoverRgb: '195 125 116',
+            creamRgb: '250 236 218',
+            swatches: ['#060E11', '#152942', '#C37D74', '#E2A39B', '#FAECDA'],
+            tagline: 'Misma base con Oro Rosa suave (#E2A39B) y Marfil (#FAECDA), ideal para lencería y boutique.'
         },
         {
             id: 'client-navy-bronze',
-            name: 'Cliente: Midnight & Oro Bronce',
-            badge: 'Sugerida por el Cliente ⭐',
+            name: 'Midnight Navy & Oro Bronce',
+            badge: 'Acento Bronce ⭐',
             badgeClass: 'bg-amber-100 text-amber-900 border-amber-300 font-bold',
-            primaryHex: '#13253D',
-            accentHex: '#8D683B',
-            primaryRgb: '19 37 61',
-            primaryDarkRgb: '6 19 32',
-            primaryLightRgb: '30 53 87',
-            accentRgb: '141 104 59',
-            accentHoverRgb: '194 171 139',
-            creamRgb: '255 240 217',
-            swatches: ['#061320', '#13253D', '#8D683B', '#C2AB8B', '#FFF0D9'],
-            tagline: 'Variante con acento en Oro Bronce envejecido (#8D683B) para mayor contraste.'
+            primaryHex: '#152942',
+            accentHex: '#8A6A41',
+            primaryRgb: '21 41 66',
+            primaryDarkRgb: '6 14 17',
+            primaryLightRgb: '36 62 96',
+            accentRgb: '138 106 65',
+            accentHoverRgb: '187 168 139',
+            creamRgb: '250 236 218',
+            swatches: ['#060E11', '#152942', '#8A6A41', '#BBA88B', '#FAECDA'],
+            tagline: 'Misma paleta base con acento en Oro Bronce / Ocre (#8A6A41) para mayor contraste en botones.'
         },
         {
             id: 'original-navy',
@@ -146,7 +178,7 @@
         }
     ];
 
-    const STORAGE_KEY = 'textil_selected_palette_v2';
+    const STORAGE_KEY = 'textil_selected_palette_v3';
     let currentPalette = null;
 
     // Utilidades de color

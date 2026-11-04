@@ -53,7 +53,7 @@ TEXTIL MODA
 - **Archivo:** `js/theme-switcher.js`
 - **Concepto:** Las clases de Tailwind CSS están vinculadas a variables CSS Custom Properties (`--color-navy`, `--color-gold`, etc.) en lugar de códigos hexadecimales rígidos.
 - **Capacidades:**
-  - **Paletas Curadas:** Incluye la paleta original en Azul Marino y Oro, las dos variantes solicitadas por el cliente (*Midnight Navy & Champagne* y *Midnight & Oro Bronce*), así como opciones sastre, alta costura, industrial y boutique.
+  - **Paletas Curadas:** Incluye la paleta base exacta solicitada (*Midnight Navy & Arena Dorada* con Azul Medianoche `#060E11`, Azul Marino Profundo `#152942`, Dorado Bronce `#8A6A41`, Beige Arena `#BBA88B` y Crema Marfil `#FAECDA`), sus variantes armónicas con acento rosado (*Midnight Navy & Palo de Rosa* `#D48C95` y *Midnight Navy & Oro Rosa* `#E2A39B`), la variante en Oro Bronce, así como la original Navy & Gold y opciones sastre, alta costura, industrial y boutique.
   - **Personalizador Libre:** Dispone de dos selectores de color nativos HTML5 para experimentar con cualquier color primario y secundario en tiempo real.
   - **Persistencia:** Guarda la elección en `localStorage` para recordar la selección al recargar.
   - **Exportación:** Permite copiar al portapapeles los códigos CSS y HEX generados con un solo clic.
