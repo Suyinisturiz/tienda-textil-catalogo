@@ -16,12 +16,12 @@
                 extend: {
                     colors: {
                         brand: {
-                            navy: '#000080',
-                            navyDark: '#00005a',
-                            navyLight: '#0d1b4c',
-                            gold: '#e9dc83',
-                            goldHover: '#d8ca6d',
-                            cream: '#fbfaf5'
+                            navy: 'rgb(var(--color-navy) / <alpha-value>)',
+                            navyDark: 'rgb(var(--color-navy-dark) / <alpha-value>)',
+                            navyLight: 'rgb(var(--color-navy-light) / <alpha-value>)',
+                            gold: 'rgb(var(--color-gold) / <alpha-value>)',
+                            goldHover: 'rgb(var(--color-gold-hover) / <alpha-value>)',
+                            cream: 'rgb(var(--color-cream) / <alpha-value>)'
                         }
                     },
                     fontFamily: {
@@ -754,7 +754,7 @@
                 <div class="flex items-center space-x-4">
                     <span class="inline-flex items-center gap-1.5 text-gray-400">
                         <span class="w-2 h-2 rounded-full bg-brand-gold"></span>
-                        Navy Blue (#000080) & Light Gold (#e9dc83)
+                        <span id="palette-footer-label">Azul Marino (#000080) & Oro (#e9dc83)</span>
                     </span>
                 </div>
             </div>
@@ -769,6 +769,7 @@
 
     <!-- Scripts -->
     <script src="js/main.js"></script>
+    <script src="js/theme-switcher.js"></script>
     <script>
         // Init Lucide Icons
         lucide.createIcons();
