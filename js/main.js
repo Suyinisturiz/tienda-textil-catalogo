@@ -192,9 +192,10 @@ function renderCatalog(items) {
         return;
     }
 
-    items.forEach(item => {
+    items.forEach((item, index) => {
         const card = document.createElement('div');
-        card.className = "catalog-card bg-white rounded-2xl overflow-hidden border border-gray-200/80 shadow-sm flex flex-col justify-between group";
+        card.className = "catalog-card tilt-card animate-card-enter bg-white rounded-2xl overflow-hidden border border-gray-200/80 shadow-sm flex flex-col justify-between group";
+        card.style.animationDelay = `${(index % 8) * 0.05}s`;
         
         card.innerHTML = `
             <div>
@@ -255,6 +256,9 @@ function renderCatalog(items) {
     if (window.lucide) {
         lucide.createIcons();
     }
+
+    // Inicializar efecto 3D tilt en las tarjetas
+    initCardTilt();
 }
 
 // Filter function
@@ -362,8 +366,135 @@ function handleFormSubmit(e) {
     }, 5000);
 }
 
-// Initial render
+// ========================================================
+// ANIMACIONES DINÁMICAS & MICRO-INTERACCIONES
+// ========================================================
+
+// 1. Efecto 3D Tilt táctil para tarjetas del catálogo
+function initCardTilt() {
+    // Solo aplicar en dispositivos con puntero fino (mouse) para evitar lag en táctil
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+
+    const cards = document.querySelectorAll('.tilt-card');
+    cards.forEach(card => {
+        let bounds = null;
+
+        function handleMouseMove(e) {
+            if (!bounds) bounds = card.getBoundingClientRect();
+            const mouseX = e.clientX - bounds.left;
+            const mouseY = e.clientY - bounds.top;
+            const centerX = bounds.width / 2;
+            const centerY = bounds.height / 2;
+
+            // Inclinación máxima de 5 grados para elegancia sutil
+            const maxTilt = 5;
+            const tiltX = ((mouseY - centerY) / centerY) * -maxTilt;
+            const tiltY = ((mouseX - centerX) / centerX) * maxTilt;
+
+            card.style.transform = `perspective(1000px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) translateY(-6px) scale3d(1.015, 1.015, 1.015)`;
+        }
+
+        card.addEventListener('mouseenter', () => {
+            bounds = card.getBoundingClientRect();
+            card.style.transition = 'transform 0.15s ease-out, box-shadow 0.25s ease';
+        });
+
+        card.addEventListener('mousemove', handleMouseMove);
+
+        card.addEventListener('mouseleave', () => {
+            bounds = null;
+            card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease';
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale3d(1, 1, 1)';
+        });
+    });
+}
+
+// 2. Entradas Escalonadas al Scroll (Scroll Reveal Observer)
+function initScrollReveal() {
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+    if (!('IntersectionObserver' in window)) {
+        revealElements.forEach(el => el.classList.add('is-revealed'));
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-revealed');
+                obs.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -30px 0px'
+    });
+
+    revealElements.forEach(el => observer.observe(el));
+}
+
+// 3. Contadores Numéricos Animados (Animated Count-Up)
+function initAnimatedCounters() {
+    const counters = document.querySelectorAll('.counter-number');
+    if (!counters.length) return;
+
+    let hasRun = false;
+
+    function runCounters() {
+        if (hasRun) return;
+        hasRun = true;
+
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'), 10) || 0;
+            const duration = 2000; // 2 segundos de animación fluida
+            const startTime = performance.now();
+
+            function update(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                // Función de aceleración suave (easeOutExpo)
+                const easeOut = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                const current = Math.floor(easeOut * target);
+
+                counter.textContent = current;
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    counter.textContent = target;
+                }
+            }
+
+            requestAnimationFrame(update);
+        });
+    }
+
+    if ('IntersectionObserver' in window) {
+        const statsObserver = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    runCounters();
+                    obs.disconnect();
+                }
+            });
+        }, { threshold: 0.25 });
+
+        const firstCounter = counters[0];
+        const container = firstCounter.closest('section');
+        if (container) {
+            statsObserver.observe(container);
+        } else {
+            runCounters();
+        }
+    } else {
+        runCounters();
+    }
+}
+
+// Initial render & animaciones
 document.addEventListener('DOMContentLoaded', () => {
     renderCatalog(catalogItems);
+    initScrollReveal();
+    initAnimatedCounters();
+    initCardTilt();
 });
 

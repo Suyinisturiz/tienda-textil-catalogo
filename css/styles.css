@@ -81,3 +81,146 @@
     background: rgb(var(--color-navy-dark));
 }
 
+/* ========================================================
+   1. CINTA INFINITA TEXTIL (INFINITE MARQUEE)
+   ======================================================== */
+@keyframes marqueeScroll {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+.marquee-container {
+    overflow: hidden;
+    user-select: none;
+    white-space: nowrap;
+    position: relative;
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marqueeScroll 28s linear infinite;
+    will-change: transform;
+}
+
+.marquee-container:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+/* Gradientes de desvanecimiento en los bordes del marquee */
+.marquee-fade-edges::before,
+.marquee-fade-edges::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 60px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.marquee-fade-edges::before {
+    left: 0;
+    background: linear-gradient(to right, rgb(var(--color-navy-dark)), transparent);
+}
+
+.marquee-fade-edges::after {
+    right: 0;
+    background: linear-gradient(to left, rgb(var(--color-navy-dark)), transparent);
+}
+
+/* ========================================================
+   2. EFECTO DESTELLO SEDOSO (SILK SHIMMER)
+   ======================================================== */
+@keyframes silkSheen {
+    0% {
+        transform: translateX(-150%) skewX(-20deg);
+    }
+    30%, 100% {
+        transform: translateX(260%) skewX(-20deg);
+    }
+}
+
+.shimmer-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.shimmer-effect::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.32), transparent);
+    animation: silkSheen 4.5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* ========================================================
+   3. HALO PULSANTE DE ACENTO (PULSE GLOW)
+   ======================================================== */
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgb(var(--color-gold) / 0.5), 0 10px 25px -5px rgb(var(--color-navy) / 0.3);
+    }
+    50% {
+        box-shadow: 0 0 0 12px rgb(var(--color-gold) / 0), 0 15px 30px -5px rgb(var(--color-navy) / 0.4);
+    }
+}
+
+.pulse-glow {
+    animation: pulseGlow 3.2s ease-in-out infinite;
+}
+
+/* ========================================================
+   4. ENTRADAS ESCALONADAS AL HACER SCROLL (SCROLL REVEAL)
+   ======================================================== */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stagger-1 { transition-delay: 0.08s; }
+.stagger-2 { transition-delay: 0.16s; }
+.stagger-3 { transition-delay: 0.24s; }
+.stagger-4 { transition-delay: 0.32s; }
+.stagger-5 { transition-delay: 0.40s; }
+
+/* Cascada de entrada para tarjetas del catálogo al filtrar */
+@keyframes cardPopIn {
+    0% {
+        opacity: 0;
+        transform: translateY(22px) scale(0.96);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.animate-card-enter {
+    animation: cardPopIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ========================================================
+   5. EFECTO 3D TILT TÁCTIL EN TARJETAS
+   ======================================================== */
+.tilt-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    will-change: transform;
+}
+

@@ -302,7 +302,7 @@
         floatingBtn.id = 'palette-switcher-trigger';
         floatingBtn.className = 'fixed bottom-6 left-6 z-40';
         floatingBtn.innerHTML = `
-            <button id="palette-open-btn" class="flex items-center gap-2.5 bg-white/95 backdrop-blur-md text-gray-800 hover:text-brand-navy px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-full shadow-xl border border-gray-200/80 hover:border-brand-gold/60 hover:shadow-2xl transition-all duration-300 group cursor-pointer" title="Explorar combinaciones de color">
+            <button id="palette-open-btn" class="pulse-glow flex items-center gap-2.5 bg-white/95 backdrop-blur-md text-gray-800 hover:text-brand-navy px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-full shadow-xl border border-gray-200/80 hover:border-brand-gold/60 hover:shadow-2xl transition-all duration-300 group cursor-pointer" title="Explorar combinaciones de color">
                 <div class="relative flex items-center justify-center w-7 h-7 rounded-full bg-brand-navy text-brand-gold shadow-sm group-hover:scale-105 transition-transform">
                     <i data-lucide="palette" class="w-4 h-4"></i>
                 </div>
