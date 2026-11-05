@@ -30,17 +30,23 @@ const catalogItems = [
     },
     {
         id: 3,
-        title: "Colección Temática & Casual Signature",
+        title: "Hoodie Sweater Temático Peanuts x Snoopy Since 1950",
         category: "casual",
         rubroLabel: "Colecciones Temáticas & Casual",
-        code: "LLZ-CAS-03",
-        gender: "Unisex / Tendencia",
-        desc: "Prendas divertidas y exclusivas que expresan tu personalidad en el día a día.",
-        fabric: "80% Algodón Peinado Perchado, 20% Poliéster (320 gsm)",
-        sizes: "XS - S - M - L - XL",
-        colors: "Gris Antracita (#22252A), Verde Menta (#84DCC6), Blanco Puro",
-        use: "Streetwear contemporáneo, estilo relajado de fin de semana y cápsulas de autor.",
-        image: "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&w=700&q=80"
+        code: "LLZ-CAS-SNOOPY",
+        gender: "Unisex / Dama & Caballero",
+        desc: "Sweater tipo hoodie con capucha y cordón ajustable confeccionado en algodón perchado premium. Incluye parche bordado circular frontal de Snoopy en rosa pastel, bolsillo canguro, serigrafía de alta definición con personajes clásicos en manga derecha, tipografía 'Snoopy' con huellas en manga izquierda, y en la espalda la emblemática gráfica 'PEANUTS SINCE 1950' con viñetas multicolores. Acabados con costuras de doble pespunte y puños acanalados de alta durabilidad.",
+        fabric: "80% Algodón Peinado Perchado, 20% Poliéster (320 gsm - Felpa Interior Térmica Suave)",
+        sizes: "XS - S - M - L - XL (Corte Regular / Oversize Confort)",
+        colors: "Blanco Hueso / Off-White (Edición Especial Peanuts), Gris Jaspe, Negro Antracita, Menta LOYLIZ",
+        use: "Uso casual urbano, streetwear de autor, colecciones temáticas exclusivas y asesoría de estilo diario.",
+        image: "img/productos/sweater-snoopy/snoopy-hoodie-front-model.jpg",
+        images: [
+            "img/productos/sweater-snoopy/snoopy-hoodie-front-model.jpg",
+            "img/productos/sweater-snoopy/snoopy-hoodie-back-model.jpg",
+            "img/productos/sweater-snoopy/snoopy-hoodie-front-flat.jpg",
+            "img/productos/sweater-snoopy/snoopy-hoodie-back-flat.jpg"
+        ]
     },
     {
         id: 4,
@@ -141,23 +147,32 @@ function renderCatalog(items) {
         card.className = "catalog-card tilt-card animate-card-enter bg-white rounded-2xl overflow-hidden border border-gray-200/80 shadow-sm flex flex-col justify-between group";
         card.style.animationDelay = `${(index % 8) * 0.05}s`;
         
+        const hasGallery = item.images && item.images.length > 1;
+        const secondImg = hasGallery ? item.images[1] : item.image;
+
         card.innerHTML = `
             <div>
-                <!-- Image Container with Zoom effect -->
+                <!-- Image Container with Zoom effect & Multi-view Hover -->
                 <div class="img-zoom-container relative h-64 overflow-hidden bg-gray-100 cursor-pointer" onclick="openProductModal(${item.id})">
-                    <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-brand-navy/10 group-hover:bg-brand-navy/0 transition-colors"></div>
+                    <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover transition-opacity duration-500 ${hasGallery ? 'group-hover:opacity-0' : ''}">
+                    ${hasGallery ? `
+                        <img src="${secondImg}" alt="${item.title} vista alternativa" class="w-full h-full object-cover absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <span class="absolute top-3 right-3 bg-brand-navy/85 backdrop-blur-sm text-brand-gold text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 z-10 shadow-sm border border-brand-gold/30">
+                            <i data-lucide="camera" class="w-3 h-3 text-brand-gold"></i> ${item.images.length} vistas
+                        </span>
+                    ` : ''}
+                    <div class="absolute inset-0 bg-brand-navy/10 group-hover:bg-brand-navy/0 transition-colors pointer-events-none"></div>
                     
                     <!-- Rubro Tag -->
-                    <span class="absolute top-3 left-3 bg-brand-navy/90 backdrop-blur-sm text-brand-gold text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-md">
+                    <span class="absolute top-3 left-3 bg-brand-navy/90 backdrop-blur-sm text-brand-gold text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-md z-10 shadow-sm">
                         ${item.rubroLabel}
                     </span>
 
                     <!-- Quick View Overlay Action -->
-                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-brand-navy/30">
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-brand-navy/30 z-10">
                         <span class="px-4 py-2 bg-white text-brand-navy rounded-full text-xs font-bold tracking-wide shadow-lg flex items-center gap-1.5 transform translate-y-2 group-hover:translate-y-0 transition-transform">
-                            <i data-lucide="eye" class="w-3.5 h-3.5"></i>
-                            Ficha de Exhibición
+                            <i data-lucide="eye" class="w-3.5 h-3.5 text-brand-navy"></i>
+                            Ver Ficha & Galería
                         </span>
                     </div>
                 </div>
@@ -169,7 +184,7 @@ function renderCatalog(items) {
                         <span class="text-gray-500 font-sans font-medium text-[11px]">${item.gender}</span>
                     </div>
 
-                    <h3 class="font-display font-bold text-base text-brand-navy group-hover:text-blue-900 transition-colors line-clamp-1 cursor-pointer" onclick="openProductModal(${item.id})">
+                    <h3 class="font-display font-bold text-base text-brand-navy group-hover:text-emerald-900 transition-colors line-clamp-1 cursor-pointer" onclick="openProductModal(${item.id})">
                         ${item.title}
                     </h3>
 
@@ -244,8 +259,9 @@ function openProductModal(id) {
     const item = catalogItems.find(p => p.id === id);
     if (!item) return;
 
-    document.getElementById('modal-image').src = item.image;
-    document.getElementById('modal-image').alt = item.title;
+    const modalImage = document.getElementById('modal-image');
+    modalImage.src = item.image;
+    modalImage.alt = item.title;
     document.getElementById('modal-rubro').innerText = item.rubroLabel;
     document.getElementById('modal-code').innerText = `CÓDIGO DE REFERENCIA: ${item.code}`;
     document.getElementById('modal-title').innerText = item.title;
@@ -254,6 +270,40 @@ function openProductModal(id) {
     document.getElementById('modal-sizes').innerText = item.sizes;
     document.getElementById('modal-colors').innerText = item.colors;
     document.getElementById('modal-use').innerText = item.use;
+
+    // Configuración interactiva de la Galería de Miniaturas (Thumbnails)
+    const galleryContainer = document.getElementById('modal-gallery-container');
+    if (galleryContainer) {
+        galleryContainer.innerHTML = '';
+        const allImages = (item.images && item.images.length > 0) ? item.images : [item.image];
+
+        if (allImages.length > 1) {
+            galleryContainer.classList.remove('hidden');
+            allImages.forEach((imgSrc, idx) => {
+                const thumb = document.createElement('button');
+                thumb.type = 'button';
+                thumb.className = `w-14 h-14 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer ${idx === 0 ? 'border-brand-gold ring-2 ring-brand-gold/40 shadow-sm' : 'border-gray-200 hover:border-brand-navy opacity-70 hover:opacity-100'}`;
+                thumb.innerHTML = `<img src="${imgSrc}" alt="${item.title} vista ${idx + 1}" class="w-full h-full object-cover">`;
+                
+                thumb.addEventListener('click', () => {
+                    modalImage.style.opacity = '0.3';
+                    setTimeout(() => {
+                        modalImage.src = imgSrc;
+                        modalImage.style.opacity = '1';
+                    }, 140);
+
+                    galleryContainer.querySelectorAll('button').forEach(btn => {
+                        btn.className = 'w-14 h-14 rounded-xl overflow-hidden border-2 border-gray-200 hover:border-brand-navy opacity-70 hover:opacity-100 transition-all shrink-0 cursor-pointer';
+                    });
+                    thumb.className = 'w-14 h-14 rounded-xl overflow-hidden border-2 border-brand-gold ring-2 ring-brand-gold/40 shadow-sm transition-all shrink-0 cursor-pointer';
+                });
+
+                galleryContainer.appendChild(thumb);
+            });
+        } else {
+            galleryContainer.classList.add('hidden');
+        }
+    }
 
     // Direct WhatsApp message to LOYLIZ with pre-filled item name
     const msg = encodeURIComponent(`¡Hola LOYLIZ! Quiero recibir asesoría para renovar mis prendas/uniformes. Me interesa el modelo: ${item.title} (REF: ${item.code}) de la ${item.rubroLabel}.`);

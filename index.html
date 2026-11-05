@@ -340,8 +340,8 @@
                 <div class="reveal-on-scroll stagger-3 group relative rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
                     <div>
                         <div class="h-64 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&w=700&q=80" 
-                                 alt="Colecciones Temáticas & Casual" 
+                            <img src="img/productos/sweater-snoopy/snoopy-hoodie-front-model.jpg" 
+                                 alt="Colecciones Temáticas & Casual - Sweater Peanuts Snoopy" 
                                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             <div class="absolute inset-0 bg-brand-navy/20 group-hover:bg-brand-navy/10 transition-colors"></div>
                             <span class="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-brand-navy shadow-sm">
@@ -659,10 +659,16 @@
             </button>
 
             <div class="grid grid-cols-1 md:grid-cols-2">
-                <!-- Modal Image -->
-                <div class="h-72 md:h-full bg-gray-100 relative">
-                    <img id="modal-image" src="" alt="" class="w-full h-full object-cover">
-                    <span id="modal-rubro" class="absolute top-4 left-4 px-3 py-1 bg-brand-navy text-brand-gold text-xs font-bold rounded-full uppercase tracking-wider"></span>
+                <!-- Modal Image & Interactive Gallery -->
+                <div class="flex flex-col bg-gray-50 border-r border-gray-100 relative">
+                    <div class="h-80 md:h-[420px] relative overflow-hidden bg-gray-100 flex items-center justify-center">
+                        <img id="modal-image" src="" alt="" class="w-full h-full object-cover transition-opacity duration-300">
+                        <span id="modal-rubro" class="absolute top-4 left-4 px-3 py-1 bg-brand-navy/90 backdrop-blur-sm text-brand-gold text-xs font-bold rounded-full uppercase tracking-wider shadow-sm z-10"></span>
+                    </div>
+                    <!-- Thumbnails Gallery Strip -->
+                    <div id="modal-gallery-container" class="p-3 bg-white border-t border-gray-100 flex items-center gap-2 overflow-x-auto min-h-[72px]">
+                        <!-- Inyectadas dinámicamente -->
+                    </div>
                 </div>
 
                 <!-- Modal Body -->
