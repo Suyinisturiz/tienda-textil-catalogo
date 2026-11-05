@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEXTIL MODA | Catálogo & Exhibición Textil</title>
-    <!-- Google Fonts -->
+    <title>LOYLIZ | Confección Premium & Asesoría de Imagen</title>
+    <!-- Google Fonts: Montserrat (Títulos) & Open Sans (Cuerpo) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -16,17 +16,17 @@
                 extend: {
                     colors: {
                         brand: {
-                            navy: 'rgb(var(--color-navy) / <alpha-value>)',
-                            navyDark: 'rgb(var(--color-navy-dark) / <alpha-value>)',
-                            navyLight: 'rgb(var(--color-navy-light) / <alpha-value>)',
-                            gold: 'rgb(var(--color-gold) / <alpha-value>)',
-                            goldHover: 'rgb(var(--color-gold-hover) / <alpha-value>)',
-                            cream: 'rgb(var(--color-cream) / <alpha-value>)'
+                            navy: 'rgb(var(--color-navy) / <alpha-value>)',        // #22252A Gris Antracita
+                            navyDark: 'rgb(var(--color-navy-dark) / <alpha-value>)', // #141619 Antracita Profundo
+                            navyLight: 'rgb(var(--color-navy-light) / <alpha-value>)', // #373C44 Antracita Medio
+                            gold: 'rgb(var(--color-gold) / <alpha-value>)',        // #84DCC6 Verde Menta Suave
+                            goldHover: 'rgb(var(--color-gold-hover) / <alpha-value>)', // #56C3A8 Menta Intenso
+                            cream: 'rgb(var(--color-cream) / <alpha-value>)'       // #F8FAF9 Blanco Suave
                         }
                     },
                     fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        display: ['Outfit', 'sans-serif']
+                        sans: ['"Open Sans"', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif']
                     }
                 }
             }
@@ -37,56 +37,59 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans antialiased overflow-x-hidden selection:bg-brand-gold selection:text-brand-navy">
+<body class="bg-white text-gray-800 font-sans antialiased overflow-x-hidden selection:bg-brand-gold selection:text-brand-navy">
 
     <!-- Top Announcement Bar -->
-    <div class="bg-brand-navy text-xs text-gray-200 py-2 border-b border-brand-gold/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-1">
+    <div class="bg-brand-navy text-xs text-gray-200 py-2.5 border-b border-brand-gold/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-1.5">
             <div class="flex items-center space-x-2">
                 <span class="inline-block w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
-                <span class="tracking-wider uppercase text-[11px] font-medium">Showroom & Confección Especializada | Catálogo de Exhibición</span>
+                <span class="tracking-wider uppercase text-[11px] font-semibold text-gray-100">
+                    Diseño, Asesoría & Confección Premium | Envíos a toda Venezuela
+                </span>
             </div>
             <div class="flex items-center space-x-6 text-xs text-gray-300">
-                <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-gold"></i> Envíos a todo el país</span>
-                <a href="#contacto" class="hover:text-brand-gold transition-colors flex items-center gap-1"><i data-lucide="mail" class="w-3.5 h-3.5 text-brand-gold"></i> Asesoría comercial</a>
+                <span class="flex items-center gap-1.5 font-medium"><i data-lucide="clock" class="w-3.5 h-3.5 text-brand-gold"></i> Lun - Vie: 8:00 AM - 5:00 PM</span>
+                <a href="https://api.whatsapp.com/send?phone=584163329389&text=%C2%A1Hola%20LOYLIZ!%20Quiero%20recibir%20asesor%C3%ADa%20para%20renovar%20mis%20prendas%2Funiformes." target="_blank" class="hover:text-brand-gold transition-colors flex items-center gap-1 font-semibold text-white">
+                    <i data-lucide="message-circle" class="w-3.5 h-3.5 text-brand-gold"></i> +58 416-3329389
+                </a>
             </div>
         </div>
     </div>
 
     <!-- Main Navigation Header -->
-    <header id="main-header" class="sticky top-0 z-40 bg-white/90 backdrop-blur-md transition-all duration-300 border-b border-gray-100 shadow-sm">
+    <header id="main-header" class="sticky top-0 z-40 bg-white/95 backdrop-blur-md transition-all duration-300 border-b border-gray-100 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <a href="#" class="flex items-center gap-3 group">
-                    <div class="w-10 h-10 rounded-xl bg-brand-navy flex items-center justify-center text-brand-gold font-display font-bold text-xl shadow-md group-hover:scale-105 transition-transform">
-                        M
+                <!-- Logo LOYLIZ -->
+                <a href="#" class="flex items-center gap-3.5 group">
+                    <div class="w-10 h-10 rounded-xl bg-brand-navy flex items-center justify-center text-brand-gold font-display font-extrabold text-xl shadow-md group-hover:scale-105 transition-transform border border-brand-gold/40">
+                        L
                     </div>
                     <div>
-                        <span class="block font-display font-extrabold text-2xl tracking-tight text-brand-navy leading-none">
-                            MIX<span class="text-brand-gold drop-shadow-sm font-semibold">STORE</span>
+                        <span class="block font-display font-extrabold text-2xl tracking-wider text-brand-navy leading-none">
+                            LOY<span class="text-brand-gold font-bold">LIZ</span>
                         </span>
-                        <span class="text-[10px] uppercase tracking-[0.25em] text-gray-400 font-medium block mt-0.5">Textile Collection</span>
+                        <span class="text-[9px] uppercase tracking-[0.28em] text-gray-400 font-semibold block mt-1">Confección & Asesoría de Imagen</span>
                     </div>
                 </a>
 
                 <!-- Desktop Menu -->
-                <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
-                    <a href="#inicio" class="text-brand-navy font-semibold hover:text-brand-navy transition relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-brand-gold">Inicio</a>
-                    <a href="#rubros" class="text-gray-600 hover:text-brand-navy transition hover:-translate-y-0.5">Rubros</a>
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold">
+                    <a href="#inicio" class="text-brand-navy font-bold hover:text-brand-navy transition relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-brand-gold">Inicio</a>
+                    <a href="#rubros" class="text-gray-600 hover:text-brand-navy transition hover:-translate-y-0.5">Líneas de Producción</a>
                     <a href="#catalogo" class="text-gray-600 hover:text-brand-navy transition hover:-translate-y-0.5">Catálogo</a>
-                    <a href="#destacados" class="text-gray-600 hover:text-brand-navy transition hover:-translate-y-0.5">Colecciones</a>
-                    <a href="#calidad" class="text-gray-600 hover:text-brand-navy transition hover:-translate-y-0.5">Materiales</a>
+                    <a href="#calidad" class="text-gray-600 hover:text-brand-navy transition hover:-translate-y-0.5">Estándares</a>
                     <a href="#contacto" class="text-gray-600 hover:text-brand-navy transition hover:-translate-y-0.5">Contacto</a>
                 </nav>
 
                 <!-- Action Button -->
                 <div class="hidden lg:flex items-center space-x-4">
                     <a href="#catalogo" class="text-xs uppercase tracking-wider font-bold py-2.5 px-5 rounded-full border border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white transition-all shadow-sm">
-                        Ver Modelos
+                        Ver Catálogo
                     </a>
-                    <a href="#contacto" class="text-xs uppercase tracking-wider font-bold py-2.5 px-5 rounded-full bg-brand-navy text-brand-gold hover:bg-brand-navyDark hover:shadow-lg transition-all flex items-center gap-2">
-                        <span>Cotizar Muestras</span>
+                    <a href="https://api.whatsapp.com/send?phone=584163329389&text=%C2%A1Hola%20LOYLIZ!%20Quiero%20recibir%20asesor%C3%ADa%20para%20renovar%20mis%20prendas%2Funiformes." target="_blank" class="text-xs uppercase tracking-wider font-bold py-2.5 px-5 rounded-full bg-brand-navy text-brand-gold hover:bg-brand-navyDark hover:shadow-lg transition-all flex items-center gap-2 border border-brand-gold/40">
+                        <span>Asesoría WhatsApp</span>
                         <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                     </a>
                 </div>
@@ -102,110 +105,122 @@
 
         <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-6 py-6 transition-all">
-            <div class="flex flex-col space-y-4 text-base font-medium text-gray-700">
+            <div class="flex flex-col space-y-4 text-base font-semibold text-gray-700">
                 <a href="#inicio" class="mobile-link text-brand-navy font-bold py-1">Inicio</a>
-                <a href="#rubros" class="mobile-link hover:text-brand-navy py-1">Rubros & Departamentos</a>
+                <a href="#rubros" class="mobile-link hover:text-brand-navy py-1">Líneas de Producción</a>
                 <a href="#catalogo" class="mobile-link hover:text-brand-navy py-1">Catálogo de Exhibición</a>
-                <a href="#destacados" class="mobile-link hover:text-brand-navy py-1">Colecciones Especiales</a>
-                <a href="#calidad" class="mobile-link hover:text-brand-navy py-1">Calidad y Confección</a>
-                <a href="#contacto" class="mobile-link hover:text-brand-navy py-1">Contacto y Asesoría</a>
+                <a href="#calidad" class="mobile-link hover:text-brand-navy py-1">Estándares & Telas</a>
+                <a href="#contacto" class="mobile-link hover:text-brand-navy py-1">Contacto & Asesoría</a>
                 <div class="pt-4 border-t border-gray-100 flex flex-col gap-2">
-                    <a href="#contacto" class="text-center py-3 bg-brand-navy text-brand-gold rounded-xl font-semibold text-sm">Contactar Asesor</a>
+                    <a href="https://api.whatsapp.com/send?phone=584163329389&text=%C2%A1Hola%20LOYLIZ!%20Quiero%20recibir%20asesor%C3%ADa%20para%20renovar%20mis%20prendas%2Funiformes." target="_blank" class="text-center py-3 bg-brand-navy text-brand-gold rounded-xl font-bold text-sm">
+                        Solicitar Asesoría por WhatsApp
+                    </a>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section (Inspirado en JA Mixstore) -->
-    <section id="inicio" class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-32 bg-gradient-to-b from-white via-brand-cream/30 to-gray-50">
+    <!-- Hero Section (LOYLIZ Re-Branding: Asesoría de Imagen & Confección Premium) -->
+    <section id="inicio" class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 bg-gradient-to-b from-white via-brand-cream/40 to-white">
         <!-- Background accents -->
-        <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-gold/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-gold/20 rounded-full blur-3xl pointer-events-none"></div>
         <div class="absolute top-1/2 -left-20 w-80 h-80 bg-brand-navy/5 rounded-full blur-3xl pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <!-- Hero Left Content -->
-                <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-navy/5 border border-brand-navy/10 text-brand-navy text-xs font-semibold tracking-wide uppercase">
-                        <span class="w-1.5 h-1.5 rounded-full bg-brand-gold"></span>
-                        Exhibición Temporada & Especialidades
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <!-- Badge -->
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-navy/5 border border-brand-navy/10 text-brand-navy text-xs font-bold tracking-wide uppercase">
+                        <span class="w-2 h-2 rounded-full bg-brand-gold"></span>
+                        Nueva Colección & Especialidades
                     </div>
 
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold text-brand-navy leading-[1.1] tracking-tight">
-                        Elegancia textil y confección de alto impacto.
+                    <!-- H1 -->
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold text-brand-navy leading-[1.12] tracking-tight">
+                        Tu Estilo Diario, Diseñado con Propósito.
                     </h1>
 
-                    <p class="text-gray-600 text-base sm:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 font-normal">
-                        Descubre nuestra galería de prendas confeccionadas: moda urbana, líneas cotidianas, uniformes escolares, indumentaria sanitaria y franelas premium de alta resistencia.
+                    <!-- Subtitle -->
+                    <p class="text-gray-600 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal">
+                        Más que fabricantes, somos tu aliado en imagen. Confeccionamos piezas únicas en uniformes médicos, deportivos y corporativos, combinando telas de alta tecnología con cortes impecables que te acompañan en cada reto.
                     </p>
 
-                    <!-- Features bullets -->
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 text-left">
-                        <div class="flex items-center gap-2 p-2 rounded-lg bg-white/70 border border-gray-100">
-                            <i data-lucide="shield-check" class="w-4 h-4 text-brand-navy shrink-0"></i>
-                            <span class="text-xs font-medium text-gray-700">Costuras Reforzadas</span>
+                    <!-- Features Bullets / Checks -->
+                    <div class="space-y-3 pt-2 text-left max-w-xl mx-auto lg:mx-0">
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-white border border-gray-100 shadow-sm">
+                            <div class="w-6 h-6 rounded-full bg-brand-gold/30 text-brand-navy flex items-center justify-center shrink-0">
+                                <i data-lucide="check" class="w-4 h-4 font-bold text-brand-navy"></i>
+                            </div>
+                            <span class="text-xs sm:text-sm font-semibold text-gray-800">1. Diseño y Asesoría de Imagen Personalizada</span>
                         </div>
-                        <div class="flex items-center gap-2 p-2 rounded-lg bg-white/70 border border-gray-100">
-                            <i data-lucide="sparkles" class="w-4 h-4 text-brand-navy shrink-0"></i>
-                            <span class="text-xs font-medium text-gray-700">Telas Antifluido</span>
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-white border border-gray-100 shadow-sm">
+                            <div class="w-6 h-6 rounded-full bg-brand-gold/30 text-brand-navy flex items-center justify-center shrink-0">
+                                <i data-lucide="check" class="w-4 h-4 font-bold text-brand-navy"></i>
+                            </div>
+                            <span class="text-xs sm:text-sm font-semibold text-gray-800">2. Confección Nacional Premium (Doble Pespunte)</span>
                         </div>
-                        <div class="flex items-center gap-2 p-2 rounded-lg bg-white/70 border border-gray-100">
-                            <i data-lucide="feather" class="w-4 h-4 text-brand-navy shrink-0"></i>
-                            <span class="text-xs font-medium text-gray-700">100% Algodón Peinado</span>
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-white border border-gray-100 shadow-sm">
+                            <div class="w-6 h-6 rounded-full bg-brand-gold/30 text-brand-navy flex items-center justify-center shrink-0">
+                                <i data-lucide="check" class="w-4 h-4 font-bold text-brand-navy"></i>
+                            </div>
+                            <span class="text-xs sm:text-sm font-semibold text-gray-800">3. Textiles Transpirables y de Alta Durabilidad</span>
                         </div>
                     </div>
 
                     <!-- CTA Buttons -->
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                        <a href="#catalogo" class="shimmer-effect w-full sm:w-auto px-8 py-3.5 bg-brand-navy text-white rounded-full font-semibold text-sm tracking-wide shadow-lg shadow-brand-navy/20 hover:bg-brand-navyDark hover:scale-[1.02] transition-all flex items-center justify-center gap-2 group">
+                        <a href="#catalogo" class="shimmer-effect w-full sm:w-auto px-8 py-4 bg-brand-navy text-white rounded-full font-bold text-sm tracking-wide shadow-lg shadow-brand-navy/20 hover:bg-brand-navyDark hover:scale-[1.02] transition-all flex items-center justify-center gap-2 group">
                             <span>Explorar Catálogo</span>
                             <i data-lucide="arrow-down" class="w-4 h-4 group-hover:translate-y-0.5 transition-transform text-brand-gold"></i>
                         </a>
-                        <a href="#rubros" class="w-full sm:w-auto px-8 py-3.5 bg-white text-gray-700 border border-gray-200 rounded-full font-semibold text-sm tracking-wide hover:border-brand-navy hover:text-brand-navy transition-all flex items-center justify-center gap-2">
-                            <span>Conocer Rubros</span>
+                        <a href="https://api.whatsapp.com/send?phone=584163329389&text=%C2%A1Hola%20LOYLIZ!%20Quiero%20recibir%20asesor%C3%ADa%20para%20renovar%20mis%20prendas%2Funiformes." target="_blank" class="w-full sm:w-auto px-8 py-4 bg-white text-brand-navy border-2 border-brand-navy/20 hover:border-brand-gold hover:bg-brand-gold/10 rounded-full font-bold text-sm tracking-wide transition-all flex items-center justify-center gap-2 shadow-sm">
+                            <i data-lucide="message-circle" class="w-4 h-4 text-emerald-600"></i>
+                            <span>Solicitar Asesoría de Imagen</span>
                         </a>
                     </div>
                 </div>
 
-                <!-- Hero Right Visual Showcase -->
-                <div class="lg:col-span-6 relative">
-                    <!-- Main Featured Visual Grid -->
-                    <div class="relative mx-auto max-w-lg lg:max-w-none">
-                        <!-- Primary Image Card -->
+                <!-- Hero Right Visual Showcase (Espacio preparado para foto lifestyle vertical/cuadrada) -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <!-- Primary Lifestyle Image Card -->
                         <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white group">
-                            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1000&q=80" 
-                                 alt="Moda y Confección Textil" 
-                                 class="w-full h-[460px] object-cover object-center group-hover:scale-105 transition-transform duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/80 via-transparent to-transparent"></div>
+                            <!-- Prop de imagen preparada para lifestyle vertical/cuadrada -->
+                            <img id="hero-lifestyle-img" 
+                                 src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=900&q=80" 
+                                 alt="LOYLIZ - Confección Premium & Asesoría de Imagen" 
+                                 class="w-full h-[480px] object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/85 via-transparent to-transparent"></div>
                             
                             <!-- Overlay Card Details -->
                             <div class="absolute bottom-6 left-6 right-6 text-white">
                                 <span class="inline-block px-3 py-1 bg-brand-gold text-brand-navy font-bold text-xs uppercase tracking-wider rounded-md mb-2">
-                                    Showroom 2026
+                                    LOYLIZ · Colección 2026
                                 </span>
-                                <h3 class="text-xl font-display font-bold">Colección Integral Textil</h3>
-                                <p class="text-xs text-gray-200 mt-1">Hombre · Mujer · Niños · Institucional y Clínico</p>
+                                <h3 class="text-xl font-display font-bold">Uniformes Médicos & Confección</h3>
+                                <p class="text-xs text-gray-200 mt-1">Bioseguridad, estética clínica y confort en cada guardia.</p>
                             </div>
                         </div>
 
                         <!-- Floating Badges -->
                         <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl border border-gray-100 flex items-center gap-3 animate-bounce-subtle">
                             <div class="w-12 h-12 rounded-xl bg-brand-gold/30 flex items-center justify-center text-brand-navy">
-                                <i data-lucide="layers" class="w-6 h-6"></i>
+                                <i data-lucide="sparkles" class="w-6 h-6"></i>
                             </div>
                             <div>
-                                <span class="block text-sm font-bold text-brand-navy">+8 Rubros Especiales</span>
-                                <span class="text-xs text-gray-500">Muestras & Producción</span>
+                                <span class="block text-sm font-bold text-brand-navy">Asesoría de Imagen</span>
+                                <span class="text-xs text-gray-500">Acompañamiento integral</span>
                             </div>
                         </div>
 
-                        <div class="absolute -top-5 -right-5 bg-brand-navy text-white p-4 rounded-2xl shadow-xl border-2 border-brand-gold/40 flex items-center gap-3 hidden sm:flex">
+                        <div class="absolute -top-4 -right-4 bg-brand-navy text-white p-4 rounded-2xl shadow-xl border-2 border-brand-gold/40 flex items-center gap-3 hidden sm:flex">
                             <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-brand-gold">
-                                <i data-lucide="award" class="w-5 h-5"></i>
+                                <i data-lucide="shield-check" class="w-5 h-5"></i>
                             </div>
                             <div>
-                                <span class="block text-xs uppercase text-brand-gold font-semibold tracking-wider">Acabados</span>
-                                <span class="text-sm font-bold">Norma & Durabilidad</span>
+                                <span class="block text-xs uppercase text-brand-gold font-bold tracking-wider">Confección</span>
+                                <span class="text-sm font-bold">Doble Pespunte</span>
                             </div>
                         </div>
                     </div>
@@ -214,212 +229,236 @@
         </div>
     </section>
 
-    <!-- 1. Cinta Infinita de Fibras & Tejidos (Infinite Textile Marquee) -->
+    <!-- 1. Cinta Infinita de Fibras & Valores LOYLIZ (Infinite Textile Marquee) -->
     <div class="bg-brand-navyDark text-white py-3.5 border-y border-brand-gold/30 marquee-container marquee-fade-edges shadow-md relative z-20">
         <div class="marquee-track flex items-center space-x-8 text-xs font-bold uppercase tracking-widest text-gray-200">
             <!-- Bloque 1 -->
-            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Algodón Peinado 24/1 & 30/1</span>
-            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Microfibra Antifuido Quirúrgica</span>
-            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Ripstop Antidesgarro Reforzado</span>
-            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Costuras de Seguridad Doble Pespunte</span>
-            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Gabardina Pesada Institucional</span>
-            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Piqué Deportivo Transpirable</span>
-            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Acabado Fino & Tacto Sedoso</span>
-            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Colores Reactivos de Larga Duración</span>
+            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Comodidad Diaria</span>
+            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Confección Premium Nacional</span>
+            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Asesoría de Imagen</span>
+            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Microfibra Antifluido</span>
+            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Algodón Transpirable</span>
+            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Estampados de Alta Definición</span>
+            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Ajuste Ergonómico</span>
+            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Estilo Versátil</span>
             <!-- Bloque 2 (Duplicado para loop continuo invisible) -->
-            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Algodón Peinado 24/1 & 30/1</span>
-            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Microfibra Antifuido Quirúrgica</span>
-            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Ripstop Antidesgarro Reforzado</span>
-            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Costuras de Seguridad Doble Pespunte</span>
-            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Gabardina Pesada Institucional</span>
-            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Piqué Deportivo Transpirable</span>
-            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Acabado Fino & Tacto Sedoso</span>
-            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Colores Reactivos de Larga Duración</span>
+            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Comodidad Diaria</span>
+            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Confección Premium Nacional</span>
+            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Asesoría de Imagen</span>
+            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Microfibra Antifluido</span>
+            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Algodón Transpirable</span>
+            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Estampados de Alta Definición</span>
+            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Ajuste Ergonómico</span>
+            <span class="flex items-center gap-3 shrink-0"><span class="text-brand-gold">✦</span> Estilo Versátil</span>
         </div>
     </div>
 
-    <!-- Categories / Rubros Section -->
+    <!-- Sección de Líneas de Producción (Grid / 6 Cards LOYLIZ) -->
     <section id="rubros" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
             <div class="text-center max-w-2xl mx-auto mb-16 reveal-on-scroll">
-                <span class="text-xs uppercase font-bold tracking-widest text-brand-navy bg-brand-gold/30 px-3 py-1 rounded-full">
-                    Nuestras Líneas de Producción
+                <span class="text-xs uppercase font-bold tracking-widest text-brand-navy bg-brand-gold/30 px-3.5 py-1 rounded-full">
+                    Especialidades & Confección
                 </span>
                 <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-brand-navy mt-3">
-                    Diversidad en cada tejido
+                    Líneas de Producción LOYLIZ
                 </h2>
                 <div class="w-12 h-1 bg-brand-gold mx-auto mt-3 rounded-full"></div>
-                <p class="text-gray-500 text-sm sm:text-base mt-4">
-                    Cubrimos una amplia gama de sectores textiles diseñados con precisión ergonómica, resistencia y estética contemporánea.
+                <p class="text-gray-600 text-sm sm:text-base mt-4">
+                    Piezas confeccionadas con propósito, ergonomía y materiales seleccionados para proyectar tu mejor imagen en cada actividad.
                 </p>
             </div>
 
-            <!-- Categories Grid -->
+            <!-- Categories Grid (6 Cards) -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Rubro 1: Ropa Cotidiana -->
-                <div class="reveal-on-scroll stagger-1 group relative rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 hover:shadow-xl transition-all duration-300">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=700&q=80" 
-                             alt="Ropa Cotidiana Casual" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-brand-navy/20 group-hover:bg-brand-navy/10 transition-colors"></div>
-                        <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-brand-navy">
-                            Hombre & Mujer
-                        </span>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="font-display font-bold text-xl text-brand-navy group-hover:text-blue-900">Ropa Cotidiana & Casual</h3>
-                            <div class="w-8 h-8 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-navy">
-                                <i data-lucide="shirt" class="w-4 h-4"></i>
-                            </div>
+                <!-- Card 1: Línea Sanitaria & Quirúrgica -->
+                <div class="reveal-on-scroll stagger-1 group relative rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=700&q=80" 
+                                 alt="Línea Sanitaria & Quirúrgica" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-brand-navy/20 group-hover:bg-brand-navy/10 transition-colors"></div>
+                            <span class="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-brand-navy shadow-sm">
+                                Bioseguridad & Confort
+                            </span>
                         </div>
-                        <p class="text-gray-600 text-xs leading-relaxed mb-4">
-                            Pantalones de lino, camisas casuales, vestidos versátiles y blusas de alta transpirabilidad para el día a día.
-                        </p>
-                        <button onclick="filterCatalog('cotidiana')" class="text-xs font-bold text-brand-navy flex items-center gap-1.5 hover:gap-2.5 transition-all text-brand-goldHover">
-                            <span>Ver modelos de este rubro</span>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="font-display font-bold text-xl text-brand-navy group-hover:text-emerald-900 transition-colors">Línea Sanitaria & Quirúrgica</h3>
+                                <div class="w-8 h-8 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-navy">
+                                    <i data-lucide="activity" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4">
+                                Uniformes antifluido ligeros que te brindan seguridad y estilo durante tus guardias más exigentes.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <button onclick="filterCatalog('sanitarios')" class="text-xs font-bold text-brand-navy flex items-center gap-1.5 hover:gap-2.5 transition-all group-hover:text-emerald-800">
+                            <span>Ver modelos de esta línea</span>
                             <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-brand-navy"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Rubro 2: Moda Urbana -->
-                <div class="reveal-on-scroll stagger-2 group relative rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 hover:shadow-xl transition-all duration-300">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&w=700&q=80" 
-                             alt="Moda Urbana y Streetwear" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-brand-navy/20 group-hover:bg-brand-navy/10 transition-colors"></div>
-                        <span class="absolute top-4 left-4 bg-brand-gold px-3 py-1 rounded-full text-xs font-bold text-brand-navy">
-                            Tendencia Streetwear
-                        </span>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="font-display font-bold text-xl text-brand-navy group-hover:text-blue-900">Moda Urbana</h3>
-                            <div class="w-8 h-8 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-navy">
-                                <i data-lucide="zap" class="w-4 h-4"></i>
-                            </div>
+                <!-- Card 2: Jerseys Deportivos (LVBP) -->
+                <div class="reveal-on-scroll stagger-2 group relative rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1577223625816-7546f13df25d?auto=format&fit=crop&w=700&q=80" 
+                                 alt="Jerseys Deportivos LVBP" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-brand-navy/20 group-hover:bg-brand-navy/10 transition-colors"></div>
+                            <span class="absolute top-4 left-4 bg-brand-gold text-brand-navy font-bold px-3 py-1 rounded-full text-xs shadow-sm">
+                                Pasión en Movimiento
+                            </span>
                         </div>
-                        <p class="text-gray-600 text-xs leading-relaxed mb-4">
-                            Hoodies oversize, joggers estructurados, chaquetas bomber y conjuntos utilitarios con toques modernos.
-                        </p>
-                        <button onclick="filterCatalog('urbana')" class="text-xs font-bold text-brand-navy flex items-center gap-1.5 hover:gap-2.5 transition-all">
-                            <span>Ver modelos de este rubro</span>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="font-display font-bold text-xl text-brand-navy group-hover:text-emerald-900 transition-colors">Jerseys Deportivos (LVBP)</h3>
+                                <div class="w-8 h-8 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-navy">
+                                    <i data-lucide="zap" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4">
+                                Telas tipo mesh transpirables con diseños sublimes de alta resolución para alentar a tu equipo con clase.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <button onclick="filterCatalog('deportivos')" class="text-xs font-bold text-brand-navy flex items-center gap-1.5 hover:gap-2.5 transition-all group-hover:text-emerald-800">
+                            <span>Ver modelos de esta línea</span>
                             <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-brand-navy"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Rubro 3: Franelas y Básicos -->
-                <div class="reveal-on-scroll stagger-3 group relative rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 hover:shadow-xl transition-all duration-300">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=700&q=80" 
-                             alt="Franelas y T-shirts" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-brand-navy/20 group-hover:bg-brand-navy/10 transition-colors"></div>
-                        <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-brand-navy">
-                            Algodón Premium
-                        </span>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="font-display font-bold text-xl text-brand-navy group-hover:text-blue-900">Franelas & Básicos</h3>
-                            <div class="w-8 h-8 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-navy">
-                                <i data-lucide="tag" class="w-4 h-4"></i>
-                            </div>
+                <!-- Card 3: Colecciones Temáticas & Casual -->
+                <div class="reveal-on-scroll stagger-3 group relative rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&w=700&q=80" 
+                                 alt="Colecciones Temáticas & Casual" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-brand-navy/20 group-hover:bg-brand-navy/10 transition-colors"></div>
+                            <span class="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-brand-navy shadow-sm">
+                                Estilo Único
+                            </span>
                         </div>
-                        <p class="text-gray-600 text-xs leading-relaxed mb-4">
-                            Franelas lisas cuello redondo y en V, cortes unisex, 20/1 y 24/1, ideales para estampados o uso corporativo diario.
-                        </p>
-                        <button onclick="filterCatalog('franelas')" class="text-xs font-bold text-brand-navy flex items-center gap-1.5 hover:gap-2.5 transition-all">
-                            <span>Ver modelos de este rubro</span>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="font-display font-bold text-xl text-brand-navy group-hover:text-emerald-900 transition-colors">Colecciones Temáticas & Casual</h3>
+                                <div class="w-8 h-8 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-navy">
+                                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4">
+                                Prendas divertidas y exclusivas que expresan tu personalidad en el día a día.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <button onclick="filterCatalog('casual')" class="text-xs font-bold text-brand-navy flex items-center gap-1.5 hover:gap-2.5 transition-all group-hover:text-emerald-800">
+                            <span>Ver modelos de esta línea</span>
                             <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-brand-navy"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Rubro 4: Uniformes Escolares -->
-                <div class="reveal-on-scroll stagger-1 group relative rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 hover:shadow-xl transition-all duration-300">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=700&q=80" 
-                             alt="Uniformes Escolares" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-brand-navy/20 group-hover:bg-brand-navy/10 transition-colors"></div>
-                        <span class="absolute top-4 left-4 bg-brand-navy text-brand-gold px-3 py-1 rounded-full text-xs font-bold">
-                            Institucional & Colegio
-                        </span>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="font-display font-bold text-xl text-brand-navy group-hover:text-blue-900">Uniformes Escolares</h3>
-                            <div class="w-8 h-8 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-navy">
-                                <i data-lucide="backpack" class="w-4 h-4"></i>
-                            </div>
+                <!-- Card 4: Franelas & Básicos Premium -->
+                <div class="reveal-on-scroll stagger-1 group relative rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=700&q=80" 
+                                 alt="Franelas & Básicos Premium" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-brand-navy/20 group-hover:bg-brand-navy/10 transition-colors"></div>
+                            <span class="absolute top-4 left-4 bg-brand-navy text-white font-bold px-3 py-1 rounded-full text-xs shadow-sm">
+                                Esenciales del Día a Día
+                            </span>
                         </div>
-                        <p class="text-gray-600 text-xs leading-relaxed mb-4">
-                            Poleras piqué escolares, pantalones en gabardina y faldas plisadas con alto ciclo de lavado y colores indelebles.
-                        </p>
-                        <button onclick="filterCatalog('escolares')" class="text-xs font-bold text-brand-navy flex items-center gap-1.5 hover:gap-2.5 transition-all">
-                            <span>Ver modelos de este rubro</span>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="font-display font-bold text-xl text-brand-navy group-hover:text-emerald-900 transition-colors">Franelas & Básicos Premium</h3>
+                                <div class="w-8 h-8 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-navy">
+                                    <i data-lucide="shirt" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4">
+                                Básicos atemporales confeccionados con algodón de máxima suavidad para tus looks más versátiles.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <button onclick="filterCatalog('franelas')" class="text-xs font-bold text-brand-navy flex items-center gap-1.5 hover:gap-2.5 transition-all group-hover:text-emerald-800">
+                            <span>Ver modelos de esta línea</span>
                             <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-brand-navy"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Rubro 5: Línea Sanitaria & Quirúrgica -->
-                <div class="reveal-on-scroll stagger-2 group relative rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 hover:shadow-xl transition-all duration-300">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=700&q=80" 
-                             alt="Indumentaria Sanitaria y Médica" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-brand-navy/20 group-hover:bg-brand-navy/10 transition-colors"></div>
-                        <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-brand-navy">
-                            Antifluido & Bioseguridad
-                        </span>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="font-display font-bold text-xl text-brand-navy group-hover:text-blue-900">Línea Sanitaria & Médica</h3>
-                            <div class="w-8 h-8 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-navy">
-                                <i data-lucide="activity" class="w-4 h-4"></i>
-                            </div>
+                <!-- Card 5: Uniformes Corporativos -->
+                <div class="reveal-on-scroll stagger-2 group relative rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=700&q=80" 
+                                 alt="Uniformes Corporativos" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-brand-navy/20 group-hover:bg-brand-navy/10 transition-colors"></div>
+                            <span class="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-brand-navy shadow-sm">
+                                Identidad Empresarial
+                            </span>
                         </div>
-                        <p class="text-gray-600 text-xs leading-relaxed mb-4">
-                            Scrubs ergonómicos, filipinas médicas, pantalones jogger antifluido, batas clínicas con tecnología stretch.
-                        </p>
-                        <button onclick="filterCatalog('sanitarios')" class="text-xs font-bold text-brand-navy flex items-center gap-1.5 hover:gap-2.5 transition-all">
-                            <span>Ver modelos de este rubro</span>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="font-display font-bold text-xl text-brand-navy group-hover:text-emerald-900 transition-colors">Uniformes Corporativos</h3>
+                                <div class="w-8 h-8 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-navy">
+                                    <i data-lucide="briefcase" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4">
+                                Proyecta la mejor imagen de tu marca con prendas duraderas, elegantes y personalizadas.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <button onclick="filterCatalog('corporativos')" class="text-xs font-bold text-brand-navy flex items-center gap-1.5 hover:gap-2.5 transition-all group-hover:text-emerald-800">
+                            <span>Ver modelos de esta línea</span>
                             <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-brand-navy"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Rubro 6: Niños & Juvenil -->
-                <div class="reveal-on-scroll stagger-3 group relative rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 hover:shadow-xl transition-all duration-300">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1519457431-44ccd64a579b?auto=format&fit=crop&w=700&q=80" 
-                             alt="Ropa Infantil y Niños" 
-                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-brand-navy/20 group-hover:bg-brand-navy/10 transition-colors"></div>
-                        <span class="absolute top-4 left-4 bg-brand-gold px-3 py-1 rounded-full text-xs font-bold text-brand-navy">
-                            Niños & Niñas
-                        </span>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="font-display font-bold text-xl text-brand-navy group-hover:text-blue-900">Infantil & Juvenil</h3>
-                            <div class="w-8 h-8 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-navy">
-                                <i data-lucide="smile" class="w-4 h-4"></i>
-                            </div>
+                <!-- Card 6: Infantil & Juvenil -->
+                <div class="reveal-on-scroll stagger-3 group relative rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=700&q=80" 
+                                 alt="Infantil & Juvenil" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-brand-navy/20 group-hover:bg-brand-navy/10 transition-colors"></div>
+                            <span class="absolute top-4 left-4 bg-brand-gold text-brand-navy font-bold px-3 py-1 rounded-full text-xs shadow-sm">
+                                Comodidad para Crecer
+                            </span>
                         </div>
-                        <p class="text-gray-600 text-xs leading-relaxed mb-4">
-                            Prendas cómodas de máximo confort, conjuntos deportivos, camisetas y shorts libres de asperezas para los más pequeños.
-                        </p>
-                        <button onclick="filterCatalog('ninos')" class="text-xs font-bold text-brand-navy flex items-center gap-1.5 hover:gap-2.5 transition-all">
-                            <span>Ver modelos de este rubro</span>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="font-display font-bold text-xl text-brand-navy group-hover:text-emerald-900 transition-colors">Infantil & Juvenil</h3>
+                                <div class="w-8 h-8 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-navy">
+                                    <i data-lucide="smile" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4">
+                                Diseños resistentes y súper cómodos diseñados para el ritmo inagotable de los más pequeños.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <button onclick="filterCatalog('infantil')" class="text-xs font-bold text-brand-navy flex items-center gap-1.5 hover:gap-2.5 transition-all group-hover:text-emerald-800">
+                            <span>Ver modelos de esta línea</span>
                             <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-brand-navy"></i>
                         </button>
                     </div>
@@ -428,58 +467,57 @@
         </div>
     </section>
 
-    <!-- 2. Estadísticas de Producción & Métricas (Animated Count-Up) -->
-    <section class="bg-gradient-to-r from-brand-navyDark via-brand-navy to-brand-navyDark py-14 text-white relative overflow-hidden border-y border-brand-gold/30 shadow-inner">
+    <!-- 2. Sección de Contadores (Stats LOYLIZ: 4 Columnas) -->
+    <section class="bg-gradient-to-r from-brand-navyDark via-brand-navy to-brand-navyDark py-16 text-white relative overflow-hidden border-y border-brand-gold/30 shadow-inner">
         <!-- Luces tenues de fondo -->
-        <div class="absolute -top-12 left-1/4 w-72 h-72 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute -bottom-12 right-1/4 w-72 h-72 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -top-12 left-1/4 w-72 h-72 bg-brand-gold/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-12 right-1/4 w-72 h-72 bg-brand-gold/15 rounded-full blur-3xl pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-white/10">
-                <!-- Stat 1 -->
+                <!-- Columna 1: +1000 Guardias Cómodas -->
                 <div class="pt-4 md:pt-0 px-4 reveal-on-scroll stagger-1">
                     <div class="flex items-center justify-center text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-brand-gold mb-1">
-                        <span class="counter-number font-mono" data-target="15">0</span>
                         <span>+</span>
+                        <span class="counter-number font-mono" data-target="1000">0</span>
                     </div>
-                    <span class="block text-xs uppercase font-bold tracking-wider text-gray-200">Años de Trayectoria</span>
-                    <span class="text-[11px] text-gray-400 mt-0.5 block">Experiencia en confección</span>
+                    <span class="block text-xs uppercase font-bold tracking-wider text-gray-200">Guardias Cómodas</span>
+                    <span class="text-[11px] text-gray-400 mt-0.5 block">En clínicas y hospitales</span>
                 </div>
 
-                <!-- Stat 2 -->
+                <!-- Columna 2: 100% Confección Nacional -->
                 <div class="pt-4 md:pt-0 px-4 reveal-on-scroll stagger-2">
-                    <div class="flex items-center justify-center text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-brand-gold mb-1">
-                        <span class="counter-number font-mono" data-target="50">0</span>
-                        <span>k+</span>
-                    </div>
-                    <span class="block text-xs uppercase font-bold tracking-wider text-gray-200">Prendas Producidas</span>
-                    <span class="text-[11px] text-gray-400 mt-0.5 block">Para marcas e instituciones</span>
-                </div>
-
-                <!-- Stat 3 -->
-                <div class="pt-4 md:pt-0 px-4 reveal-on-scroll stagger-3">
                     <div class="flex items-center justify-center text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-brand-gold mb-1">
                         <span class="counter-number font-mono" data-target="100">0</span>
                         <span>%</span>
                     </div>
-                    <span class="block text-xs uppercase font-bold tracking-wider text-gray-200">Control de Calidad</span>
-                    <span class="text-[11px] text-gray-400 mt-0.5 block">Telas testeadas al desgaste</span>
+                    <span class="block text-xs uppercase font-bold tracking-wider text-gray-200">Confección Nacional</span>
+                    <span class="text-[11px] text-gray-400 mt-0.5 block">Doble pespunte premium</span>
                 </div>
 
-                <!-- Stat 4 -->
+                <!-- Columna 3: +50 Marcas que Confían -->
+                <div class="pt-4 md:pt-0 px-4 reveal-on-scroll stagger-3">
+                    <div class="flex items-center justify-center text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-brand-gold mb-1">
+                        <span>+</span>
+                        <span class="counter-number font-mono" data-target="50">0</span>
+                    </div>
+                    <span class="block text-xs uppercase font-bold tracking-wider text-gray-200">Marcas que Confían</span>
+                    <span class="text-[11px] text-gray-400 mt-0.5 block">Empresas e instituciones aliadas</span>
+                </div>
+
+                <!-- Columna 4: ∞ Opciones de Personalización -->
                 <div class="pt-4 md:pt-0 px-4 reveal-on-scroll stagger-4">
                     <div class="flex items-center justify-center text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-brand-gold mb-1">
-                        <span class="counter-number font-mono" data-target="120">0</span>
-                        <span>+</span>
+                        <span class="counter-number font-mono text-4xl sm:text-5xl lg:text-6xl" data-symbol="∞">∞</span>
                     </div>
-                    <span class="block text-xs uppercase font-bold tracking-wider text-gray-200">Clientes Corporativos</span>
-                    <span class="text-[11px] text-gray-400 mt-0.5 block">Clínicas, colegios e industrias</span>
+                    <span class="block text-xs uppercase font-bold tracking-wider text-gray-200">Opciones de Personalización</span>
+                    <span class="text-[11px] text-gray-400 mt-0.5 block">Asesoría de imagen & confección a medida</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Main Exhibition Catalog Section (No prices, purely showroom / showcase) -->
+    <!-- Main Exhibition Catalog Section (Showroom / Ficha Técnica) -->
     <section id="catalogo" class="py-20 bg-gray-50 border-t border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Header & Filter Tabs -->
@@ -487,23 +525,23 @@
                 <div>
                     <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-navy mb-2">
                         <span class="w-2 h-2 rounded-full bg-brand-gold"></span>
-                        Galería Interactiva
+                        Galería Interactiva & Muestrario
                     </div>
                     <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-brand-navy">
-                        Catálogo de Exhibición
+                        Catálogo de Exhibición LOYLIZ
                     </h2>
-                    <p class="text-gray-500 text-sm mt-1">Explora modelos por rubro o visualiza la ficha técnica para muestras y cotización</p>
+                    <p class="text-gray-600 text-sm mt-1">Explora cada modelo y abre su ficha técnica para coordinar muestras y cotización</p>
                 </div>
 
                 <!-- Filter Pills -->
                 <div class="flex flex-wrap items-center gap-2" id="filter-container">
                     <button class="filter-btn active px-4 py-2 rounded-full text-xs font-bold transition-all" data-filter="all">Todos</button>
-                    <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all" data-filter="urbana">Moda Urbana</button>
-                    <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all" data-filter="cotidiana">Cotidiana</button>
-                    <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all" data-filter="escolares">Escolares</button>
-                    <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all" data-filter="sanitarios">Sanitarios</button>
-                    <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all" data-filter="franelas">Franelas</button>
-                    <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all" data-filter="ninos">Niños</button>
+                    <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all" data-filter="sanitarios">Sanitaria & Quirúrgica</button>
+                    <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all" data-filter="deportivos">Jerseys Deportivos</button>
+                    <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all" data-filter="casual">Temáticas & Casual</button>
+                    <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all" data-filter="franelas">Básicos Premium</button>
+                    <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all" data-filter="corporativos">Corporativos</button>
+                    <button class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition-all" data-filter="infantil">Infantil & Juvenil</button>
                 </div>
             </div>
 
@@ -530,52 +568,52 @@
         </div>
     </section>
 
-    <!-- Lookbook & Material Quality Section (Inspirado en JA Mixstore) -->
+    <!-- Lookbook & Material Quality Section (Estándares de Fabricación LOYLIZ) -->
     <section id="calidad" class="py-20 bg-brand-navy text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e9dc83_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#84dcc6_1px,transparent_1px)] [background-size:16px_16px]"></div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-5 space-y-6 reveal-on-scroll">
-                    <span class="text-xs uppercase font-bold tracking-widest text-brand-gold bg-white/10 px-3.5 py-1.5 rounded-full inline-block">
-                        Estándares de Fabricación
+                    <span class="text-xs uppercase font-bold tracking-widest text-brand-gold bg-white/10 px-3.5 py-1.5 rounded-full inline-block border border-brand-gold/30">
+                        Confección Nacional Premium
                     </span>
                     <h2 class="text-3xl sm:text-4xl font-display font-extrabold tracking-tight">
                         Cuidado minucioso en cada hilo y costura.
                     </h2>
                     <p class="text-gray-300 text-sm leading-relaxed">
-                        Seleccionamos fibras naturales y compuestas con tecnología textil que resiste el desgaste intensivo, manteniendo el color vivo y una caída inalterable lavado tras lavado.
+                        En LOYLIZ combinamos telas de alta tecnología con cortes impecables. Nuestras prendas están diseñadas para resistir el uso intensivo, manteniendo suavidad al tacto y colores inalterables lavado tras lavado.
                     </p>
 
                     <!-- Feature list -->
                     <div class="space-y-4 pt-2">
                         <div class="flex items-start gap-3.5">
                             <div class="w-6 h-6 rounded-full bg-brand-gold text-brand-navy flex items-center justify-center shrink-0 mt-0.5">
-                                <i data-lucide="check" class="w-4 h-4 font-bold"></i>
+                                <i data-lucide="shield-check" class="w-4 h-4 font-bold text-brand-navy"></i>
                             </div>
                             <div>
-                                <h4 class="text-sm font-bold text-white">Textiles Antifluido & Repelentes</h4>
-                                <p class="text-xs text-gray-400">Certificación para uniformes de la salud y áreas quirúrgicas.</p>
+                                <h4 class="text-sm font-bold text-white">Microfibra Antifluido & Repelente</h4>
+                                <p class="text-xs text-gray-400">Protección certificada de 4 vías para guardias médicas y clínicas.</p>
                             </div>
                         </div>
 
                         <div class="flex items-start gap-3.5">
                             <div class="w-6 h-6 rounded-full bg-brand-gold text-brand-navy flex items-center justify-center shrink-0 mt-0.5">
-                                <i data-lucide="check" class="w-4 h-4 font-bold"></i>
+                                <i data-lucide="check" class="w-4 h-4 font-bold text-brand-navy"></i>
                             </div>
                             <div>
-                                <h4 class="text-sm font-bold text-white">Gabardinas de Alto Rendimiento</h4>
-                                <p class="text-xs text-gray-400">Especial para pantalones escolares e indumentaria institucional.</p>
+                                <h4 class="text-sm font-bold text-white">Costuras con Doble Pespunte</h4>
+                                <p class="text-xs text-gray-400">Refuerzo estructural en tiro y hombros para máxima durabilidad.</p>
                             </div>
                         </div>
 
                         <div class="flex items-start gap-3.5">
                             <div class="w-6 h-6 rounded-full bg-brand-gold text-brand-navy flex items-center justify-center shrink-0 mt-0.5">
-                                <i data-lucide="check" class="w-4 h-4 font-bold"></i>
+                                <i data-lucide="sparkles" class="w-4 h-4 font-bold text-brand-navy"></i>
                             </div>
                             <div>
-                                <h4 class="text-sm font-bold text-white">Bordados & Serigrafía de Precisión</h4>
-                                <p class="text-xs text-gray-400">Personalización de escudos, logotipos corporativos y etiquetas.</p>
+                                <h4 class="text-sm font-bold text-white">Asesoría de Imagen Personalizada</h4>
+                                <p class="text-xs text-gray-400">Orientación en cortes, paletas y personalización para marcas y profesionales.</p>
                             </div>
                         </div>
                     </div>
@@ -585,25 +623,25 @@
                 <div class="lg:col-span-7 grid grid-cols-2 gap-4 reveal-on-scroll stagger-2">
                     <div class="space-y-4">
                         <div class="rounded-2xl overflow-hidden shadow-xl border border-white/10 group h-64">
-                            <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80" 
-                                 alt="Detalle de Tela y Botonería" 
+                            <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Uniformes Médicos LOYLIZ" 
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="rounded-2xl overflow-hidden shadow-xl border border-white/10 group h-44">
-                            <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=600&q=80" 
-                                 alt="Tejido de Franela" 
+                            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Algodón Peinado LOYLIZ" 
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                     </div>
                     <div class="space-y-4 pt-6">
                         <div class="rounded-2xl overflow-hidden shadow-xl border border-white/10 group h-44">
-                            <img src="https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=600&q=80" 
-                                 alt="Taller de Confección" 
+                            <img src="https://images.unsplash.com/photo-1577223625816-7546f13df25d?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Jerseys Deportivos LVBP" 
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="rounded-2xl overflow-hidden shadow-xl border border-white/10 group h-64">
-                            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" 
-                                 alt="Lookbook Modelos" 
+                            <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Confección Corporativa LOYLIZ" 
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                     </div>
@@ -612,11 +650,11 @@
         </div>
     </section>
 
-    <!-- Quick View Modal (Interactive Showcase Detail) -->
+    <!-- Quick View Modal (Ficha Técnica LOYLIZ) -->
     <div id="product-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
         <div id="modal-content" class="bg-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl transform scale-95 transition-all duration-300 relative border border-gray-100">
             <!-- Close Button -->
-            <button id="close-modal" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/90 text-gray-700 hover:text-brand-navy hover:bg-white flex items-center justify-center shadow transition">
+            <button id="close-modal" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/90 text-gray-700 hover:text-brand-navy hover:bg-white flex items-center justify-center shadow transition" aria-label="Cerrar modal">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
 
@@ -638,28 +676,28 @@
                         <div class="border-t border-b border-gray-100 py-4 my-4 space-y-2 text-xs">
                             <div class="flex justify-between">
                                 <span class="text-gray-400">Composición:</span>
-                                <span id="modal-fabric" class="font-semibold text-gray-800">--</span>
+                                <span id="modal-fabric" class="font-semibold text-gray-800 text-right max-w-[60%]">--</span>
                             </div>
                             <div class="flex justify-between">
-                                <span class="text-gray-400">Tallas disponibles:</span>
+                                <span class="text-gray-400">Tallas:</span>
                                 <span id="modal-sizes" class="font-semibold text-gray-800">--</span>
                             </div>
                             <div class="flex justify-between">
-                                <span class="text-gray-400">Variantes de color:</span>
-                                <span id="modal-colors" class="font-semibold text-gray-800">--</span>
+                                <span class="text-gray-400">Colores disponibles:</span>
+                                <span id="modal-colors" class="font-semibold text-gray-800 text-right max-w-[60%]">--</span>
                             </div>
                             <div class="flex justify-between">
                                 <span class="text-gray-400">Uso recomendado:</span>
-                                <span id="modal-use" class="font-semibold text-brand-navy">--</span>
+                                <span id="modal-use" class="font-semibold text-brand-navy text-right max-w-[60%]">--</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Action buttons -->
                     <div class="pt-4 flex flex-col sm:flex-row gap-3">
-                        <a id="modal-whatsapp-link" href="#" target="_blank" class="flex-1 py-3 bg-brand-navy text-brand-gold hover:bg-brand-navyDark rounded-xl font-bold text-xs uppercase tracking-wider text-center transition flex items-center justify-center gap-2">
+                        <a id="modal-whatsapp-link" href="#" target="_blank" class="flex-1 py-3.5 bg-brand-navy text-brand-gold hover:bg-brand-navyDark rounded-xl font-bold text-xs uppercase tracking-wider text-center transition flex items-center justify-center gap-2 border border-brand-gold/40 shadow-md">
                             <i data-lucide="message-circle" class="w-4 h-4"></i>
-                            <span>Consultar por este modelo</span>
+                            <span>Solicitar Asesoría por este Modelo</span>
                         </a>
                     </div>
                 </div>
@@ -674,40 +712,42 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12">
                     <!-- Left Info -->
                     <div class="lg:col-span-5 bg-brand-navy p-8 sm:p-12 text-white flex flex-col justify-between relative overflow-hidden">
-                        <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-brand-gold/10 rounded-full blur-2xl"></div>
+                        <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-brand-gold/15 rounded-full blur-2xl"></div>
 
                         <div class="relative z-10 space-y-6">
-                            <span class="text-xs font-bold uppercase tracking-widest text-brand-gold">Atención Personalizada</span>
-                            <h3 class="text-3xl font-display font-extrabold text-white">¿Tienes un proyecto textil en mente?</h3>
+                            <span class="text-xs font-bold uppercase tracking-widest text-brand-gold">Asesoría Directa</span>
+                            <h3 class="text-3xl font-display font-extrabold text-white">¿Listo para renovar tu imagen o la de tu equipo?</h3>
                             <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
-                                Ya sea para uniformes corporativos, colegios, clínicas o líneas de moda de tu propia marca, te asesoramos en selección de telas, confección y muestras.
+                                Ya sea para uniformes médicos, dotaciones corporativas o colecciones deportivas de la LVBP, te asesoramos en selección de telas, tallas y personalización.
                             </p>
 
-                            <div class="space-y-4 pt-4 text-xs">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-brand-gold">
+                            <div class="space-y-4 pt-4 text-xs sm:text-sm">
+                                <a href="https://api.whatsapp.com/send?phone=584163329389&text=%C2%A1Hola%20LOYLIZ!%20Quiero%20recibir%20asesor%C3%ADa%20para%20renovar%20mis%20prendas%2Funiformes." target="_blank" class="flex items-center gap-3 text-white hover:text-brand-gold transition">
+                                    <div class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-brand-gold">
                                         <i data-lucide="phone" class="w-4 h-4"></i>
                                     </div>
-                                    <span>+58 (000) 123-4567 / Atención Comercial</span>
-                                </div>
+                                    <span class="font-semibold">+58 416-3329389 (WhatsApp Oficial)</span>
+                                </a>
                                 <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-brand-gold">
-                                        <i data-lucide="mail" class="w-4 h-4"></i>
-                                    </div>
-                                    <span>contacto@mixstoretextil.com</span>
-                                </div>
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-brand-gold">
+                                    <div class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-brand-gold">
                                         <i data-lucide="map-pin" class="w-4 h-4"></i>
                                     </div>
-                                    <span>Showroom & Taller Principal</span>
+                                    <span>Valencia, Edo. Carabobo | Despachos a nivel nacional.</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-brand-gold">
+                                        <i data-lucide="clock" class="w-4 h-4"></i>
+                                    </div>
+                                    <span>Lun - Vie: 8:00 AM - 5:00 PM</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="relative z-10 pt-8 border-t border-white/10 mt-8">
-                            <span class="text-[11px] text-gray-400 uppercase tracking-widest">Horarios de atención</span>
-                            <p class="text-xs font-medium text-brand-gold mt-1">Lunes a Viernes: 8:00 AM - 5:30 PM</p>
+                            <a href="https://api.whatsapp.com/send?phone=584163329389&text=%C2%A1Hola%20LOYLIZ!%20Quiero%20recibir%20asesor%C3%ADa%20para%20renovar%20mis%20prendas%2Funiformes." target="_blank" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-brand-gold text-brand-navy font-bold text-xs uppercase tracking-wider hover:bg-white transition shadow">
+                                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                                <span>Chatear en WhatsApp</span>
+                            </a>
                         </div>
                     </div>
 
@@ -720,42 +760,42 @@
                                     <input type="text" required placeholder="Tu nombre o empresa" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-navy focus:ring-1 focus:ring-brand-navy text-sm outline-none transition bg-white">
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">Teléfono / WhatsApp</label>
-                                    <input type="tel" required placeholder="+58 412..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-navy focus:ring-1 focus:ring-brand-navy text-sm outline-none transition bg-white">
+                                    <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">WhatsApp de Contacto</label>
+                                    <input type="tel" required placeholder="+58 416..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-navy focus:ring-1 focus:ring-brand-navy text-sm outline-none transition bg-white">
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">Rubro de interés</label>
-                                    <select class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-navy focus:ring-1 focus:ring-brand-navy text-sm outline-none transition bg-white text-gray-700">
-                                        <option value="">Seleccionar rubro...</option>
-                                        <option value="urbana">Moda Urbana / Streetwear</option>
-                                        <option value="cotidiana">Ropa Cotidiana (Hombre / Mujer)</option>
-                                        <option value="escolares">Uniformes Escolares</option>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">Línea de Interés</label>
+                                    <select class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-navy focus:ring-1 focus:ring-brand-navy text-sm outline-none transition bg-white text-gray-700 font-medium">
+                                        <option value="">Seleccionar línea...</option>
                                         <option value="sanitarios">Línea Sanitaria & Quirúrgica</option>
-                                        <option value="franelas">Franelas & Básicos de Algodón</option>
-                                        <option value="ninos">Línea Niños / Infantil</option>
-                                        <option value="varios">Múltiples Rubros / Confección Especial</option>
+                                        <option value="deportivos">Jerseys Deportivos (LVBP)</option>
+                                        <option value="casual">Colecciones Temáticas & Casual</option>
+                                        <option value="franelas">Franelas & Básicos Premium</option>
+                                        <option value="corporativos">Uniformes Corporativos</option>
+                                        <option value="infantil">Infantil & Juvenil</option>
+                                        <option value="asesoria">Asesoría de Imagen Personalizada</option>
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">Correo Electrónico</label>
-                                    <input type="email" required placeholder="tu@email.com" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-navy focus:ring-1 focus:ring-brand-navy text-sm outline-none transition bg-white">
+                                    <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">Ciudad / Estado</label>
+                                    <input type="text" placeholder="Ej. Valencia, Caracas, Barquisimeto..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-navy focus:ring-1 focus:ring-brand-navy text-sm outline-none transition bg-white">
                                 </div>
                             </div>
 
                             <div>
-                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">Detalles del requerimiento / prendas</label>
-                                <textarea rows="3" placeholder="Describe los modelos que te interesan, cantidades estimadas o características específicas..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-navy focus:ring-1 focus:ring-brand-navy text-sm outline-none transition bg-white resize-none"></textarea>
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">Detalles del requerimiento / Asesoría deseada</label>
+                                <textarea rows="3" placeholder="Describe los modelos, tallas estimadas, bordados o asesoría de imagen que requieres..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-navy focus:ring-1 focus:ring-brand-navy text-sm outline-none transition bg-white resize-none"></textarea>
                             </div>
 
                             <div class="pt-2">
-                                <button type="submit" class="w-full sm:w-auto px-8 py-3.5 bg-brand-navy text-brand-gold hover:bg-brand-navyDark rounded-full font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2">
+                                <button type="submit" class="w-full sm:w-auto px-8 py-3.5 bg-brand-navy text-brand-gold hover:bg-brand-navyDark rounded-full font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2 border border-brand-gold/40">
                                     <i data-lucide="send" class="w-4 h-4"></i>
-                                    <span>Enviar Consulta de Exhibición</span>
+                                    <span>Solicitar Asesoría & Cotización</span>
                                 </button>
-                                <p id="form-feedback" class="text-xs text-green-600 mt-2 hidden font-semibold">¡Gracias por contactarnos! Tu consulta ha sido recibida con éxito.</p>
+                                <p id="form-feedback" class="text-xs text-emerald-600 mt-2 hidden font-bold">¡Gracias por contactar a LOYLIZ! Nos comunicaremos contigo en breve.</p>
                             </div>
                         </form>
                     </div>
@@ -764,82 +804,86 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-brand-navyDark text-white pt-16 pb-12 border-t border-brand-gold/20">
+    <!-- Footer LOYLIZ -->
+    <footer class="bg-brand-navyDark text-white pt-16 pb-12 border-t border-brand-gold/30">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10">
                 <!-- Col 1: Brand Info -->
                 <div class="lg:col-span-2 space-y-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 rounded-xl bg-brand-navy flex items-center justify-center text-brand-gold font-display font-bold text-lg border border-brand-gold/30">
-                            M
+                        <div class="w-10 h-10 rounded-xl bg-brand-navy flex items-center justify-center text-brand-gold font-display font-extrabold text-xl border border-brand-gold/40">
+                            L
                         </div>
-                        <span class="font-display font-extrabold text-xl tracking-tight text-white">
-                            MIX<span class="text-brand-gold">STORE</span>
+                        <span class="font-display font-extrabold text-2xl tracking-wider text-white">
+                            LOY<span class="text-brand-gold">LIZ</span>
                         </span>
                     </div>
-                    <p class="text-gray-400 text-xs leading-relaxed max-w-sm">
-                        Plataforma de exhibición y catálogo textil. Fabricamos y confeccionamos soluciones para el mercado minorista, corporativo, médico y educativo con los más altos estándares de calidad.
+                    <p class="text-gray-300 text-xs sm:text-sm leading-relaxed max-w-sm">
+                        Diseño, Asesoría & Confección Premium. Aliados en imagen para profesionales médicos, equipos deportivos e instituciones corporativas.
                     </p>
-                    <div class="flex items-center space-x-3 pt-2">
-                        <a href="#" class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-brand-gold hover:border-brand-gold transition"><i data-lucide="instagram" class="w-4 h-4"></i></a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-brand-gold hover:border-brand-gold transition"><i data-lucide="facebook" class="w-4 h-4"></i></a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-brand-gold hover:border-brand-gold transition"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+                    <div class="pt-2 text-xs text-gray-400 space-y-1">
+                        <p class="text-gray-300 font-medium">📍 Valencia, Edo. Carabobo | Despachos a nivel nacional.</p>
+                        <p class="text-gray-300 font-medium">🕒 Lun - Vie: 8:00 AM - 5:00 PM</p>
                     </div>
                 </div>
 
-                <!-- Col 2: Departamentos -->
+                <!-- Col 2: Líneas de Producción -->
                 <div>
-                    <h5 class="text-xs font-bold uppercase tracking-wider text-brand-gold mb-4">Departamentos</h5>
+                    <h5 class="text-xs font-bold uppercase tracking-wider text-brand-gold mb-4">Líneas de Producción</h5>
                     <ul class="space-y-2 text-xs text-gray-300">
-                        <li><a href="#rubros" class="hover:text-white transition">Hombres</a></li>
-                        <li><a href="#rubros" class="hover:text-white transition">Mujeres</a></li>
-                        <li><a href="#rubros" class="hover:text-white transition">Niños y Niñas</a></li>
-                        <li><a href="#rubros" class="hover:text-white transition">Línea Escolar</a></li>
-                        <li><a href="#rubros" class="hover:text-white transition">Línea Sanitaria</a></li>
+                        <li><a href="#rubros" class="hover:text-white transition">Línea Sanitaria & Quirúrgica</a></li>
+                        <li><a href="#rubros" class="hover:text-white transition">Jerseys Deportivos (LVBP)</a></li>
+                        <li><a href="#rubros" class="hover:text-white transition">Colecciones Temáticas & Casual</a></li>
+                        <li><a href="#rubros" class="hover:text-white transition">Franelas & Básicos Premium</a></li>
+                        <li><a href="#rubros" class="hover:text-white transition">Uniformes Corporativos</a></li>
+                        <li><a href="#rubros" class="hover:text-white transition">Infantil & Juvenil</a></li>
                     </ul>
                 </div>
 
-                <!-- Col 3: Rubros -->
+                <!-- Col 3: Valores & Propósito -->
                 <div>
-                    <h5 class="text-xs font-bold uppercase tracking-wider text-brand-gold mb-4">Especialidades</h5>
+                    <h5 class="text-xs font-bold uppercase tracking-wider text-brand-gold mb-4">Valores LOYLIZ</h5>
                     <ul class="space-y-2 text-xs text-gray-300">
-                        <li><a href="#catalogo" class="hover:text-white transition">Moda Urbana & Streetwear</a></li>
-                        <li><a href="#catalogo" class="hover:text-white transition">Franelas 100% Algodón</a></li>
-                        <li><a href="#catalogo" class="hover:text-white transition">Uniformes Antifluido</a></li>
-                        <li><a href="#catalogo" class="hover:text-white transition">Pantalones en Gabardina</a></li>
-                        <li><a href="#calidad" class="hover:text-white transition">Personalización & Muestras</a></li>
+                        <li><span class="text-gray-200">✦ Asesoría de Imagen</span></li>
+                        <li><span class="text-gray-200">✦ Doble Pespunte Nacional</span></li>
+                        <li><span class="text-gray-200">✦ Microfibra Antifluido</span></li>
+                        <li><span class="text-gray-200">✦ Algodón Peinado 24/1</span></li>
+                        <li><span class="text-gray-200">✦ Sublimación Digital HD</span></li>
                     </ul>
                 </div>
 
-                <!-- Col 4: Atención & Contacto -->
+                <!-- Col 4: Atención & WhatsApp -->
                 <div>
-                    <h5 class="text-xs font-bold uppercase tracking-wider text-brand-gold mb-4">Atención</h5>
-                    <ul class="space-y-2 text-xs text-gray-300">
-                        <li class="flex items-center gap-2"><i data-lucide="clock" class="w-3.5 h-3.5 text-brand-gold"></i> Lun - Vie 8am - 5:30pm</li>
-                        <li class="flex items-center gap-2"><i data-lucide="mail" class="w-3.5 h-3.5 text-brand-gold"></i> ventas@mixstore.com</li>
-                        <li class="flex items-center gap-2"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-gold"></i> Galpón de Confección</li>
+                    <h5 class="text-xs font-bold uppercase tracking-wider text-brand-gold mb-4">Canal Directo</h5>
+                    <ul class="space-y-2.5 text-xs text-gray-300">
+                        <li>
+                            <a href="https://api.whatsapp.com/send?phone=584163329389&text=%C2%A1Hola%20LOYLIZ!%20Quiero%20recibir%20asesor%C3%ADa%20para%20renovar%20mis%20prendas%2Funiformes." target="_blank" class="flex items-center gap-2 text-brand-gold hover:text-white transition font-bold">
+                                <i data-lucide="message-circle" class="w-4 h-4"></i> +58 416-3329389
+                            </a>
+                        </li>
+                        <li class="flex items-center gap-2"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-gold"></i> Valencia, Carabobo</li>
+                        <li class="flex items-center gap-2"><i data-lucide="truck" class="w-3.5 h-3.5 text-brand-gold"></i> Envíos a toda Venezuela</li>
                     </ul>
                 </div>
             </div>
 
             <!-- Bottom Copyright -->
-            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
-                <p>&copy; 2026 MIXSTORE Textil. Todos los derechos reservados. Página de exhibición de modelos.</p>
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
+                <p>&copy; 2026 LOYLIZ. Todos los derechos reservados. Diseño, Asesoría & Confección Premium.</p>
                 <div class="flex items-center space-x-4">
                     <span class="inline-flex items-center gap-1.5 text-gray-400">
-                        <span class="w-2 h-2 rounded-full bg-brand-gold"></span>
-                        <span id="palette-footer-label">Midnight Navy (#152942) & Arena Dorada (#BBA88B)</span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-gold"></span>
+                        <span id="palette-footer-label">LOYLIZ: Antracita (#22252A) & Verde Menta (#84DCC6)</span>
                     </span>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Floating WhatsApp Action -->
-    <a href="https://wa.me/?text=Hola%2C%20quisiera%20consultar%20sobre%20los%20modelos%20del%20cat%C3%A1logo" target="_blank" class="pulse-glow fixed bottom-6 right-6 z-40 bg-brand-navy text-brand-gold p-3.5 rounded-full shadow-2xl border-2 border-brand-gold/60 hover:scale-110 transition-transform group flex items-center gap-2">
+    <!-- Floating WhatsApp Action (+58 416-3329389) -->
+    <a href="https://api.whatsapp.com/send?phone=584163329389&text=%C2%A1Hola%20LOYLIZ!%20Quiero%20recibir%20asesor%C3%ADa%20para%20renovar%20mis%20prendas%2Funiformes." target="_blank" class="pulse-glow fixed bottom-6 right-6 z-40 bg-brand-navy text-brand-gold p-3.5 rounded-full shadow-2xl border-2 border-brand-gold/70 hover:scale-110 transition-transform group flex items-center gap-2">
         <i data-lucide="message-circle" class="w-6 h-6"></i>
-        <span class="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 text-xs font-bold whitespace-nowrap text-white pr-1">Consultar Modelos</span>
+        <span class="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 text-xs font-bold whitespace-nowrap text-white pr-1">Asesoría WhatsApp</span>
     </a>
 
     <!-- Scripts -->

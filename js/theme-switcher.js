@@ -7,9 +7,25 @@
     // Definición de paletas curadas para exhibición textil y confección
     const PALETTES = [
         {
+            id: 'loyliz-anthracite-mint',
+            name: 'LOYLIZ: Antracita & Verde Menta',
+            badge: 'Brand Kit Oficial 🌿',
+            badgeClass: 'bg-emerald-100 text-emerald-900 border-emerald-300 font-bold',
+            primaryHex: '#22252A',
+            accentHex: '#84DCC6',
+            primaryRgb: '34 37 42',
+            primaryDarkRgb: '20 22 25',
+            primaryLightRgb: '55 60 68',
+            accentRgb: '132 220 198',
+            accentHoverRgb: '86 195 168',
+            creamRgb: '248 250 249',
+            swatches: ['#141619', '#22252A', '#84DCC6', '#A5E8D7', '#FFFFFF'],
+            tagline: 'Paleta oficial LOYLIZ: Gris Antracita (#22252A), Verde Menta Suave (#84DCC6) y Blanco Puro.'
+        },
+        {
             id: 'client-navy-sand',
             name: 'Midnight Navy & Arena Dorada',
-            badge: 'Paleta Base ⭐',
+            badge: 'Colección Clásica ⭐',
             badgeClass: 'bg-amber-100 text-amber-900 border-amber-300 font-bold',
             primaryHex: '#152942',
             accentHex: '#BBA88B',
@@ -178,7 +194,7 @@
         }
     ];
 
-    const STORAGE_KEY = 'textil_selected_palette_v3';
+    const STORAGE_KEY = 'loyliz_selected_palette_v1';
     let currentPalette = null;
 
     // Utilidades de color
@@ -262,7 +278,7 @@
     }
 
     function resetToOriginal() {
-        applyById('original-navy');
+        applyById('loyliz-anthracite-mint');
     }
 
     function updateFloatingButtonBadge(config) {
@@ -375,14 +391,14 @@
                     </button>
                 </div>
 
-                <!-- Info Alert: Respaldo en Git -->
+                <!-- Info Alert: Brand Kit LOYLIZ -->
                 <div class="px-5 py-2.5 bg-emerald-50 border-b border-emerald-100 flex items-center justify-between text-xs text-emerald-900">
                     <div class="flex items-center gap-2">
                         <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                        <span>Tu paleta original <strong>Navy & Gold</strong> está guardada en Git.</span>
+                        <span>Brand Kit oficial <strong>LOYLIZ</strong> (Antracita & Verde Menta Suave).</span>
                     </div>
                     <button id="palette-reset-btn" class="text-[11px] font-bold text-emerald-700 hover:text-emerald-900 underline ml-2 whitespace-nowrap">
-                        Restablecer Original
+                        Restablecer LOYLIZ
                     </button>
                 </div>
 

@@ -1,13 +1,13 @@
-/* Custom Styles & Micro-animations for JA Mixstore inspired theme */
+/* Custom Styles & Micro-animations for LOYLIZ Premium Textile & Image Consulting */
 
 :root {
-    /* Paleta Activa Base: Midnight Navy (#152942), Oro Bronce (#8A6A41) & Arena Dorada (#BBA88B) */
-    --color-navy: 21 41 66;          /* #152942 (Azul Marino Profundo) */
-    --color-navy-dark: 6 14 17;      /* #060E11 (Azul Medianoche / Casi Negro) */
-    --color-navy-light: 36 62 96;    /* #243E60 (Azul Zafiro Marino Suave) */
-    --color-gold: 187 168 139;       /* #BBA88B (Arena Dorada / Beige Cálido) */
-    --color-gold-hover: 138 106 65;  /* #8A6A41 (Dorado Bronce / Ocre Textil) */
-    --color-cream: 250 236 218;      /* #FAECDA (Crema / Marfil Textil) */
+    /* Brand Kit LOYLIZ: Estilo Premium Minimalista & Asesoría de Imagen */
+    --color-navy: 34 37 42;          /* #22252A (Gris Antracita Principal) */
+    --color-navy-dark: 20 22 25;      /* #141619 (Gris Antracita Profundo) */
+    --color-navy-light: 55 60 68;    /* #373C44 (Gris Antracita Medio) */
+    --color-gold: 132 220 198;       /* #84DCC6 (Verde Menta Suave de Acento) */
+    --color-gold-hover: 86 195 168;  /* #56C3A8 (Verde Menta Vibrante Hover) */
+    --color-cream: 248 250 249;      /* #F8FAF9 (Blanco Suave Minimalista) */
 }
 
 /* Custom subtle animation for floating elements */

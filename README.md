@@ -1,77 +1,54 @@
-# TEXTIL MODA | Catálogo & Showroom Digital de Confección
+# LOYLIZ | Diseño, Asesoría & Confección Premium
 
-> Plataforma web interactiva de exhibición textil y confección de alto impacto, diseñada para fabricantes, marcas de ropa, dotaciones corporativas e instituciones.
-
----
-
-## 1. Idea Fundamental & Propósito del Proyecto
-
-A diferencia de una tienda de comercio electrónico tradicional orientada a la venta minorista con precios fijos y carritos de compra genéricos, **TEXTIL MODA** está concebida como un **Showroom Digital Técnico de Exhibición y Confección por Lotes**.
-
-### Principios Fundamentales:
-1. **Enfoque B2B y Pedidos por Lote:**
-   - La plataforma no muestra precios unitarios estáticos porque los costos de confección textil dependen del **volumen**, el **gramaje de la tela**, el **tipo de teñido**, el **corte** y la **personalización** (bordados, serigrafía, transfer, etiquetas).
-2. **Jerarquía en la Ficha Técnica de los Tejidos:**
-   - Cada producto exhibido destaca su composición exacta (ej. *Jersey 100% Algodón Peinado 24/1*, *Gabardina Pesada*, *Microfibra Antifuido Quirúrgica*), sus usos recomendados, tallas disponibles y gama de coloración.
-3. **Conversión Rápida a Asesoría Comercial:**
-   - Cada prenda integra un disparador directo al canal de atención vía WhatsApp con el código de referencia preconfigurado (`REF: SAN-104`, `REF: BAS-015`, etc.), agilizando la solicitud de cotizaciones y muestras físicas.
-4. **Distinción Visual & Flexibilidad de Marca:**
-   - Permite al confeccionista vestir toda la plataforma con la identidad corporativa de su propio taller o la de clientes específicos mediante un motor dinámico de paletas en vivo.
+> Plataforma web interactiva de exhibición y catálogo textil para **LOYLIZ**, orientada al re-branding de alta gama: estilo premium, minimalista y con enfoque en **Asesoría de Imagen**.
 
 ---
 
-## 2. Arquitectura de Secciones y Contenido
+## 1. Identidad de Marca & Brand Kit
+
+| Elemento | Especificación | HEX / Formato | Aplicación en la Plataforma |
+| :--- | :--- | :--- | :--- |
+| **Color Principal** | Gris Antracita | `#22252A` (`rgb(34 37 42)`) | Textos, headers, barras de navegación y tarjetas base |
+| **Color de Fondo** | Blanco Puro | `#FFFFFF` (`rgb(255 255 255)`) | Estética limpia, fondos de contraste y lectura diáfana |
+| **Color de Acento** | Verde Menta Suave | `#84DCC6` (`rgb(132 220 198)`) | Botones de acción, badges, halos y detalles luminosos |
+| **Tipografía Display** | 'Montserrat', sans-serif | Pesos Bold (700) y SemiBold (600) | Títulos principales (H1, H2, H3), logotipo y cifras |
+| **Tipografía Cuerpo** | 'Open Sans', sans-serif | Peso Regular (400) y Medium (500) | Párrafos, fichas técnicas, viñetas y descripciones |
+
+---
+
+## 2. Arquitectura de Secciones
 
 ```
-TEXTIL MODA
-├── Top Announcement Bar (Línea de contacto, showroom y asesoría comercial)
-├── Header Sticky con Navegación y Menú Responsive
-├── Hero Section (Título display, galería editorial de bienvenida y accesos rápidos)
-├── ✦ Cinta Infinita de Fibras & Tejidos (Marquee con loop continuo de materiales)
-├── Líneas de Producción / Rubros (6 sectores principales de confección)
-│   ├── Ropa Cotidiana & Casual
-│   ├── Moda Urbana & Streetwear
-│   ├── Franelas & Básicos (Algodón 20/1 y 24/1)
-│   ├── Uniformes Escolares (Piqué y Gabardinas)
-│   ├── Línea Sanitaria & Quirúrgica (Antifluido)
-│   └── Infantil & Juvenil
-├── ✦ Barra de Métricas y Estándares de Producción (Contadores animados con Count-Up)
-├── Catálogo de Exhibición Interactivo (Filtros en tiempo real + Grid de prendas)
-├── Modal Cinemático de Inspección Técnica (Ficha técnica completa y botón a WhatsApp)
-├── Lookbook & Control de Calidad (Fotografías de taller, acabados y tejidos macro)
+LOYLIZ
+├── Top Announcement Bar ("Diseño, Asesoría & Confección Premium | Envíos a toda Venezuela" + Horario + WhatsApp)
+├── Header Sticky (Logo LOYLIZ + Navegación + Botón Asesoría WhatsApp)
+├── Hero Section (H1: "Tu Estilo Diario, Diseñado con Propósito." + Subtítulo + 3 Viñetas de Valor + Foto Lifestyle)
+├── ✦ Cinta Infinita LOYLIZ (Marquee continuo con valores de marca y atributos técnicos)
+├── Líneas de Producción (Grid de 6 tarjetas con badges, títulos y descripciones exactas):
+│   ├── 1. Línea Sanitaria & Quirúrgica ("Bioseguridad & Confort")
+│   ├── 2. Jerseys Deportivos LVBP ("Pasión en Movimiento")
+│   ├── 3. Colecciones Temáticas & Casual ("Estilo Único")
+│   ├── 4. Franelas & Básicos Premium ("Esenciales del Día a Día")
+│   ├── 5. Uniformes Corporativos ("Identidad Empresarial")
+│   └── 6. Infantil & Juvenil ("Comodidad para Crecer")
+├── ✦ Sección de Contadores / Stats (+1000 Guardias Cómodas, 100% Confección Nacional, +50 Marcas, ∞ Opciones)
+├── Catálogo de Exhibición Interactivo (Filtros por línea + Tarjeta Ficha Técnica con modelo REF: LLZ-MED-01)
+├── Modal Cinemático de Inspección Técnica (Ficha técnica completa y botón a WhatsApp directo)
+├── Estándares de Calidad (Doble Pespunte, Microfibra Antifluido de 4 vías y Asesoría de Imagen)
 ├── Módulo de Asesoría & Formulario de Cotización
-├── Footer Informativo y Créditos Técnicos
-├── 🎨 Botón Flotante: Selector de Paletas de Color en Vivo
-└── 💬 Botón Flotante: WhatsApp Directo con Halo Pulsante
+├── Footer Informativo (Valencia, Edo. Carabobo + Horarios + WhatsApp + Créditos)
+├── 🎨 Botón Flotante: Selector de Paletas en Vivo (LOYLIZ predeterminado)
+└── 💬 Botón Flotante: WhatsApp Directo (+58 416-3329389 con mensaje prellenado)
 ```
 
 ---
 
-## 3. Módulos y Tecnologías Clave
+## 3. Canales de Contacto Directo
 
-### A. Sistema Dinámico de Paletas (Theme Switcher)
-- **Archivo:** `js/theme-switcher.js`
-- **Concepto:** Las clases de Tailwind CSS están vinculadas a variables CSS Custom Properties (`--color-navy`, `--color-gold`, etc.) en lugar de códigos hexadecimales rígidos.
-- **Capacidades:**
-  - **Paletas Curadas:** Incluye la paleta base exacta solicitada (*Midnight Navy & Arena Dorada* con Azul Medianoche `#060E11`, Azul Marino Profundo `#152942`, Dorado Bronce `#8A6A41`, Beige Arena `#BBA88B` y Crema Marfil `#FAECDA`), sus variantes armónicas con acento rosado (*Midnight Navy & Palo de Rosa* `#D48C95` y *Midnight Navy & Oro Rosa* `#E2A39B`), la variante en Oro Bronce, así como la original Navy & Gold y opciones sastre, alta costura, industrial y boutique.
-  - **Personalizador Libre:** Dispone de dos selectores de color nativos HTML5 para experimentar con cualquier color primario y secundario en tiempo real.
-  - **Persistencia:** Guarda la elección en `localStorage` para recordar la selección al recargar.
-  - **Exportación:** Permite copiar al portapapeles los códigos CSS y HEX generados con un solo clic.
-
-### B. Sistema de Animaciones & Dinamismo Táctil
-- **Archivos:** `css/styles.css` y `js/main.js`
-- **Características:**
-  1. **Textile Infinite Marquee:** Cinta continua de tejidos con efecto de bordes degradados y pausa suave al posar el cursor (*pause on hover*).
-  2. **Scroll Reveal Progresivo:** Observador nativo (`IntersectionObserver`) que desplaza y desvanece las tarjetas con retardos escalonados (*staggered delay*).
-  3. **Contadores Numéricos Dinámicos:** Animación de cifras de trayectoria y producción desde `0` hasta el objetivo mediante curvas matemáticas `easeOutExpo`.
-  4. **Micro-interacción 3D Tilt:** Las tarjetas de las prendas calculan las coordenadas del cursor y se inclinan sutilmente en perspectiva tridimensional (hasta 5°).
-  5. **Destello Sedoso (*Silk Shimmer*):** Haz de luz que recorre periódicamente los botones principales simulando el brillo de la seda.
-  6. **Halo Pulsante (*Pulse Glow*):** Ondas de luz suaves en el color de acento alrededor de los botones flotantes de acción.
-
-### C. Estrategia de Versionado y Control de Cambios (Git)
-- Repositorio Git inicializado localmente.
-- **Etiqueta Permanente de Seguridad:** `v1-original-navy-gold` (permite restaurar la versión base en cualquier momento).
-- Commits semánticos que documentan la adición del selector de paletas, la paleta del cliente y las animaciones interactivas.
+- **WhatsApp Comercial:** `+58 416-3329389`
+- **Mensaje Preconfigurado:** *"¡Hola LOYLIZ! Quiero recibir asesoría para renovar mis prendas/uniformes."*
+- **Ubicación:** Valencia, Edo. Carabobo | Despachos a nivel nacional.
+- **Horario de Atención:** Lunes a Viernes: 8:00 AM - 5:00 PM
 
 ---
 
@@ -85,8 +62,8 @@ TEXTIL MODA
 | **Lógica & Estado** | JavaScript ES6+ (`js/main.js`) | Filtrado de catálogo, modal de ficha técnica, contadores y tilt 3D |
 | **Gestión de Temas** | JavaScript ES6+ (`js/theme-switcher.js`) | Motor de cálculo de contrastes, paletas y persistencia local |
 | **Iconografía** | Lucide Icons (CDN) | Iconos vectoriales ligeros de alta legibilidad |
-| **Tipografía** | Google Fonts | *Outfit* (títulos display) y *Plus Jakarta Sans* (lectura de fichas) |
-| **Versionado** | Git | Control de versiones, ramas y puntos de restauración |
+| **Tipografía** | Google Fonts | *Montserrat* (títulos) y *Open Sans* (cuerpo de lectura) |
+| **Versionado** | Git | Control de versiones y sincronización en GitHub |
 
 ---
 

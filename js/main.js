@@ -1,172 +1,116 @@
-// Catalog Data (Without prices - Purely for showroom/exhibition)
+// Catalog Data - LOYLIZ (Exhibición y Asesoría Textil Premium)
 const catalogItems = [
     {
         id: 1,
-        title: "Chaqueta Bomber Streetwear",
-        category: "urbana",
-        rubroLabel: "Moda Urbana",
-        code: "URB-082",
-        gender: "Hombre / Unisex",
-        desc: "Chaqueta liviana de corte oversize confeccionada con forro microfibra respirable, puños y cuello elásticos con tejido acanalado de alta durabilidad.",
-        fabric: "100% Poliéster Ripstop & Rib elástico",
-        sizes: "S, M, L, XL, XXL",
-        colors: "Negro Ónix, Azul Marino, Verde Militar",
-        use: "Uso casual, marca propia y colecciones urbanas",
-        image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-        id: 2,
-        title: "Filipina Sanitaria Ergonomic Stretch",
+        title: "Conjunto Médico Essential V-Neck",
         category: "sanitarios",
-        rubroLabel: "Línea Sanitaria",
-        code: "SAN-104",
-        gender: "Mujer / Hombre",
-        desc: "Filipina médica con cuello en V reforzado, doble bolsillo frontal ergonómico y tratamiento hidrofóbico antifluido de grado clínico.",
-        fabric: "72% Poliéster, 24% Rayón, 4% Spandex Antifluido",
-        sizes: "XS, S, M, L, XL",
-        colors: "Azul Marino (#000080), Celeste Quirúrgico, Verde Clínico, Blanco",
-        use: "Clínicas, hospitales, odontología y laboratorios",
+        rubroLabel: "Línea Sanitaria & Quirúrgica",
+        code: "LLZ-MED-01",
+        gender: "Unisex / Profesional de la Salud",
+        desc: "Diseñado para profesionales que exigen libertad de movimiento y protección total sin sacrificar la elegancia en clínica.",
+        fabric: "Microfibra Antifluido de 4 vías (95% Poliéster, 5% Spandex)",
+        sizes: "XS - S - M - L - XL - XXL",
+        colors: "Azul Quirúrgico, Verde Salvia, Negro Ónix, Rosa Palo, Blanco Puro",
+        use: "Guardias hospitalarias, consultorios odontológicos, clínicas estéticas y veterinarias.",
         image: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=700&q=80"
     },
     {
+        id: 2,
+        title: "Jerseys Deportivos (LVBP Fan Edition)",
+        category: "deportivos",
+        rubroLabel: "Jerseys Deportivos (LVBP)",
+        code: "LLZ-DEP-02",
+        gender: "Unisex / Fanáticos & Ligas",
+        desc: "Telas tipo mesh transpirables con diseños sublimes de alta resolución para alentar a tu equipo con clase.",
+        fabric: "100% Poliéster Dry-Fit & Micro-Mesh de ventilación activa",
+        sizes: "S - M - L - XL - XXL",
+        colors: "Edición Magallanes, Caracas, La Guaira, Aragua, Zulia, Lara",
+        use: "Juegos de béisbol, eventos deportivos corporativos y estilo casual urbano.",
+        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?auto=format&fit=crop&w=700&q=80"
+    },
+    {
         id: 3,
-        title: "Franela Clásica Cuello Redondo 24/1",
-        category: "franelas",
-        rubroLabel: "Franelas & Básicos",
-        code: "BAS-015",
-        gender: "Unisex",
-        desc: "Franela de corte regular fit en algodón peinado premium. Acabado suave al tacto con costura en hombros reforzada y cuello indeformable.",
-        fabric: "100% Algodón Peinado 24/1 (180 gsm)",
-        sizes: "S, M, L, XL, XXL",
-        colors: "Blanco, Azul Marino, Negro, Mostaza (#e9dc83), Gris Jaspe",
-        use: "Merchandising, dotación de empresas y ropa cotidiana",
-        image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=700&q=80"
+        title: "Colección Temática & Casual Signature",
+        category: "casual",
+        rubroLabel: "Colecciones Temáticas & Casual",
+        code: "LLZ-CAS-03",
+        gender: "Unisex / Tendencia",
+        desc: "Prendas divertidas y exclusivas que expresan tu personalidad en el día a día.",
+        fabric: "80% Algodón Peinado Perchado, 20% Poliéster (320 gsm)",
+        sizes: "XS - S - M - L - XL",
+        colors: "Gris Antracita (#22252A), Verde Menta (#84DCC6), Blanco Puro",
+        use: "Streetwear contemporáneo, estilo relajado de fin de semana y cápsulas de autor.",
+        image: "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&w=700&q=80"
     },
     {
         id: 4,
-        title: "Polera Escolar Piqué Reforzada",
-        category: "escolares",
-        rubroLabel: "Uniformes Escolares",
-        code: "ESC-201",
-        gender: "Niños & Juvenil",
-        desc: "Polera tipo polo en tejido piqué de alta resistencia al pilling. Cuello y puños tejidos con hilatura reforzada para soportar lavados frecuentes.",
-        fabric: "65% Poliéster, 35% Algodón Piqué (220 gsm)",
-        sizes: "Tallas 4 a 16 (Infantil) & S a L (Juvenil)",
-        colors: "Blanco Institucional, Azul Marino, Rojo Borgoña, Verde Botella",
-        use: "Colegios, liceos e instituciones educativas",
-        image: "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=700&q=80"
+        title: "Franelas & Básicos Premium 24/1",
+        category: "franelas",
+        rubroLabel: "Franelas & Básicos Premium",
+        code: "LLZ-BAS-04",
+        gender: "Unisex / Fondo de Armario",
+        desc: "Básicos atemporales confeccionados con algodón de máxima suavidad para tus looks más versátiles.",
+        fabric: "100% Algodón Peinado Premium 24/1 (190 gsm) con doble pespunte",
+        sizes: "XS - S - M - L - XL - XXL",
+        colors: "Blanco Puro, Gris Antracita, Verde Menta Suave, Negro Profundo",
+        use: "Prendas esenciales de uso diario, asesoría de fondo de armario y dotaciones.",
+        image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=700&q=80"
     },
     {
         id: 5,
-        title: "Vestido Camisero Lino Fresh",
-        category: "cotidiana",
-        rubroLabel: "Ropa Cotidiana",
-        code: "COT-310",
-        gender: "Mujer",
-        desc: "Vestido versátil de corte midi con botones de madera ecológicos, cinturón ajustable y textura fresca pensada para clima cálido y templado.",
-        fabric: "70% Lino Natural, 30% Algodón Suave",
-        sizes: "XS, S, M, L",
-        colors: "Beige Lino, Azul Profundo, Terracota, Blanco",
-        use: "Moda casual de día, boutique y uso cotidiano",
-        image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=700&q=80"
+        title: "Uniformes Corporativos & Camisería",
+        category: "corporativos",
+        rubroLabel: "Uniformes Corporativos",
+        code: "LLZ-CORP-05",
+        gender: "Dama & Caballero",
+        desc: "Proyecta la mejor imagen de tu marca con prendas duraderas, elegantes y personalizadas.",
+        fabric: "Popelina Oxford Mercerizada 65/35 & Piqué Algodón Antipilling",
+        sizes: "S - M - L - XL - XXL",
+        colors: "Blanco Ejecutivo, Celeste Corporativo, Azul Marino, Gris Antracita",
+        use: "Equipos de ventas, personal de oficina, recepciones y eventos institucionales.",
+        image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=700&q=80"
     },
     {
         id: 6,
-        title: "Pantalón Escolar Gabardina Antiarrugas",
-        category: "escolares",
-        rubroLabel: "Uniformes Escolares",
-        code: "ESC-205",
-        gender: "Niño / Hombre",
-        desc: "Pantalón de corte recto clásico con pretina reforzada y costuras dobles en tiro. Tejido tratado para fácil planchado y máxima duración.",
-        fabric: "65% Poliéster, 35% Algodón Gabardina Pesada",
-        sizes: "Tallas 6 a 16 & Tallas 28 a 38",
-        colors: "Azul Marino (#000080), Gris Oxford, Caqui",
-        use: "Uniformes de colegio, secundarias e institutos",
-        image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=700&q=80"
+        title: "Conjunto Infantil & Juvenil Confort-Max",
+        category: "infantil",
+        rubroLabel: "Infantil & Juvenil",
+        code: "LLZ-KID-06",
+        gender: "Niños & Niñas (4 a 16)",
+        desc: "Diseños resistentes y súper cómodos diseñados para el ritmo inagotable de los más pequeños.",
+        fabric: "Algodón Fleece Hipoalergénico con costuras elásticas de doble pespunte",
+        sizes: "Tallas 4, 6, 8, 10, 12, 14, 16",
+        colors: "Verde Menta, Gris Jaspe, Azul Marino, Blanco",
+        use: "Educación física, colegio, deportes y juego activo diario.",
+        image: "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=700&q=80"
     },
     {
         id: 7,
-        title: "Pantalón Jogger Scrub Antifluido",
+        title: "Scrub Quirúrgico Jogger Ergo-Flex",
         category: "sanitarios",
-        rubroLabel: "Línea Sanitaria",
-        code: "SAN-108",
-        gender: "Unisex",
-        desc: "Pantalón médico estilo jogger con cintura elástica con cordón de ajuste, 6 bolsillos funcionales para instrumental y puños tobilleros flexibles.",
-        fabric: "Microfibra elástica antifluido con repelencia de líquidos",
-        sizes: "XS, S, M, L, XL, XXL",
-        colors: "Azul Marino, Negro, Verde Quirófano, Gris Plomo",
-        use: "Personal de salud, enfermería, veterinarias y spas",
+        rubroLabel: "Línea Sanitaria & Quirúrgica",
+        code: "LLZ-MED-07",
+        gender: "Mujer / Hombre",
+        desc: "Uniformes antifluido ligeros que te brindan seguridad y estilo durante tus guardias más exigentes.",
+        fabric: "Microfibra Antifluido de Grado Hospitalario con repelencia certificada",
+        sizes: "XS - S - M - L - XL",
+        colors: "Verde Menta LOYLIZ, Azul Quirúrgico, Negro Ónix, Gris Plomo",
+        use: "Guardias clínicas, quirófano, anestesiología, enfermería y veterinaria.",
         image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=700&q=80"
     },
     {
         id: 8,
-        title: "Conjunto Deportivo Infantil Algodón",
-        category: "ninos",
-        rubroLabel: "Infantil & Juvenil",
-        code: "NIN-401",
-        gender: "Niños & Niñas",
-        desc: "Dúo de polerón con capucha y pantalón jogger en felpa de algodón afelpado interior. Hipoalergénico y suave para pieles sensibles.",
-        fabric: "80% Algodón Fleece, 20% Poliéster",
-        sizes: "Tallas 4, 6, 8, 10, 12, 14",
-        colors: "Azul Marino con detalles Amarillo Claro (#e9dc83), Gris Jaspe, Rosa",
-        use: "Colegios (educación física), deportes y tiempo libre",
-        image: "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-        id: 9,
-        title: "Camisa Casual Manga Larga Slim Fit",
-        category: "cotidiana",
-        rubroLabel: "Ropa Cotidiana",
-        code: "COT-315",
-        gender: "Hombre",
-        desc: "Camisa en popelina de algodón peinado con cuello inglés estructurado. Corte ergonómico que permite libertad de movimiento sin perder porte elegante.",
-        fabric: "100% Algodón Popelina Mercerizada",
-        sizes: "S, M, L, XL",
-        colors: "Blanco, Celeste Claro, Azul Marino, Rayas Finas",
-        use: "Oficina, eventos casuales y ropa de diario",
-        image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-        id: 10,
-        title: "Bata Médica de Laboratorio / Clínica",
-        category: "sanitarios",
-        rubroLabel: "Línea Sanitaria",
-        code: "SAN-112",
+        title: "Chaqueta Bomber Deportiva Mesh Pro",
+        category: "deportivos",
+        rubroLabel: "Jerseys Deportivos (LVBP)",
+        code: "LLZ-DEP-08",
         gender: "Unisex",
-        desc: "Bata blanca manga larga con botones ocultos, cuello solapa y aberturas laterales para acceso rápido a bolsillos de pantalón interior.",
-        fabric: "Gabardina liviana médica con teflón antifluido",
-        sizes: "S, M, L, XL",
-        colors: "Blanco Óptico Puro",
-        use: "Médicos, farmacias, laboratorios y universidades",
-        image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-        id: 11,
-        title: "Hoodie Utilitario Oversize con Canguro",
-        category: "urbana",
-        rubroLabel: "Moda Urbana",
-        code: "URB-094",
-        gender: "Unisex",
-        desc: "Sudadera de alto gramaje con bolsillo tipo canguro y cordones gruesos con herretes metálicos dorados. Estilo contemporáneo y abrigador.",
-        fabric: "Algodón perchado pesado (320 gsm)",
-        sizes: "M, L, XL, XXL",
-        colors: "Negro, Azul Marino, Crema / Arena (#fbfaf5)",
-        use: "Líneas de moda joven y streetwear",
-        image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-        id: 12,
-        title: "Franela Manga Larga Raglán Bicolor",
-        category: "franelas",
-        rubroLabel: "Franelas & Básicos",
-        code: "BAS-022",
-        gender: "Hombre / Mujer",
-        desc: "Camiseta de mangas estilo raglán combinadas en contraste azul marino (#000080) con cuerpo en tono claro. Confección liviana y transpirable.",
-        fabric: "Jersey 100% Algodón Peinado 30/1",
-        sizes: "S, M, L, XL",
-        colors: "Cuerpo Crema con mangas Navy, Blanco con mangas Negras",
-        use: "Equipos deportivos, uniformes informales y catálogo juvenil",
-        image: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=700&q=80"
+        desc: "Chaqueta liviana de corte ergonómico con forro interior en micro-mesh transpirable y rib elástico reforzado.",
+        fabric: "100% Poliéster Ripstop & Rib elástico indeformable",
+        sizes: "S - M - L - XL - XXL",
+        colors: "Sublimación Total de Equipos LVBP / Diseños Personalizados",
+        use: "Entrenamientos, salidas de viaje de delegaciones y fanaticada.",
+        image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=700&q=80"
     }
 ];
 
@@ -311,9 +255,9 @@ function openProductModal(id) {
     document.getElementById('modal-colors').innerText = item.colors;
     document.getElementById('modal-use').innerText = item.use;
 
-    // Direct WhatsApp message with pre-filled item name
-    const msg = encodeURIComponent(`Hola, me interesa solicitar muestras e información sobre el modelo: ${item.title} (Ref: ${item.code}) del rubro ${item.rubroLabel}.`);
-    document.getElementById('modal-whatsapp-link').href = `https://wa.me/?text=${msg}`;
+    // Direct WhatsApp message to LOYLIZ with pre-filled item name
+    const msg = encodeURIComponent(`¡Hola LOYLIZ! Quiero recibir asesoría para renovar mis prendas/uniformes. Me interesa el modelo: ${item.title} (REF: ${item.code}) de la ${item.rubroLabel}.`);
+    document.getElementById('modal-whatsapp-link').href = `https://api.whatsapp.com/send?phone=584163329389&text=${msg}`;
 
     // Open Modal
     productModal.classList.remove('opacity-0', 'pointer-events-none');
@@ -444,6 +388,12 @@ function initAnimatedCounters() {
         hasRun = true;
 
         counters.forEach(counter => {
+            const symbol = counter.getAttribute('data-symbol');
+            if (symbol) {
+                counter.textContent = symbol;
+                return;
+            }
+
             const target = parseInt(counter.getAttribute('data-target'), 10) || 0;
             const duration = 2000; // 2 segundos de animación fluida
             const startTime = performance.now();
