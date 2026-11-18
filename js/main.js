@@ -132,7 +132,7 @@ const mobileMenu = document.getElementById('mobile-menu');
 // Render Catalog Cards
 function renderCatalog(items) {
     catalogGrid.innerHTML = '';
-    
+
     if (items.length === 0) {
         catalogGrid.innerHTML = `
             <div class="col-span-full py-12 text-center text-gray-400">
@@ -146,7 +146,7 @@ function renderCatalog(items) {
         const card = document.createElement('div');
         card.className = "catalog-card tilt-card animate-card-enter bg-white rounded-2xl overflow-hidden border border-gray-200/80 shadow-sm flex flex-col justify-between group";
         card.style.animationDelay = `${(index % 8) * 0.05}s`;
-        
+
         const hasGallery = item.images && item.images.length > 1;
         const secondImg = hasGallery ? item.images[1] : item.image;
 
@@ -184,7 +184,7 @@ function renderCatalog(items) {
                         <span class="text-gray-500 font-sans font-medium text-[11px]">${item.gender}</span>
                     </div>
 
-                    <h3 class="font-display font-bold text-base text-brand-navy group-hover:text-emerald-900 transition-colors line-clamp-1 cursor-pointer" onclick="openProductModal(${item.id})">
+                    <h3 class="font-display font-bold text-base text-brand-navy group-hover:text-brand-navyDark transition-colors line-clamp-1 cursor-pointer" onclick="openProductModal(${item.id})">
                         ${item.title}
                     </h3>
 
@@ -284,7 +284,7 @@ function openProductModal(id) {
                 thumb.type = 'button';
                 thumb.className = `w-14 h-14 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer ${idx === 0 ? 'border-brand-gold ring-2 ring-brand-gold/40 shadow-sm' : 'border-gray-200 hover:border-brand-navy opacity-70 hover:opacity-100'}`;
                 thumb.innerHTML = `<img src="${imgSrc}" alt="${item.title} vista ${idx + 1}" class="w-full h-full object-cover">`;
-                
+
                 thumb.addEventListener('click', () => {
                     modalImage.style.opacity = '0.3';
                     setTimeout(() => {

@@ -4,44 +4,12 @@
  */
 
 (function () {
-    // Definición de paletas curadas para exhibición textil y confección
+    // Definición de paleta oficial para exhibición textil y confección
     const PALETTES = [
-        {
-            id: 'loyliz-anthracite-mint',
-            name: 'LOYLIZ: Antracita & Verde Menta',
-            badge: 'Brand Kit Oficial 🌿',
-            badgeClass: 'bg-emerald-100 text-emerald-900 border-emerald-300 font-bold',
-            primaryHex: '#22252A',
-            accentHex: '#84DCC6',
-            primaryRgb: '34 37 42',
-            primaryDarkRgb: '20 22 25',
-            primaryLightRgb: '55 60 68',
-            accentRgb: '132 220 198',
-            accentHoverRgb: '86 195 168',
-            creamRgb: '248 250 249',
-            swatches: ['#141619', '#22252A', '#84DCC6', '#A5E8D7', '#FFFFFF'],
-            tagline: 'Paleta oficial LOYLIZ: Gris Antracita (#22252A), Verde Menta Suave (#84DCC6) y Blanco Puro.'
-        },
-        {
-            id: 'client-navy-sand',
-            name: 'Midnight Navy & Arena Dorada',
-            badge: 'Colección Clásica ⭐',
-            badgeClass: 'bg-amber-100 text-amber-900 border-amber-300 font-bold',
-            primaryHex: '#152942',
-            accentHex: '#BBA88B',
-            primaryRgb: '21 41 66',
-            primaryDarkRgb: '6 14 17',
-            primaryLightRgb: '36 62 96',
-            accentRgb: '187 168 139',
-            accentHoverRgb: '138 106 65',
-            creamRgb: '250 236 218',
-            swatches: ['#060E11', '#152942', '#8A6A41', '#BBA88B', '#FAECDA'],
-            tagline: 'Paleta base: Azul Medianoche (#060E11), Azul Marino Profundo (#152942), Arena Dorada y Marfil.'
-        },
         {
             id: 'client-navy-dusty-rose',
             name: 'Midnight Navy & Palo de Rosa',
-            badge: 'Variante Rosado Textil 🌸',
+            badge: 'Brand Kit Oficial 🌸',
             badgeClass: 'bg-rose-100 text-rose-900 border-rose-300 font-bold',
             primaryHex: '#152942',
             accentHex: '#D48C95',
@@ -52,149 +20,11 @@
             accentHoverRgb: '179 101 115',
             creamRgb: '250 236 218',
             swatches: ['#060E11', '#152942', '#B36573', '#D48C95', '#FAECDA'],
-            tagline: 'Misma base oscura con Palo de Rosa (#D48C95) armónico y Rosa Cenizo (#B36573).'
-        },
-        {
-            id: 'client-navy-rose-gold',
-            name: 'Midnight Navy & Oro Rosa (Rose Gold)',
-            badge: 'Variante Rosado Cálido 🌸',
-            badgeClass: 'bg-pink-100 text-pink-900 border-pink-300 font-bold',
-            primaryHex: '#152942',
-            accentHex: '#E2A39B',
-            primaryRgb: '21 41 66',
-            primaryDarkRgb: '6 14 17',
-            primaryLightRgb: '36 62 96',
-            accentRgb: '226 163 155',
-            accentHoverRgb: '195 125 116',
-            creamRgb: '250 236 218',
-            swatches: ['#060E11', '#152942', '#C37D74', '#E2A39B', '#FAECDA'],
-            tagline: 'Misma base con Oro Rosa suave (#E2A39B) y Marfil (#FAECDA), ideal para lencería y boutique.'
-        },
-        {
-            id: 'client-navy-bronze',
-            name: 'Midnight Navy & Oro Bronce',
-            badge: 'Acento Bronce ⭐',
-            badgeClass: 'bg-amber-100 text-amber-900 border-amber-300 font-bold',
-            primaryHex: '#152942',
-            accentHex: '#8A6A41',
-            primaryRgb: '21 41 66',
-            primaryDarkRgb: '6 14 17',
-            primaryLightRgb: '36 62 96',
-            accentRgb: '138 106 65',
-            accentHoverRgb: '187 168 139',
-            creamRgb: '250 236 218',
-            swatches: ['#060E11', '#152942', '#8A6A41', '#BBA88B', '#FAECDA'],
-            tagline: 'Misma paleta base con acento en Oro Bronce / Ocre (#8A6A41) para mayor contraste en botones.'
-        },
-        {
-            id: 'original-navy',
-            name: 'Azul Marino Real & Oro Clásico',
-            badge: 'Original en Git',
-            badgeClass: 'bg-emerald-100 text-emerald-800 border-emerald-200',
-            primaryHex: '#000080',
-            accentHex: '#e9dc83',
-            primaryRgb: '0 0 128',
-            primaryDarkRgb: '0 0 90',
-            primaryLightRgb: '13 27 76',
-            accentRgb: '233 220 131',
-            accentHoverRgb: '216 202 109',
-            creamRgb: '251 250 245',
-            swatches: ['#00005a', '#000080', '#e9dc83', '#fbfaf5'],
-            tagline: 'Paleta original de la marca. Clásica, prestigiosa y formal.'
-        },
-        {
-            id: 'emerald-champagne',
-            name: 'Verde Esmeralda Sastre & Champagne',
-            badge: 'Sastrería & Lino',
-            badgeClass: 'bg-amber-100 text-amber-800 border-amber-200',
-            primaryHex: '#064e3b',
-            accentHex: '#f4d068',
-            primaryRgb: '6 78 59',
-            primaryDarkRgb: '4 54 41',
-            primaryLightRgb: '15 118 110',
-            accentRgb: '244 208 104',
-            accentHoverRgb: '224 187 79',
-            creamRgb: '250 250 245',
-            tagline: 'Inspiración sastre inglés, lino fino y colecciones ecológicas/premium.'
-        },
-        {
-            id: 'burgundy-gold',
-            name: 'Borgoña Vino & Oro Suave',
-            badge: 'Alta Costura & Gala',
-            badgeClass: 'bg-rose-100 text-rose-800 border-rose-200',
-            primaryHex: '#4c0519',
-            accentHex: '#fde047',
-            primaryRgb: '76 5 25',
-            primaryDarkRgb: '51 2 16',
-            primaryLightRgb: '136 19 55',
-            accentRgb: '253 224 71',
-            accentHoverRgb: '234 179 8',
-            creamRgb: '253 248 246',
-            tagline: 'Dramatismo elegante, confección de noche y vestidos de fiesta.'
-        },
-        {
-            id: 'carbon-amber',
-            name: 'Carbón Minimal & Ámbar Cuero',
-            badge: 'Streetwear & Técnico',
-            badgeClass: 'bg-zinc-100 text-zinc-800 border-zinc-200',
-            primaryHex: '#18181b',
-            accentHex: '#f59e0b',
-            primaryRgb: '24 24 27',
-            primaryDarkRgb: '9 9 11',
-            primaryLightRgb: '39 39 42',
-            accentRgb: '245 158 11',
-            accentHoverRgb: '217 119 6',
-            creamRgb: '251 251 251',
-            tagline: 'Look industrial contemporáneo, ropa de trabajo y streetwear joven.'
-        },
-        {
-            id: 'cobalt-bronze',
-            name: 'Azul Petróleo & Bronce Miel',
-            badge: 'Sanitario & Ejecutivo',
-            badgeClass: 'bg-blue-100 text-blue-800 border-blue-200',
-            primaryHex: '#0f2942',
-            accentHex: '#e5a93c',
-            primaryRgb: '15 41 66',
-            primaryDarkRgb: '10 28 45',
-            primaryLightRgb: '30 58 95',
-            accentRgb: '229 169 60',
-            accentHoverRgb: '203 145 40',
-            creamRgb: '248 250 252',
-            tagline: 'Ideal para filipinas de salud de alta gama y uniformes corporativos.'
-        },
-        {
-            id: 'terracotta-sand',
-            name: 'Terracota Rústica & Arena Suave',
-            badge: 'Artesanal & Boho',
-            badgeClass: 'bg-orange-100 text-orange-800 border-orange-200',
-            primaryHex: '#7c2d12',
-            accentHex: '#fde68a',
-            primaryRgb: '124 45 18',
-            primaryDarkRgb: '84 28 9',
-            primaryLightRgb: '154 52 18',
-            accentRgb: '253 230 138',
-            accentHoverRgb: '252 211 77',
-            creamRgb: '253 250 247',
-            tagline: 'Tonos tierra cálidos, algodón crudo y tejidos rústicos naturales.'
-        },
-        {
-            id: 'plum-rose',
-            name: 'Ciruela Imperial & Rosa Marfil',
-            badge: 'Boutique & Lencería',
-            badgeClass: 'bg-purple-100 text-purple-800 border-purple-200',
-            primaryHex: '#3b0764',
-            accentHex: '#fbcfe8',
-            primaryRgb: '59 7 100',
-            primaryDarkRgb: '39 4 67',
-            primaryLightRgb: '88 28 135',
-            accentRgb: '251 207 232',
-            accentHoverRgb: '244 114 182',
-            creamRgb: '253 248 251',
-            tagline: 'Paleta femenina de lujo para boutique, camisería de seda y pijamería.'
+            tagline: 'Paleta oficial LOYLIZ: Azul Medianoche (#060E11), Azul Marino Profundo (#152942), Palo de Rosa (#D48C95) y Crema Marfil (#FAECDA).'
         }
     ];
 
-    const STORAGE_KEY = 'loyliz_selected_palette_v1';
+    const STORAGE_KEY = 'loyliz_selected_palette_v2';
     let currentPalette = null;
 
     // Utilidades de color
@@ -278,7 +108,7 @@
     }
 
     function resetToOriginal() {
-        applyById('loyliz-anthracite-mint');
+        applyById('client-navy-dusty-rose');
     }
 
     function updateFloatingButtonBadge(config) {
@@ -336,7 +166,7 @@
             toast.className = 'fixed bottom-24 left-6 z-[60] bg-gray-900 text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow-2xl transition-all duration-300 opacity-0 transform translate-y-2 pointer-events-none flex items-center gap-2';
             document.body.appendChild(toast);
         }
-        toast.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span> ${msg}`;
+        toast.innerHTML = `<span class="w-2 h-2 rounded-full bg-rose-400"></span> ${msg}`;
         toast.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
         setTimeout(() => {
             toast.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
@@ -350,19 +180,19 @@
         floatingBtn.id = 'palette-switcher-trigger';
         floatingBtn.className = 'fixed bottom-6 left-6 z-40';
         floatingBtn.innerHTML = `
-            <button id="palette-open-btn" class="pulse-glow flex items-center gap-2.5 bg-white/95 backdrop-blur-md text-gray-800 hover:text-brand-navy px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-full shadow-xl border border-gray-200/80 hover:border-brand-gold/60 hover:shadow-2xl transition-all duration-300 group cursor-pointer" title="Explorar combinaciones de color">
+            <button id="palette-open-btn" class="pulse-glow flex items-center gap-2.5 bg-white/95 backdrop-blur-md text-gray-800 hover:text-brand-navy px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-full shadow-xl border border-gray-200/80 hover:border-brand-gold/60 hover:shadow-2xl transition-all duration-300 group cursor-pointer" title="Explorar combinación oficial">
                 <div class="relative flex items-center justify-center w-7 h-7 rounded-full bg-brand-navy text-brand-gold shadow-sm group-hover:scale-105 transition-transform">
                     <i data-lucide="palette" class="w-4 h-4"></i>
                 </div>
                 <div class="text-left hidden sm:block">
                     <div class="flex items-center gap-1.5">
-                        <span class="text-xs font-bold leading-tight">Paletas de Color</span>
-                        <span class="text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.2 rounded bg-amber-100 text-amber-800">En Vivo</span>
+                        <span class="text-xs font-bold leading-tight">Paleta Oficial</span>
+                        <span class="text-[9px] uppercase font-bold tracking-wider px-1.5 py-0.2 rounded bg-rose-100 text-rose-800">Activa</span>
                     </div>
                     <div class="flex items-center gap-1 text-[10px] text-gray-500">
                         <span id="palette-btn-dot-primary" class="inline-block w-2 h-2 rounded-full border border-gray-300"></span>
                         <span id="palette-btn-dot-accent" class="inline-block w-2 h-2 rounded-full border border-gray-300"></span>
-                        <span id="palette-btn-current-name" class="font-medium truncate max-w-[110px]">Azul Marino</span>
+                        <span id="palette-btn-current-name" class="font-medium truncate max-w-[110px]">Midnight Navy</span>
                     </div>
                 </div>
             </button>
@@ -382,8 +212,8 @@
                             <i data-lucide="palette" class="w-5 h-5"></i>
                         </div>
                         <div>
-                            <h3 class="font-display font-bold text-sm sm:text-base text-white">Explorador de Paletas Textiles</h3>
-                            <p class="text-[11px] text-gray-300">Prueba cómo luce la plantilla con diferentes identidades</p>
+                            <h3 class="font-display font-bold text-sm sm:text-base text-white">Identidad de Marca & Paleta Oficial</h3>
+                            <p class="text-[11px] text-gray-300">Midnight Navy (#152942) & Palo de Rosa (#D48C95)</p>
                         </div>
                     </div>
                     <button id="palette-close-btn" class="p-1.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition">
@@ -392,20 +222,20 @@
                 </div>
 
                 <!-- Info Alert: Brand Kit LOYLIZ -->
-                <div class="px-5 py-2.5 bg-emerald-50 border-b border-emerald-100 flex items-center justify-between text-xs text-emerald-900">
+                <div class="px-5 py-2.5 bg-rose-50 border-b border-rose-100 flex items-center justify-between text-xs text-rose-900">
                     <div class="flex items-center gap-2">
-                        <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-                        <span>Brand Kit oficial <strong>LOYLIZ</strong> (Antracita & Verde Menta Suave).</span>
+                        <i data-lucide="shield-check" class="w-4 h-4 text-rose-600 shrink-0"></i>
+                        <span>Paleta oficial <strong>LOYLIZ</strong> (Midnight Navy & Palo de Rosa).</span>
                     </div>
-                    <button id="palette-reset-btn" class="text-[11px] font-bold text-emerald-700 hover:text-emerald-900 underline ml-2 whitespace-nowrap">
-                        Restablecer LOYLIZ
+                    <button id="palette-reset-btn" class="text-[11px] font-bold text-rose-700 hover:text-rose-900 underline ml-2 whitespace-nowrap">
+                        Restablecer Paleta
                     </button>
                 </div>
 
                 <!-- Tabs -->
                 <div class="flex border-b border-gray-200 bg-gray-50/70 px-5 pt-3 gap-4">
                     <button id="tab-curated-btn" class="pb-2.5 text-xs font-bold border-b-2 border-brand-navy text-brand-navy transition flex items-center gap-1.5">
-                        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Paletas Curadas (${PALETTES.length})
+                        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Paleta Oficial (${PALETTES.length})
                     </button>
                     <button id="tab-custom-btn" class="pb-2.5 text-xs font-semibold border-b-2 border-transparent text-gray-500 hover:text-gray-800 transition flex items-center gap-1.5">
                         <i data-lucide="sliders" class="w-3.5 h-3.5"></i> Personalizador Libre
@@ -460,17 +290,17 @@
                             <div class="p-3 bg-white rounded-xl border border-gray-200">
                                 <label class="block text-xs font-bold text-gray-800 mb-1">Color Principal (Fondo & Textos)</label>
                                 <div class="flex items-center gap-3">
-                                    <input type="color" id="custom-primary-picker" value="${currentPalette ? currentPalette.primaryHex : '#000080'}" class="w-10 h-10 rounded-lg cursor-pointer border border-gray-300">
-                                    <input type="text" id="custom-primary-input" value="${currentPalette ? currentPalette.primaryHex : '#000080'}" class="flex-1 uppercase font-mono text-xs px-2.5 py-1.5 border border-gray-300 rounded-lg">
+                                    <input type="color" id="custom-primary-picker" value="${currentPalette ? currentPalette.primaryHex : '#152942'}" class="w-10 h-10 rounded-lg cursor-pointer border border-gray-300">
+                                    <input type="text" id="custom-primary-input" value="${currentPalette ? currentPalette.primaryHex : '#152942'}" class="flex-1 uppercase font-mono text-xs px-2.5 py-1.5 border border-gray-300 rounded-lg">
                                 </div>
                                 <span class="text-[10px] text-gray-400 mt-1 block">Afecta barras, cabeceras y botones</span>
                             </div>
 
                             <div class="p-3 bg-white rounded-xl border border-gray-200">
-                                <label class="block text-xs font-bold text-gray-800 mb-1">Color de Acento (Detalles & Oro)</label>
+                                <label class="block text-xs font-bold text-gray-800 mb-1">Color de Acento (Detalles & Palo de Rosa)</label>
                                 <div class="flex items-center gap-3">
-                                    <input type="color" id="custom-accent-picker" value="${currentPalette ? currentPalette.accentHex : '#e9dc83'}" class="w-10 h-10 rounded-lg cursor-pointer border border-gray-300">
-                                    <input type="text" id="custom-accent-input" value="${currentPalette ? currentPalette.accentHex : '#e9dc83'}" class="flex-1 uppercase font-mono text-xs px-2.5 py-1.5 border border-gray-300 rounded-lg">
+                                    <input type="color" id="custom-accent-picker" value="${currentPalette ? currentPalette.accentHex : '#D48C95'}" class="w-10 h-10 rounded-lg cursor-pointer border border-gray-300">
+                                    <input type="text" id="custom-accent-input" value="${currentPalette ? currentPalette.accentHex : '#D48C95'}" class="flex-1 uppercase font-mono text-xs px-2.5 py-1.5 border border-gray-300 rounded-lg">
                                 </div>
                                 <span class="text-[10px] text-gray-400 mt-1 block">Afecta badges, iconos y resaltados</span>
                             </div>
@@ -554,7 +384,7 @@
         // Botón Restablecer Original
         document.getElementById('palette-reset-btn').addEventListener('click', () => {
             resetToOriginal();
-            showToast('¡Restablecida la paleta original Azul Marino & Oro!');
+            showToast('¡Restablecida la paleta oficial Midnight Navy & Palo de Rosa!');
         });
 
         // Copiar códigos
@@ -597,11 +427,21 @@
 
     // Inicialización al cargar la página
     function init() {
+        // Limpiar cachés de versiones anteriores
+        try {
+            localStorage.removeItem('textil_selected_palette_v2');
+            localStorage.removeItem('textil_selected_palette_v3');
+            localStorage.removeItem('loyliz_selected_palette_v1');
+        } catch (e) {}
+
         const saved = localStorage.getItem(STORAGE_KEY);
-        let configToApply = PALETTES[0]; // Por defecto la original
+        let configToApply = PALETTES[0]; // Por defecto Midnight Navy & Palo de Rosa
         if (saved) {
             try {
-                configToApply = JSON.parse(saved);
+                const parsed = JSON.parse(saved);
+                if (parsed && (parsed.id === 'custom' || PALETTES.some(p => p.id === parsed.id))) {
+                    configToApply = parsed;
+                }
             } catch (e) {
                 configToApply = PALETTES[0];
             }

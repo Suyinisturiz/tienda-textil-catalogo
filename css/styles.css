@@ -1,20 +1,29 @@
 /* Custom Styles & Micro-animations for LOYLIZ Premium Textile & Image Consulting */
 
 :root {
-    /* Brand Kit LOYLIZ: Estilo Premium Minimalista & Asesoría de Imagen */
-    --color-navy: 34 37 42;          /* #22252A (Gris Antracita Principal) */
-    --color-navy-dark: 20 22 25;      /* #141619 (Gris Antracita Profundo) */
-    --color-navy-light: 55 60 68;    /* #373C44 (Gris Antracita Medio) */
-    --color-gold: 132 220 198;       /* #84DCC6 (Verde Menta Suave de Acento) */
-    --color-gold-hover: 86 195 168;  /* #56C3A8 (Verde Menta Vibrante Hover) */
-    --color-cream: 248 250 249;      /* #F8FAF9 (Blanco Suave Minimalista) */
+    /* Paleta Oficial LOYLIZ: Midnight Navy & Palo de Rosa */
+    --color-navy: 21 41 66;
+    /* #152942 (Azul Marino Profundo) */
+    --color-navy-dark: 6 14 17;
+    /* #060E11 (Azul Medianoche / Casi Negro Profundo) */
+    --color-navy-light: 36 62 96;
+    /* #243E60 (Azul Zafiro Marino Suave) */
+    --color-gold: 212 140 149;
+    /* #D48C95 (Palo de Rosa Textil) */
+    --color-gold-hover: 179 101 115;
+    /* #B36573 (Rosa Cenizo / Hover) */
+    --color-cream: 250 236 218;
+    /* #FAECDA (Crema / Marfil Cálido Textil) */
 }
 
 /* Custom subtle animation for floating elements */
 @keyframes bounceSubtle {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(-8px);
     }
@@ -88,6 +97,7 @@
     0% {
         transform: translate3d(0, 0, 0);
     }
+
     100% {
         transform: translate3d(-50%, 0, 0);
     }
@@ -140,7 +150,9 @@
     0% {
         transform: translateX(-150%) skewX(-20deg);
     }
-    30%, 100% {
+
+    30%,
+    100% {
         transform: translateX(260%) skewX(-20deg);
     }
 }
@@ -166,9 +178,12 @@
    3. HALO PULSANTE DE ACENTO (PULSE GLOW)
    ======================================================== */
 @keyframes pulseGlow {
-    0%, 100% {
+
+    0%,
+    100% {
         box-shadow: 0 0 0 0 rgb(var(--color-gold) / 0.5), 0 10px 25px -5px rgb(var(--color-navy) / 0.3);
     }
+
     50% {
         box-shadow: 0 0 0 12px rgb(var(--color-gold) / 0), 0 15px 30px -5px rgb(var(--color-navy) / 0.4);
     }
@@ -193,11 +208,25 @@
     transform: translateY(0);
 }
 
-.stagger-1 { transition-delay: 0.08s; }
-.stagger-2 { transition-delay: 0.16s; }
-.stagger-3 { transition-delay: 0.24s; }
-.stagger-4 { transition-delay: 0.32s; }
-.stagger-5 { transition-delay: 0.40s; }
+.stagger-1 {
+    transition-delay: 0.08s;
+}
+
+.stagger-2 {
+    transition-delay: 0.16s;
+}
+
+.stagger-3 {
+    transition-delay: 0.24s;
+}
+
+.stagger-4 {
+    transition-delay: 0.32s;
+}
+
+.stagger-5 {
+    transition-delay: 0.40s;
+}
 
 /* Cascada de entrada para tarjetas del catálogo al filtrar */
 @keyframes cardPopIn {
@@ -205,6 +234,7 @@
         opacity: 0;
         transform: translateY(22px) scale(0.96);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -223,4 +253,3 @@
     perspective: 1000px;
     will-change: transform;
 }
-

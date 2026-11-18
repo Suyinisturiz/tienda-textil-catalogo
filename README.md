@@ -8,9 +8,11 @@
 
 | Elemento | Especificación | HEX / Formato | Aplicación en la Plataforma |
 | :--- | :--- | :--- | :--- |
-| **Color Principal** | Gris Antracita | `#22252A` (`rgb(34 37 42)`) | Textos, headers, barras de navegación y tarjetas base |
-| **Color de Fondo** | Blanco Puro | `#FFFFFF` (`rgb(255 255 255)`) | Estética limpia, fondos de contraste y lectura diáfana |
-| **Color de Acento** | Verde Menta Suave | `#84DCC6` (`rgb(132 220 198)`) | Botones de acción, badges, halos y detalles luminosos |
+| **Color Principal** | Midnight Navy | `#152942` (`rgb(21 41 66)`) | Textos, headers, barras de navegación y tarjetas base |
+| **Color Oscuro Profundo** | Azul Medianoche | `#060E11` (`rgb(6 14 17)`) | Footer, contrastes y fondos profundos |
+| **Color de Acento** | Palo de Rosa | `#D48C95` (`rgb(212 140 149)`) | Botones de acción, badges, halos y detalles luminosos |
+| **Color Hover Acento** | Rosa Cenizo | `#B36573` (`rgb(179 101 115)`) | Estados hover en botones interactivos y acentos |
+| **Color Fondo Cálido** | Marfil Textil | `#FAECDA` (`rgb(250 236 218)`) | Marfil suave, tarjetas crema y fondo cálido |
 | **Tipografía Display** | 'Montserrat', sans-serif | Pesos Bold (700) y SemiBold (600) | Títulos principales (H1, H2, H3), logotipo y cifras |
 | **Tipografía Cuerpo** | 'Open Sans', sans-serif | Peso Regular (400) y Medium (500) | Párrafos, fichas técnicas, viñetas y descripciones |
 
@@ -37,7 +39,7 @@ LOYLIZ
 ├── Estándares de Calidad (Doble Pespunte, Microfibra Antifluido de 4 vías y Asesoría de Imagen)
 ├── Módulo de Asesoría & Formulario de Cotización
 ├── Footer Informativo (Valencia, Edo. Carabobo + Horarios + WhatsApp + Créditos)
-├── 🎨 Botón Flotante: Selector de Paletas en Vivo (LOYLIZ predeterminado)
+├── 🎨 Botón Flotante: Selector de Paleta Oficial (Midnight Navy & Palo de Rosa predeterminado)
 └── 💬 Botón Flotante: WhatsApp Directo (+58 416-3329389 con mensaje prellenado)
 ```
 
