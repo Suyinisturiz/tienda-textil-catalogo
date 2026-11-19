@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOYLIZ | Panel de Administración de Catálogo & Storage</title>
+    <!-- Favicon Oficial LOYLIZ -->
+    <link rel="icon" type="image/png" href="img/productos/sweater-snoopy/Logos/florfondoazul.png">
+
+    <!-- Tipografías Oficiales: Montserrat (Display) & Open Sans (Cuerpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN con Configuración Oficial del Brand Kit LOYLIZ -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#152942',        // Midnight Navy Principal
+                            navyDark: '#060E11',    // Azul Medianoche Profundo
+                            navyLight: '#243E60',   // Azul Zafiro Marino
+                            gold: '#D48C95',        // Palo de Rosa Textil
+                            goldHover: '#B36573',   // Rosa Cenizo Hover
+                            cream: '#FAECDA'        // Marfil Textil Cálido
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Montserrat', 'sans-serif'],
+                        sans: ['Open Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Supabase JS v2 CDN para Autenticación, REST API & Storage -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Estilos Personalizados LOYLIZ -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-gold selection:text-brand-navy">
+
+    <!-- Contenedor Flotante de Notificaciones Toast -->
+    <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-3 pointer-events-none max-w-sm w-full"></div>
+
+    <!-- Modal de Confirmación para Acciones Críticas -->
+    <div id="confirm-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-200">
+        <div id="confirm-card" class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl transform scale-95 transition-all duration-200 border border-gray-100 space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center">
+                <i data-lucide="alert-triangle" class="w-6 h-6"></i>
+            </div>
+            <div>
+                <h4 id="confirm-title" class="font-display font-extrabold text-lg text-brand-navy">¿Estás seguro?</h4>
+                <p id="confirm-message" class="text-xs sm:text-sm text-gray-500 mt-1 leading-relaxed">Esta acción eliminará el modelo y sus fotografías del storage de forma irreversible.</p>
+            </div>
+            <div class="flex items-center justify-end gap-3 pt-2">
+                <button id="btn-confirm-cancel" type="button" class="px-5 py-2.5 rounded-xl border border-gray-200 text-gray-600 hover:bg-gray-50 text-xs font-bold transition">
+                    Cancelar
+                </button>
+                <button id="btn-confirm-accept" type="button" class="px-5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow-md transition">
+                    Sí, Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================================================================
+         VISTA 1: PUERTA DE AUTENTICACIÓN (LOGIN GATE)
+         Visible únicamente cuando NO hay una sesión activa de Supabase
+         ==================================================================== -->
+    <main id="auth-view" class="flex-1 flex items-center justify-center p-4 sm:p-6 relative overflow-hidden bg-brand-navyDark">
+        <!-- Halos de luz decorativos de fondo con colores de marca -->
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-brand-gold/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-brand-navy/60 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute inset-0 opacity-5 bg-[radial-gradient(#d48c95_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none"></div>
+
+        <div class="w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden border border-brand-gold/30 relative z-10 animate-card-enter">
+            <!-- Encabezado de la Tarjeta de Acceso -->
+            <div class="bg-brand-navy p-8 text-center text-white relative border-b border-brand-gold/30">
+                <div class="inline-flex items-center gap-3 mb-3">
+                    <img src="img/productos/sweater-snoopy/Logos/florfondoazul.png" alt="Imagotipo LOYLIZ" class="w-12 h-12 rounded-xl object-contain shadow-md border border-brand-gold/40">
+                    <img src="img/productos/sweater-snoopy/Logos/BlancoLogo.png" alt="LOYLIZ" class="h-8 w-auto object-contain">
+                </div>
+                <h1 class="font-display font-extrabold text-xl text-white tracking-wide">
+                    Acceso Administrativo
+                </h1>
+                <p class="text-xs text-brand-gold font-medium mt-1">
+                    Gestión integral de catálogo, inventario y storage
+                </p>
+            </div>
+
+            <!-- Formulario de Inicio de Sesión -->
+            <form id="login-form" class="p-8 space-y-5">
+                <div id="login-alert" class="hidden p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-semibold flex items-start gap-2.5">
+                    <i data-lucide="alert-circle" class="w-4 h-4 shrink-0 mt-0.5 text-rose-600"></i>
+                    <span id="login-alert-text">Error de credenciales</span>
+                </div>
+
+                <div>
+                    <label for="login-email" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+                        Correo Electrónico
+                    </label>
+                    <div class="relative">
+                        <i data-lucide="mail" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <input id="login-email" type="email" required autocomplete="email" placeholder="admin@loyliz.com"
+                               class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-gold/30 transition shadow-xs">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="login-password" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+                        Contraseña
+                    </label>
+                    <div class="relative">
+                        <i data-lucide="lock" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <input id="login-password" type="password" required autocomplete="current-password" placeholder="••••••••••••"
+                               class="w-full pl-10 pr-11 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-gold/30 transition shadow-xs">
+                        <button id="btn-toggle-password" type="button" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-brand-navy transition" aria-label="Mostrar contraseña">
+                            <i data-lucide="eye" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button id="btn-login-submit" type="submit"
+                            class="w-full py-3.5 bg-brand-navy text-brand-gold hover:bg-brand-navyDark rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-2 border border-brand-gold/40 hover:scale-[1.01]">
+                        <i data-lucide="log-in" class="w-4 h-4"></i>
+                        <span>Ingresar al Panel LOYLIZ</span>
+                    </button>
+                </div>
+
+                <!-- Enlace de retorno discreto -->
+                <div class="text-center pt-3 border-t border-gray-100">
+                    <a href="index.html" class="inline-flex items-center gap-1.5 text-xs text-gray-500 hover:text-brand-navy transition font-medium">
+                        <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-brand-gold"></i>
+                        <span>Volver al Catálogo Público</span>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- ====================================================================
+         VISTA 2: PANEL DE ADMINISTRACIÓN (DASHBOARD)
+         Visible únicamente cuando existe una sesión autenticada activa
+         ==================================================================== -->
+    <div id="dashboard-view" class="hidden flex-1 flex flex-col">
+
+        <!-- Barra Superior de Navegación del Panel -->
+        <header class="bg-brand-navy text-white sticky top-0 z-40 border-b border-brand-gold/30 shadow-md">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-20">
+                    <!-- Marca & Logo -->
+                    <div class="flex items-center gap-3">
+                        <img src="img/productos/sweater-snoopy/Logos/florfondoazul.png" alt="Imagotipo LOYLIZ" class="w-10 h-10 rounded-xl object-contain shadow-sm border border-brand-gold/30">
+                        <div class="flex flex-col">
+                            <img src="img/productos/sweater-snoopy/Logos/BlancoLogo.png" alt="LOYLIZ" class="h-6 w-auto object-contain">
+                            <span class="text-[9px] uppercase tracking-widest text-brand-gold font-bold">Panel Administrativo</span>
+                        </div>
+                    </div>
+
+                    <!-- Métricas Rápidas en Desktop -->
+                    <div class="hidden lg:flex items-center gap-6 text-xs border-x border-white/10 px-6 py-1.5">
+                        <div class="flex items-center gap-2">
+                            <span class="text-gray-400">Total:</span>
+                            <span id="metric-total" class="font-display font-extrabold text-white text-sm">--</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                            <span class="text-gray-400">Activos:</span>
+                            <span id="metric-active" class="font-display font-extrabold text-emerald-400 text-sm">--</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                            <span class="text-gray-400">Pausados:</span>
+                            <span id="metric-paused" class="font-display font-extrabold text-amber-400 text-sm">--</span>
+                        </div>
+                    </div>
+
+                    <!-- Acciones de Usuario & Sesión -->
+                    <div class="flex items-center gap-3">
+                        <!-- Botón Limpiar Caché -->
+                        <button id="btn-clear-cache" type="button" title="Limpiar caché local del catálogo"
+                                class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/15 text-xs text-gray-200 hover:text-white transition border border-white/10">
+                            <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-brand-gold"></i>
+                            <span>Limpiar Caché</span>
+                        </button>
+
+                        <!-- Enlace al Catálogo Público -->
+                        <a href="index.html" target="_blank" title="Abrir catálogo público en nueva pestaña"
+                           class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-brand-gold/20 hover:bg-brand-gold/30 text-brand-gold text-xs font-bold transition border border-brand-gold/30">
+                            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                            <span class="hidden sm:inline">Ver Catálogo</span>
+                        </a>
+
+                        <!-- Menú de Usuario / Cerrar Sesión -->
+                        <div class="flex items-center gap-2 pl-2 border-l border-white/10">
+                            <span id="admin-user-email" class="text-xs text-gray-300 font-mono hidden md:inline truncate max-w-[140px]">admin@loyliz.com</span>
+                            <button id="btn-logout" type="button" title="Cerrar sesión"
+                                    class="p-2 rounded-xl bg-white/10 hover:bg-rose-600/80 text-white transition flex items-center justify-center">
+                                <i data-lucide="log-out" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Contenido Principal del Panel -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-8 flex-1">
+
+            <!-- Banner Informativo Superior & Botón de Acción Principal -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <div>
+                    <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-navy mb-1">
+                        <span class="w-2 h-2 rounded-full bg-brand-gold"></span>
+                        Gestor de Catálogo Oficial
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-display font-extrabold text-brand-navy">
+                        Inventario & Fichas Técnicas LOYLIZ
+                    </h2>
+                    <p class="text-xs sm:text-sm text-gray-500 mt-1 max-w-2xl">
+                        Registra nuevas prendas con compresión automática a formato WebP, gestiona imágenes principales y edita especificaciones técnicas en tiempo real.
+                    </p>
+                </div>
+                <a href="#formulario-prenda" id="btn-scroll-to-form"
+                   class="shrink-0 px-6 py-3.5 bg-brand-navy text-brand-gold hover:bg-brand-navyDark rounded-2xl text-xs font-bold uppercase tracking-wider transition-all shadow-md flex items-center gap-2 border border-brand-gold/40 hover:scale-[1.02]">
+                    <i data-lucide="plus-circle" class="w-4 h-4 text-brand-gold"></i>
+                    <span>Registrar Nuevo Modelo</span>
+                </a>
+            </div>
+
+            <!-- ============================================================
+                 SECCIÓN 1: FORMULARIO DE CREACIÓN & EDICIÓN DE PRENDAS
+                 ============================================================ -->
+            <div id="formulario-prenda" class="bg-white rounded-3xl border border-gray-200/80 shadow-sm overflow-hidden scroll-mt-28">
+                <!-- Encabezado del Formulario con Estado (Nuevo / Editando) -->
+                <div class="bg-gradient-to-r from-brand-navy to-brand-navyLight p-6 sm:p-8 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-brand-gold/30">
+                    <div class="flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-2xl bg-brand-gold/20 flex items-center justify-center text-brand-gold border border-brand-gold/30 shrink-0">
+                            <i id="form-icon" data-lucide="shirt" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 id="form-title" class="font-display font-extrabold text-xl text-white">
+                                Registrar Nuevo Modelo Textil
+                            </h3>
+                            <p id="form-subtitle" class="text-xs text-gray-300 mt-0.5">
+                                Completa la ficha técnica para publicar la prenda en el catálogo público
+                            </p>
+                        </div>
+                    </div>
+                    <button id="btn-cancel-edit" type="button" class="hidden px-4 py-2 rounded-xl bg-white/15 hover:bg-white/25 text-white text-xs font-bold transition flex items-center gap-2">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                        <span>Cancelar Edición</span>
+                    </button>
+                </div>
+
+                <!-- Cuerpo del Formulario -->
+                <form id="product-form" class="p-6 sm:p-8 space-y-8">
+                    <!-- Campo oculto para ID al editar -->
+                    <input type="hidden" id="prod-id" value="">
+
+                    <!-- Grid de Campos Principales -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                        <!-- 1. Categoría / Línea de Producción -->
+                        <div>
+                            <label for="prod-categoria" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">
+                                Línea de Producción <span class="text-rose-500">*</span>
+                            </label>
+                            <select id="prod-categoria" required
+                                    class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-gold/30 transition bg-white shadow-xs">
+                                <option value="" disabled selected>Cargando categorías...</option>
+                            </select>
+                        </div>
+
+                        <!-- 2. Código de Referencia -->
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <label for="prod-referencia" class="block text-xs font-bold uppercase tracking-wider text-brand-navy">
+                                    Código de Referencia <span class="text-rose-500">*</span>
+                                </label>
+                                <button id="btn-auto-ref" type="button" class="text-[11px] font-bold text-brand-gold hover:text-brand-goldHover transition">
+                                    Auto-generar
+                                </button>
+                            </div>
+                            <input id="prod-referencia" type="text" required placeholder="Ej: LLZ-MED-02"
+                                   class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm font-mono uppercase focus:outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-gold/30 transition shadow-xs">
+                        </div>
+
+                        <!-- 3. Nombre / Título del Modelo -->
+                        <div>
+                            <label for="prod-nombre" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">
+                                Nombre del Modelo <span class="text-rose-500">*</span>
+                            </label>
+                            <input id="prod-nombre" type="text" required placeholder="Ej: Conjunto Quirúrgico Titanium Pro"
+                                   class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-gold/30 transition shadow-xs">
+                        </div>
+
+                        <!-- 4. Tipo de Tela / Composición -->
+                        <div class="lg:col-span-2">
+                            <label for="prod-tela" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">
+                                Tela & Composición Textil <span class="text-rose-500">*</span>
+                            </label>
+                            <input id="prod-tela" type="text" required placeholder="Ej: Microfibra Antifluido de 4 vías (95% Poliéster, 5% Spandex)"
+                                   class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-gold/30 transition shadow-xs">
+                        </div>
+
+                        <!-- 5. Género / Público Recomendado -->
+                        <div>
+                            <label for="prod-genero" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">
+                                Género / Público
+                            </label>
+                            <input id="prod-genero" type="text" placeholder="Ej: Unisex / Profesional de la Salud"
+                                   class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-gold/30 transition shadow-xs">
+                        </div>
+
+                        <!-- 6. Colores Disponibles -->
+                        <div>
+                            <label for="prod-colores" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">
+                                Colores Disponibles
+                            </label>
+                            <input id="prod-colores" type="text" placeholder="Ej: Azul Quirúrgico, Verde Salvia, Negro Ónix"
+                                   class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-gold/30 transition shadow-xs">
+                        </div>
+
+                        <!-- 7. Uso Recomendado -->
+                        <div class="lg:col-span-2">
+                            <label for="prod-uso" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">
+                                Uso Recomendado
+                            </label>
+                            <input id="prod-uso" type="text" placeholder="Ej: Guardias hospitalarias, clínicas odontológicas y veterinaria."
+                                   class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-gold/30 transition shadow-xs">
+                        </div>
+                    </div>
+
+                    <!-- 8. Descripción Detallada -->
+                    <div>
+                        <label for="prod-descripcion" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">
+                            Descripción & Detalles de Confección
+                        </label>
+                        <textarea id="prod-descripcion" rows="3" placeholder="Describe los atributos estéticos, acabados de costura y beneficios ergonómicos de la prenda..."
+                                  class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-gold/30 transition shadow-xs resize-y"></textarea>
+                    </div>
+
+                    <!-- 9. Tallas Disponibles (Checkboxes Interactivos) -->
+                    <div class="p-5 rounded-2xl bg-[#FAECDA]/30 border border-brand-gold/30 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-brand-navy">
+                                Tallas Disponibles <span class="text-rose-500">*</span>
+                            </label>
+                            <button id="btn-toggle-all-sizes" type="button" class="text-[11px] font-bold text-brand-gold hover:text-brand-goldHover transition">
+                                Seleccionar Todas
+                            </button>
+                        </div>
+                        <div id="sizes-checkbox-container" class="flex flex-wrap gap-2.5">
+                            <!-- Inyectadas por JS: XS, S, M, L, XL, XXL, Única -->
+                        </div>
+                    </div>
+
+                    <!-- 10. Especificaciones Técnicas Dinámicas (JSONB Builder) -->
+                    <div class="p-5 rounded-2xl bg-gray-50 border border-gray-200 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-navy">
+                                    Ficha Técnica Avanzada (Especificaciones JSONB)
+                                </h4>
+                                <p class="text-[11px] text-gray-500">Pares clave-valor que enriquecen la ficha técnica cinemática</p>
+                            </div>
+                            <button id="btn-add-spec" type="button" class="px-3 py-1.5 rounded-lg bg-brand-navy text-brand-gold hover:bg-brand-navyDark text-xs font-bold transition flex items-center gap-1.5 shadow-xs">
+                                <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                                <span>Añadir Atributo</span>
+                            </button>
+                        </div>
+
+                        <!-- Lista de pares clave-valor -->
+                        <div id="specs-list-container" class="space-y-2.5">
+                            <!-- Filas inyectadas dinámicamente -->
+                        </div>
+                    </div>
+
+                    <!-- 11. Gestión Multimedia & Compresión WebP en Cliente (Storage bucket: catalogo-loyliz) -->
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-brand-navy">
+                                Galería Fotográfica & Compresión WebP
+                            </h4>
+                            <p class="text-[11px] text-gray-500">
+                                Las imágenes se comprimen automáticamente en el navegador a WebP (máx. 1400px, 82% calidad) antes de subir al bucket <code class="font-mono bg-gray-100 px-1 py-0.5 rounded text-brand-navy font-bold">catalogo-loyliz</code>.
+                            </p>
+                        </div>
+
+                        <!-- Dropzone de Arrastre & Selección -->
+                        <div id="dropzone" class="border-2 border-dashed border-gray-300 hover:border-brand-gold rounded-3xl p-8 text-center cursor-pointer transition-all bg-gray-50/70 hover:bg-[#FAECDA]/20 group">
+                            <input type="file" id="prod-images-input" multiple accept="image/jpeg,image/png,image/webp" class="hidden">
+                            <div class="w-14 h-14 rounded-2xl bg-white text-brand-gold mx-auto mb-3 flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform border border-brand-gold/30">
+                                <i data-lucide="upload-cloud" class="w-7 h-7"></i>
+                            </div>
+                            <p class="text-xs sm:text-sm font-bold text-brand-navy">
+                                Arrastra tus fotos aquí o haz clic para explorar
+                            </p>
+                            <p class="text-[11px] text-gray-400 mt-1">
+                                Admite JPG, PNG y WebP. Puedes subir varias vistas de la prenda simultáneamente.
+                            </p>
+                        </div>
+
+                        <!-- Galería de Miniaturas Preparadas / Subidas -->
+                        <div id="staged-images-container" class="hidden space-y-2">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-gray-400 block">
+                                Fotos seleccionadas (Haz clic en la estrella para definir la foto principal):
+                            </span>
+                            <div id="staged-images-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                                <!-- Tarjetas de imagen inyectadas dinámicamente -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 12. Toggles de Estado (Activo & Destacado) -->
+                    <div class="flex flex-wrap items-center gap-6 pt-2 border-t border-gray-100">
+                        <label class="inline-flex items-center gap-3 cursor-pointer">
+                            <input type="checkbox" id="prod-activo" checked class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500 relative"></div>
+                            <span class="text-xs font-bold text-gray-700">Modelo Activo (Visible en Catálogo Público)</span>
+                        </label>
+
+                        <label class="inline-flex items-center gap-3 cursor-pointer">
+                            <input type="checkbox" id="prod-destacado" class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-navy relative"></div>
+                            <span class="text-xs font-bold text-gray-700">Prenda Destacada</span>
+                        </label>
+                    </div>
+
+                    <!-- Botones de Acción del Formulario -->
+                    <div class="flex flex-col sm:flex-row items-center justify-end gap-3 pt-6 border-t border-gray-100">
+                        <button id="btn-reset-form" type="button" class="w-full sm:w-auto px-6 py-3 rounded-xl border border-gray-200 text-gray-600 hover:bg-gray-50 text-xs font-bold uppercase tracking-wider transition">
+                            Limpiar Formulario
+                        </button>
+                        <button id="btn-submit-product" type="submit"
+                                class="w-full sm:w-auto px-8 py-3.5 bg-brand-navy text-brand-gold hover:bg-brand-navyDark rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-2 border border-brand-gold/40 hover:scale-[1.01]">
+                            <i data-lucide="check" class="w-4 h-4"></i>
+                            <span id="btn-submit-text">Guardar y Publicar Prenda</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- ============================================================
+                 SECCIÓN 2: TABLA DE INVENTARIO EN VIVO & GESTIÓN
+                 ============================================================ -->
+            <div class="bg-white rounded-3xl border border-gray-200/80 shadow-sm overflow-hidden space-y-4">
+                <!-- Barra de Búsqueda & Filtros de la Tabla -->
+                <div class="p-6 sm:p-8 pb-0 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+                    <div>
+                        <h3 class="font-display font-extrabold text-xl text-brand-navy">
+                            Inventario de Prendas Registradas
+                        </h3>
+                        <p class="text-xs text-gray-500 mt-0.5">Control de visibilidad, edición de atributos y limpieza de storage</p>
+                    </div>
+
+                    <!-- Controles de Búsqueda y Filtros -->
+                    <div class="flex flex-wrap items-center gap-3">
+                        <!-- Input de Búsqueda -->
+                        <div class="relative min-w-[220px] flex-1 sm:flex-initial">
+                            <i data-lucide="search" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                            <input id="table-search" type="text" placeholder="Buscar por REF, nombre o tela..."
+                                   class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 text-xs focus:outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-gold/30 transition shadow-xs">
+                        </div>
+
+                        <!-- Filtro por Categoría -->
+                        <select id="table-filter-cat"
+                                class="px-3.5 py-2.5 rounded-xl border border-gray-200 text-xs focus:outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-gold/30 transition bg-white shadow-xs">
+                            <option value="all">Todas las Líneas</option>
+                        </select>
+
+                        <!-- Filtro por Estado -->
+                        <select id="table-filter-status"
+                                class="px-3.5 py-2.5 rounded-xl border border-gray-200 text-xs focus:outline-none focus:border-brand-navy focus:ring-2 focus:ring-brand-gold/30 transition bg-white shadow-xs">
+                            <option value="all">Todos los Estados</option>
+                            <option value="active">Solo Activos</option>
+                            <option value="paused">Solo Pausados</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Tabla Responsiva de Prendas -->
+                <div class="overflow-x-auto p-6 sm:p-8 pt-4">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-gray-200 text-[11px] font-bold uppercase tracking-wider text-gray-400 bg-gray-50/50">
+                                <th class="py-3 px-4 rounded-l-xl">Miniatura</th>
+                                <th class="py-3 px-4">Referencia</th>
+                                <th class="py-3 px-4">Modelo & Composición</th>
+                                <th class="py-3 px-4">Línea</th>
+                                <th class="py-3 px-4">Tallas</th>
+                                <th class="py-3 px-4 text-center">Estado</th>
+                                <th class="py-3 px-4 text-right rounded-r-xl">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventory-tbody" class="divide-y divide-gray-100 text-xs">
+                            <!-- Filas inyectadas dinámicamente por js/admin.js -->
+                            <tr>
+                                <td colspan="7" class="py-12 text-center text-gray-400">
+                                    <div class="w-8 h-8 mx-auto mb-2 border-2 border-brand-navy border-t-brand-gold rounded-full animate-spin"></div>
+                                    <span>Cargando inventario desde Supabase...</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer del Panel Administrativo -->
+        <footer class="bg-white border-t border-gray-200 py-6 mt-12 text-center text-xs text-gray-400">
+            <p>&copy; 2026 LOYLIZ. Panel Administrativo Privado | Diseño, Asesoría & Confección Premium.</p>
+        </footer>
+    </div>
+
+    <!-- Scripts de Configuración & Lógica Administrativa -->
+    <script src="js/supabase-config.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
