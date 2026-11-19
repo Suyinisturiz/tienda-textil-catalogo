@@ -1,0 +1,6 @@
+# Archivos locales de notas
+datos_SUPABASE.txt
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db

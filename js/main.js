@@ -1,174 +1,176 @@
-// Catalog Data - LOYLIZ (Exhibición y Asesoría Textil Premium)
-const catalogItems = [
-    {
-        id: 1,
-        title: "Conjunto Médico Essential V-Neck",
-        category: "sanitarios",
-        rubroLabel: "Línea Sanitaria & Quirúrgica",
-        code: "LLZ-MED-01",
-        gender: "Unisex / Profesional de la Salud",
-        desc: "Diseñado para profesionales que exigen libertad de movimiento y protección total sin sacrificar la elegancia en clínica.",
-        fabric: "Microfibra Antifluido de 4 vías (95% Poliéster, 5% Spandex)",
-        sizes: "XS - S - M - L - XL - XXL",
-        colors: "Azul Quirúrgico, Verde Salvia, Negro Ónix, Rosa Palo, Blanco Puro",
-        use: "Guardias hospitalarias, consultorios odontológicos, clínicas estéticas y veterinarias.",
-        image: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-        id: 2,
-        title: "Jerseys Deportivos (LVBP Fan Edition)",
-        category: "deportivos",
-        rubroLabel: "Jerseys Deportivos (LVBP)",
-        code: "LLZ-DEP-02",
-        gender: "Unisex / Fanáticos & Ligas",
-        desc: "Telas tipo mesh transpirables con diseños sublimes de alta resolución para alentar a tu equipo con clase.",
-        fabric: "100% Poliéster Dry-Fit & Micro-Mesh de ventilación activa",
-        sizes: "S - M - L - XL - XXL",
-        colors: "Edición Magallanes, Caracas, La Guaira, Aragua, Zulia, Lara",
-        use: "Juegos de béisbol, eventos deportivos corporativos y estilo casual urbano.",
-        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-        id: 3,
-        title: "Hoodie Sweater Temático Peanuts x Snoopy Since 1950",
-        category: "casual",
-        rubroLabel: "Colecciones Temáticas & Casual",
-        code: "LLZ-CAS-SNOOPY",
-        gender: "Unisex / Dama & Caballero",
-        desc: "Sweater tipo hoodie con capucha y cordón ajustable confeccionado en algodón perchado premium. Incluye parche bordado circular frontal de Snoopy en rosa pastel, bolsillo canguro, serigrafía de alta definición con personajes clásicos en manga derecha, tipografía 'Snoopy' con huellas en manga izquierda, y en la espalda la emblemática gráfica 'PEANUTS SINCE 1950' con viñetas multicolores. Acabados con costuras de doble pespunte y puños acanalados de alta durabilidad.",
-        fabric: "80% Algodón Peinado Perchado, 20% Poliéster (320 gsm - Felpa Interior Térmica Suave)",
-        sizes: "XS - S - M - L - XL (Corte Regular / Oversize Confort)",
-        colors: "Blanco Hueso / Off-White (Edición Especial Peanuts), Gris Jaspe, Negro Antracita, Menta LOYLIZ",
-        use: "Uso casual urbano, streetwear de autor, colecciones temáticas exclusivas y asesoría de estilo diario.",
-        image: "img/productos/sweater-snoopy/snoopy-hoodie-front-model.jpg",
-        images: [
-            "img/productos/sweater-snoopy/snoopy-hoodie-front-model.jpg",
-            "img/productos/sweater-snoopy/snoopy-hoodie-back-model.jpg",
-            "img/productos/sweater-snoopy/snoopy-hoodie-front-flat.jpg",
-            "img/productos/sweater-snoopy/snoopy-hoodie-back-flat.jpg"
-        ]
-    },
-    {
-        id: 4,
-        title: "Franelas & Básicos Premium 24/1",
-        category: "franelas",
-        rubroLabel: "Franelas & Básicos Premium",
-        code: "LLZ-BAS-04",
-        gender: "Unisex / Fondo de Armario",
-        desc: "Básicos atemporales confeccionados con algodón de máxima suavidad para tus looks más versátiles.",
-        fabric: "100% Algodón Peinado Premium 24/1 (190 gsm) con doble pespunte",
-        sizes: "XS - S - M - L - XL - XXL",
-        colors: "Blanco Puro, Gris Antracita, Verde Menta Suave, Negro Profundo",
-        use: "Prendas esenciales de uso diario, asesoría de fondo de armario y dotaciones.",
-        image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-        id: 5,
-        title: "Uniformes Corporativos & Camisería",
-        category: "corporativos",
-        rubroLabel: "Uniformes Corporativos",
-        code: "LLZ-CORP-05",
-        gender: "Dama & Caballero",
-        desc: "Proyecta la mejor imagen de tu marca con prendas duraderas, elegantes y personalizadas.",
-        fabric: "Popelina Oxford Mercerizada 65/35 & Piqué Algodón Antipilling",
-        sizes: "S - M - L - XL - XXL",
-        colors: "Blanco Ejecutivo, Celeste Corporativo, Azul Marino, Gris Antracita",
-        use: "Equipos de ventas, personal de oficina, recepciones y eventos institucionales.",
-        image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-        id: 6,
-        title: "Conjunto Infantil & Juvenil Confort-Max",
-        category: "infantil",
-        rubroLabel: "Infantil & Juvenil",
-        code: "LLZ-KID-06",
-        gender: "Niños & Niñas (4 a 16)",
-        desc: "Diseños resistentes y súper cómodos diseñados para el ritmo inagotable de los más pequeños.",
-        fabric: "Algodón Fleece Hipoalergénico con costuras elásticas de doble pespunte",
-        sizes: "Tallas 4, 6, 8, 10, 12, 14, 16",
-        colors: "Verde Menta, Gris Jaspe, Azul Marino, Blanco",
-        use: "Educación física, colegio, deportes y juego activo diario.",
-        image: "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-        id: 7,
-        title: "Scrub Quirúrgico Jogger Ergo-Flex",
-        category: "sanitarios",
-        rubroLabel: "Línea Sanitaria & Quirúrgica",
-        code: "LLZ-MED-07",
-        gender: "Mujer / Hombre",
-        desc: "Uniformes antifluido ligeros que te brindan seguridad y estilo durante tus guardias más exigentes.",
-        fabric: "Microfibra Antifluido de Grado Hospitalario con repelencia certificada",
-        sizes: "XS - S - M - L - XL",
-        colors: "Verde Menta LOYLIZ, Azul Quirúrgico, Negro Ónix, Gris Plomo",
-        use: "Guardias clínicas, quirófano, anestesiología, enfermería y veterinaria.",
-        image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=700&q=80"
-    },
-    {
-        id: 8,
-        title: "Chaqueta Bomber Deportiva Mesh Pro",
-        category: "deportivos",
-        rubroLabel: "Jerseys Deportivos (LVBP)",
-        code: "LLZ-DEP-08",
-        gender: "Unisex",
-        desc: "Chaqueta liviana de corte ergonómico con forro interior en micro-mesh transpirable y rib elástico reforzado.",
-        fabric: "100% Poliéster Ripstop & Rib elástico indeformable",
-        sizes: "S - M - L - XL - XXL",
-        colors: "Sublimación Total de Equipos LVBP / Diseños Personalizados",
-        use: "Entrenamientos, salidas de viaje de delegaciones y fanaticada.",
-        image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=700&q=80"
-    }
-];
+/**
+ * ============================================================================
+ * LOYLIZ | Lógica del Catálogo Dinámico & Micro-interacciones
+ * ============================================================================
+ * Conexión transparente con Supabase REST API vía CatalogService.
+ * Filtros dinámicos de categorías, Skeleton Loading en Marfil Textil (#FAECDA),
+ * Ficha Técnica en Modal Cinemático y Efecto 3D Tilt táctil preservado.
+ */
 
-// DOM Elements
+// Estado global en memoria para el catálogo
+let allProducts = [];
+let allCategories = [];
+let activeFilter = 'all';
+
+// Elementos del DOM
 const catalogGrid = document.getElementById('catalog-grid');
-const filterButtons = document.querySelectorAll('.filter-btn');
+const filterContainer = document.getElementById('filter-container');
 const productModal = document.getElementById('product-modal');
 const modalContent = document.getElementById('modal-content');
 const closeModalBtn = document.getElementById('close-modal');
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 
-// Render Catalog Cards
-function renderCatalog(items) {
+/**
+ * Renderiza tarjetas de carga esqueleto (Skeleton Loading)
+ * Diseñadas estrictamente con el color Marfil Textil (#FAECDA) del Brand Kit LOYLIZ
+ */
+function renderSkeletonLoading(count = 8) {
+    if (!catalogGrid) return;
     catalogGrid.innerHTML = '';
 
-    if (items.length === 0) {
-        catalogGrid.innerHTML = `
-            <div class="col-span-full py-12 text-center text-gray-400">
-                <p class="text-sm">No se encontraron modelos en este rubro por el momento.</p>
+    for (let i = 0; i < count; i++) {
+        const skeletonCard = document.createElement('div');
+        skeletonCard.className = "catalog-card bg-white rounded-2xl overflow-hidden border border-[#FAECDA] shadow-sm flex flex-col justify-between animate-pulse";
+        skeletonCard.style.animationDelay = `${(i % 4) * 0.1}s`;
+
+        skeletonCard.innerHTML = `
+            <div>
+                <!-- Contenedor de Imagen Esqueleto en Marfil Textil (#FAECDA) -->
+                <div class="h-64 bg-[#FAECDA]/80 relative flex items-center justify-center overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full animate-[silkSheen_2.5s_infinite]"></div>
+                    <div class="w-14 h-14 rounded-2xl bg-[#FAECDA] border border-[#D48C95]/20 flex items-center justify-center shadow-inner opacity-80">
+                        <svg class="w-7 h-7 text-[#D48C95]/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <!-- Badge Esqueleto en Marfil Textil -->
+                    <div class="absolute top-3 left-3 h-5 w-28 bg-[#FAECDA] rounded-md border border-[#D48C95]/20 shadow-sm"></div>
+                </div>
+
+                <!-- Bloque de Información Esqueleto -->
+                <div class="p-5 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <div class="h-3 w-20 bg-[#FAECDA] rounded"></div>
+                        <div class="h-3 w-16 bg-[#FAECDA] rounded"></div>
+                    </div>
+                    <div class="h-5 w-5/6 bg-[#FAECDA] rounded mt-2"></div>
+                    <div class="space-y-1.5 pt-1">
+                        <div class="h-3 w-full bg-[#FAECDA]/85 rounded"></div>
+                        <div class="h-3 w-3/4 bg-[#FAECDA]/85 rounded"></div>
+                    </div>
+                    <!-- Línea de Composición / Tela en Marfil Textil -->
+                    <div class="pt-3 border-t border-gray-100 flex items-center gap-2">
+                        <div class="w-3.5 h-3.5 rounded-full bg-[#FAECDA]"></div>
+                        <div class="h-3 w-36 bg-[#FAECDA] rounded"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón Esqueleto en Marfil Textil -->
+            <div class="p-5 pt-0">
+                <div class="h-10 w-full bg-[#FAECDA] rounded-xl border border-[#D48C95]/20"></div>
             </div>
         `;
+        catalogGrid.appendChild(skeletonCard);
+    }
+}
+
+/**
+ * Renderiza dinámicamente los botones de filtrado de categorías en el DOM
+ */
+function renderCategoryFilters(categories) {
+    if (!filterContainer) return;
+
+    filterContainer.innerHTML = '';
+
+    // 1. Botón "Todos" siempre al inicio
+    const allBtn = document.createElement('button');
+    allBtn.className = `filter-btn ${activeFilter === 'all' ? 'active' : ''} px-4 py-2 rounded-full text-xs font-bold transition-all`;
+    allBtn.setAttribute('data-filter', 'all');
+    allBtn.textContent = 'Todos';
+    allBtn.addEventListener('click', () => filterCatalog('all'));
+    filterContainer.appendChild(allBtn);
+
+    // 2. Botones dinámicos por cada categoría obtenida de la base de datos
+    categories.forEach(cat => {
+        if (cat.activo === false) return; // Respetar categorías inactivas
+        const btn = document.createElement('button');
+        btn.className = `filter-btn ${activeFilter === cat.slug ? 'active' : ''} px-4 py-2 rounded-full text-xs font-bold transition-all`;
+        btn.setAttribute('data-filter', cat.slug);
+        btn.textContent = cat.nombre;
+        btn.addEventListener('click', () => filterCatalog(cat.slug));
+        filterContainer.appendChild(btn);
+    });
+}
+
+/**
+ * Renderiza las tarjetas de productos en la cuadrícula del catálogo
+ */
+function renderCatalog(items) {
+    if (!catalogGrid) return;
+    catalogGrid.innerHTML = '';
+
+    if (!items || items.length === 0) {
+        catalogGrid.innerHTML = `
+            <div class="col-span-full py-16 text-center text-gray-500 bg-white rounded-3xl border border-dashed border-[#FAECDA] p-8 shadow-sm">
+                <div class="w-14 h-14 mx-auto mb-4 rounded-2xl bg-brand-cream/80 flex items-center justify-center text-brand-gold">
+                    <i data-lucide="package-search" class="w-7 h-7"></i>
+                </div>
+                <h4 class="font-display font-bold text-lg text-brand-navy">No se encontraron modelos en este rubro por el momento.</h4>
+                <p class="text-xs text-gray-500 mt-1 max-w-md mx-auto">
+                    Prueba seleccionando otra línea de producción o contáctanos por WhatsApp para diseñar y confeccionar prendas a la medida de tu equipo.
+                </p>
+                <div class="mt-5">
+                    <button onclick="filterCatalog('all')" class="px-5 py-2.5 bg-brand-navy text-brand-gold text-xs font-bold uppercase tracking-wider rounded-full hover:bg-brand-navyDark transition shadow-sm">
+                        Ver Todo el Catálogo
+                    </button>
+                </div>
+            </div>
+        `;
+        if (window.lucide) lucide.createIcons();
         return;
     }
+
+    const fallbackPlaceholder = window.CatalogService ? window.CatalogService.FALLBACK_PLACEHOLDER_IMAGE : '';
 
     items.forEach((item, index) => {
         const card = document.createElement('div');
         card.className = "catalog-card tilt-card animate-card-enter bg-white rounded-2xl overflow-hidden border border-gray-200/80 shadow-sm flex flex-col justify-between group";
         card.style.animationDelay = `${(index % 8) * 0.05}s`;
 
-        const hasGallery = item.images && item.images.length > 1;
-        const secondImg = hasGallery ? item.images[1] : item.image;
+        const hasGallery = Array.isArray(item.images) && item.images.length > 1;
+        const mainImg = item.image || fallbackPlaceholder;
+        const secondImg = hasGallery ? item.images[1] : mainImg;
+
+        // Escape seguro para ID en atributos y llamadas de función
+        const safeId = String(item.id).replace(/'/g, "\\'");
 
         card.innerHTML = `
             <div>
-                <!-- Image Container with Zoom effect & Multi-view Hover -->
-                <div class="img-zoom-container relative h-64 overflow-hidden bg-gray-100 cursor-pointer" onclick="openProductModal(${item.id})">
-                    <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover transition-opacity duration-500 ${hasGallery ? 'group-hover:opacity-0' : ''}">
+                <!-- Contenedor de Imagen con Efecto Zoom & Previsualización Multi-vista -->
+                <div class="img-zoom-container relative h-64 overflow-hidden bg-gray-100 cursor-pointer" onclick="openProductModal('${safeId}')">
+                    <img src="${mainImg}" alt="${item.title}" 
+                         onerror="this.onerror=null; this.src='${fallbackPlaceholder}';" 
+                         class="w-full h-full object-cover transition-opacity duration-500 ${hasGallery ? 'group-hover:opacity-0' : ''}">
+                    
                     ${hasGallery ? `
-                        <img src="${secondImg}" alt="${item.title} vista alternativa" class="w-full h-full object-cover absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <img src="${secondImg}" alt="${item.title} vista alternativa" 
+                             onerror="this.onerror=null; this.src='${fallbackPlaceholder}';" 
+                             class="w-full h-full object-cover absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                         <span class="absolute top-3 right-3 bg-brand-navy/85 backdrop-blur-sm text-brand-gold text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 z-10 shadow-sm border border-brand-gold/30">
                             <i data-lucide="camera" class="w-3 h-3 text-brand-gold"></i> ${item.images.length} vistas
                         </span>
                     ` : ''}
+
                     <div class="absolute inset-0 bg-brand-navy/10 group-hover:bg-brand-navy/0 transition-colors pointer-events-none"></div>
-                    
-                    <!-- Rubro Tag -->
+
+                    <!-- Badge de Categoría / Rubro Oficial -->
                     <span class="absolute top-3 left-3 bg-brand-navy/90 backdrop-blur-sm text-brand-gold text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-md z-10 shadow-sm">
                         ${item.rubroLabel}
                     </span>
 
-                    <!-- Quick View Overlay Action -->
+                    <!-- Acción Rápida en Hover -->
                     <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-brand-navy/30 z-10">
                         <span class="px-4 py-2 bg-white text-brand-navy rounded-full text-xs font-bold tracking-wide shadow-lg flex items-center gap-1.5 transform translate-y-2 group-hover:translate-y-0 transition-transform">
                             <i data-lucide="eye" class="w-3.5 h-3.5 text-brand-navy"></i>
@@ -177,14 +179,14 @@ function renderCatalog(items) {
                     </div>
                 </div>
 
-                <!-- Info Block -->
+                <!-- Bloque Informativo -->
                 <div class="p-5">
                     <div class="flex items-center justify-between text-xs text-gray-400 font-mono mb-1">
                         <span>REF: ${item.code}</span>
                         <span class="text-gray-500 font-sans font-medium text-[11px]">${item.gender}</span>
                     </div>
 
-                    <h3 class="font-display font-bold text-base text-brand-navy group-hover:text-brand-navyDark transition-colors line-clamp-1 cursor-pointer" onclick="openProductModal(${item.id})">
+                    <h3 class="font-display font-bold text-base text-brand-navy group-hover:text-brand-navyDark transition-colors line-clamp-1 cursor-pointer" onclick="openProductModal('${safeId}')">
                         ${item.title}
                     </h3>
 
@@ -192,7 +194,7 @@ function renderCatalog(items) {
                         ${item.desc}
                     </p>
 
-                    <!-- Spec tags -->
+                    <!-- Etiqueta de Tipo de Tela / Composición -->
                     <div class="mt-3 pt-3 border-t border-gray-100 flex items-center gap-2 text-[11px] text-gray-600">
                         <i data-lucide="check-circle" class="w-3.5 h-3.5 text-brand-gold shrink-0"></i>
                         <span class="truncate">${item.fabric}</span>
@@ -200,9 +202,9 @@ function renderCatalog(items) {
                 </div>
             </div>
 
-            <!-- Footer Action inside Card -->
+            <!-- Botón de Acción Inferior: Ver Ficha Técnica -->
             <div class="p-5 pt-0">
-                <button onclick="openProductModal(${item.id})" class="w-full py-2.5 rounded-xl border border-brand-navy/20 text-brand-navy hover:bg-brand-navy hover:text-brand-gold text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+                <button onclick="openProductModal('${safeId}')" class="w-full py-2.5 rounded-xl border border-brand-navy/20 text-brand-navy hover:bg-brand-navy hover:text-brand-gold text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
                     <span>Ver Ficha Técnica</span>
                     <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
                 </button>
@@ -211,18 +213,23 @@ function renderCatalog(items) {
         catalogGrid.appendChild(card);
     });
 
-    // Re-initialize Lucide icons for the dynamically injected HTML
+    // Re-inicializar iconos de Lucide en el HTML inyectado
     if (window.lucide) {
         lucide.createIcons();
     }
 
-    // Inicializar efecto 3D tilt en las tarjetas
+    // Inicializar o reconectar efecto 3D tilt en las tarjetas
     initCardTilt();
 }
 
-// Filter function
+/**
+ * Función de filtrado por categoría
+ */
 function filterCatalog(category) {
-    // Update active button state
+    activeFilter = category;
+
+    // Actualizar estado activo en todos los botones de filtro del DOM
+    const filterButtons = document.querySelectorAll('.filter-btn');
     filterButtons.forEach(btn => {
         if (btn.getAttribute('data-filter') === category) {
             btn.classList.add('active');
@@ -231,62 +238,139 @@ function filterCatalog(category) {
         }
     });
 
-    // Filter items
+    // Filtrar prendas en memoria
     if (category === 'all') {
-        renderCatalog(catalogItems);
+        renderCatalog(allProducts);
     } else {
-        const filtered = catalogItems.filter(item => item.category === category);
+        const filtered = allProducts.filter(item => item.category === category);
         renderCatalog(filtered);
     }
 
-    // Smooth scroll down to catalog if initiated from categories section
+    // Desplazamiento suave al catálogo si se ejecutó desde la sección de líneas de producción
     const catalogSection = document.getElementById('catalogo');
-    if (window.scrollY < catalogSection.offsetTop - 300) {
+    if (catalogSection && window.scrollY < catalogSection.offsetTop - 300) {
         catalogSection.scrollIntoView({ behavior: 'smooth' });
     }
 }
 
-// Event Listeners for Filters
-filterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        const category = btn.getAttribute('data-filter');
-        filterCatalog(category);
-    });
-});
-
-// Modal Logic
+/**
+ * Lógica del Modal Cinemático de Inspección Técnica
+ * Poblado dinámico con campos live de Supabase (referencia, nombre, descripción,
+ * tela, tallas como píldoras, especificaciones JSONB, galería multi-imagen y deep-link WhatsApp)
+ */
 function openProductModal(id) {
-    const item = catalogItems.find(p => p.id === id);
+    const item = allProducts.find(p => String(p.id) === String(id));
     if (!item) return;
 
-    const modalImage = document.getElementById('modal-image');
-    modalImage.src = item.image;
-    modalImage.alt = item.title;
-    document.getElementById('modal-rubro').innerText = item.rubroLabel;
-    document.getElementById('modal-code').innerText = `CÓDIGO DE REFERENCIA: ${item.code}`;
-    document.getElementById('modal-title').innerText = item.title;
-    document.getElementById('modal-desc').innerText = item.desc;
-    document.getElementById('modal-fabric').innerText = item.fabric;
-    document.getElementById('modal-sizes').innerText = item.sizes;
-    document.getElementById('modal-colors').innerText = item.colors;
-    document.getElementById('modal-use').innerText = item.use;
+    // Tarea 4: Reinicio de posición de scroll al abrir
+    if (modalContent) modalContent.scrollTop = 0;
+    const modalBodyScroll = document.getElementById('modal-body-scroll');
+    if (modalBodyScroll) modalBodyScroll.scrollTop = 0;
 
-    // Configuración interactiva de la Galería de Miniaturas (Thumbnails)
+    const fallbackPlaceholder = window.CatalogService ? window.CatalogService.FALLBACK_PLACEHOLDER_IMAGE : '';
+    const modalImage = document.getElementById('modal-image');
+
+    // Poblado de datos principales
+    const nombre = item.nombre || item.title || 'Prenda LOYLIZ Confección Premium';
+    const referencia = item.referencia || item.code || `LLZ-${item.id}`;
+    const rubro = item.rubroLabel || (item.categorias && item.categorias.nombre) || 'Línea de Confección';
+    const descripcion = item.descripcion || item.desc || 'Confección nacional de alta costura con acabados de primera calidad.';
+    const tela = item.tela || item.fabric || 'Confección Nacional Premium con Doble Pespunte';
+    const colores = item.colores || item.colors || 'Variedad de tonos y combinaciones a elegir';
+    const uso = item.uso || item.use || 'Uso profesional, dotaciones y estilo casual diario.';
+
+    document.getElementById('modal-rubro').innerText = rubro;
+    document.getElementById('modal-code').innerText = `CÓDIGO DE REFERENCIA: ${referencia}`;
+    document.getElementById('modal-title').innerText = nombre;
+    document.getElementById('modal-desc').innerText = descripcion;
+    document.getElementById('modal-fabric').innerText = tela;
+
+    const colorsEl = document.getElementById('modal-colors');
+    if (colorsEl) colorsEl.innerText = colores;
+
+    const useEl = document.getElementById('modal-use');
+    if (useEl) useEl.innerText = uso;
+
+    // Tarea 1: Renderizado dinámico de Tallas como Píldoras Limpias
+    const sizesContainer = document.getElementById('modal-sizes-pills');
+    if (sizesContainer) {
+        sizesContainer.innerHTML = '';
+        let sizesList = [];
+        if (Array.isArray(item.tallas) && item.tallas.length > 0) {
+            sizesList = item.tallas;
+        } else if (typeof item.sizes === 'string') {
+            sizesList = item.sizes
+                .replace(/^Tallas\s*:?\s*/i, '')
+                .split(/[-–—,;/]+/)
+                .map(s => s.trim())
+                .filter(Boolean);
+        }
+        if (sizesList.length === 0) sizesList = ['A convenir'];
+
+        sizesList.forEach(size => {
+            const pill = document.createElement('span');
+            pill.className = 'px-3 py-1 rounded-lg text-xs font-bold bg-[#FAECDA]/90 text-brand-navy border border-[#D48C95]/40 shadow-xs hover:border-[#D48C95] transition select-none tracking-wide';
+            pill.textContent = size;
+            sizesContainer.appendChild(pill);
+        });
+    }
+
+    // Tarea 1: Renderizado dinámico de pares clave-valor de especificaciones (JSONB de Supabase)
+    const specsContainer = document.getElementById('modal-specs-container');
+    if (specsContainer) {
+        specsContainer.innerHTML = '';
+        const specs = item.especificaciones;
+        if (specs && typeof specs === 'object' && Object.keys(specs).length > 0) {
+            specsContainer.classList.remove('hidden');
+            Object.entries(specs).forEach(([k, v]) => {
+                if (v === null || v === undefined || v === '') return;
+                const row = document.createElement('div');
+                row.className = 'flex justify-between items-start gap-4 py-1.5 border-b border-gray-100/70 last:border-b-0 text-xs';
+                row.innerHTML = `
+                    <span class="text-gray-400 font-medium shrink-0">${k}:</span>
+                    <span class="font-semibold text-brand-navy text-right max-w-[65%]">${v}</span>
+                `;
+                specsContainer.appendChild(row);
+            });
+        } else {
+            specsContainer.classList.add('hidden');
+        }
+    }
+
+    // Tarea 2: Switcher de Galería Multi-imagen & Estado Placeholder si no hay fotos
+    const allImgs = (Array.isArray(item.images) && item.images.length > 0) ? item.images : [item.image || fallbackPlaceholder];
+    const hasRealPhotos = Boolean(item.hasRealImages && allImgs.length > 0 && !allImgs[0].startsWith('data:image/svg'));
+
+    const emptyBadge = document.getElementById('modal-empty-photos-badge');
+    if (emptyBadge) {
+        emptyBadge.classList.toggle('hidden', hasRealPhotos);
+    }
+
+    modalImage.onerror = function () {
+        this.onerror = null;
+        this.src = fallbackPlaceholder;
+        if (emptyBadge) emptyBadge.classList.remove('hidden');
+    };
+    modalImage.src = allImgs[0] || fallbackPlaceholder;
+    modalImage.alt = nombre;
+    modalImage.style.opacity = '1';
+
     const galleryContainer = document.getElementById('modal-gallery-container');
     if (galleryContainer) {
         galleryContainer.innerHTML = '';
-        const allImages = (item.images && item.images.length > 0) ? item.images : [item.image];
 
-        if (allImages.length > 1) {
+        if (hasRealPhotos && allImgs.length > 1) {
             galleryContainer.classList.remove('hidden');
-            allImages.forEach((imgSrc, idx) => {
+            allImgs.forEach((imgSrc, idx) => {
                 const thumb = document.createElement('button');
                 thumb.type = 'button';
-                thumb.className = `w-14 h-14 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer ${idx === 0 ? 'border-brand-gold ring-2 ring-brand-gold/40 shadow-sm' : 'border-gray-200 hover:border-brand-navy opacity-70 hover:opacity-100'}`;
-                thumb.innerHTML = `<img src="${imgSrc}" alt="${item.title} vista ${idx + 1}" class="w-full h-full object-cover">`;
+                thumb.setAttribute('role', 'tab');
+                thumb.setAttribute('aria-label', `Ver vista ${idx + 1} de ${nombre}`);
+                thumb.className = `w-14 h-14 rounded-xl overflow-hidden border-2 transition-all shrink-0 cursor-pointer ${idx === 0 ? 'border-[#D48C95] ring-2 ring-[#D48C95]/40 shadow-sm opacity-100' : 'border-gray-200 hover:border-brand-navy opacity-70 hover:opacity-100'}`;
+                thumb.innerHTML = `<img src="${imgSrc}" alt="${nombre} vista ${idx + 1}" onerror="this.onerror=null; this.src='${fallbackPlaceholder}';" class="w-full h-full object-cover">`;
 
                 thumb.addEventListener('click', () => {
-                    modalImage.style.opacity = '0.3';
+                    modalImage.style.opacity = '0.2';
                     setTimeout(() => {
                         modalImage.src = imgSrc;
                         modalImage.style.opacity = '1';
@@ -295,7 +379,7 @@ function openProductModal(id) {
                     galleryContainer.querySelectorAll('button').forEach(btn => {
                         btn.className = 'w-14 h-14 rounded-xl overflow-hidden border-2 border-gray-200 hover:border-brand-navy opacity-70 hover:opacity-100 transition-all shrink-0 cursor-pointer';
                     });
-                    thumb.className = 'w-14 h-14 rounded-xl overflow-hidden border-2 border-brand-gold ring-2 ring-brand-gold/40 shadow-sm transition-all shrink-0 cursor-pointer';
+                    thumb.className = 'w-14 h-14 rounded-xl overflow-hidden border-2 border-[#D48C95] ring-2 ring-[#D48C95]/40 shadow-sm opacity-100 transition-all shrink-0 cursor-pointer';
                 });
 
                 galleryContainer.appendChild(thumb);
@@ -305,72 +389,94 @@ function openProductModal(id) {
         }
     }
 
-    // Direct WhatsApp message to LOYLIZ with pre-filled item name
-    const msg = encodeURIComponent(`¡Hola LOYLIZ! Quiero recibir asesoría para renovar mis prendas/uniformes. Me interesa el modelo: ${item.title} (REF: ${item.code}) de la ${item.rubroLabel}.`);
-    document.getElementById('modal-whatsapp-link').href = `https://api.whatsapp.com/send?phone=584163329389&text=${msg}`;
+    // Tarea 3: Deep-Link Dinámico de Cotización hacia WhatsApp oficial
+    // Formato exacto requerido: "¡Hola LOYLIZ! Me interesa recibir asesoría y cotización sobre el modelo *[nombre]* (REF: *[referencia]*)."
+    const msg = encodeURIComponent(`¡Hola LOYLIZ! Me interesa recibir asesoría y cotización sobre el modelo *${nombre}* (REF: *${referencia}*).`);
+    const whatsappLink = document.getElementById('modal-whatsapp-link');
+    if (whatsappLink) {
+        whatsappLink.href = `https://wa.me/584163329389?text=${msg}`;
+    }
 
-    // Open Modal
-    productModal.classList.remove('opacity-0', 'pointer-events-none');
-    modalContent.classList.remove('scale-95');
-    modalContent.classList.add('scale-100');
-    document.body.style.overflow = 'hidden';
+    // Tarea 4: Apertura y accesibilidad del Modal
+    if (productModal && modalContent) {
+        productModal.classList.remove('opacity-0', 'pointer-events-none');
+        modalContent.classList.remove('scale-95');
+        modalContent.classList.add('scale-100');
+        document.body.style.overflow = 'hidden';
+
+        if (closeModalBtn) {
+            closeModalBtn.focus();
+        }
+    }
 
     if (window.lucide) lucide.createIcons();
 }
 
 function closeModal() {
+    if (!productModal || !modalContent) return;
     productModal.classList.add('opacity-0', 'pointer-events-none');
     modalContent.classList.remove('scale-100');
     modalContent.classList.add('scale-95');
     document.body.style.overflow = '';
 }
 
-closeModalBtn.addEventListener('click', closeModal);
+if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', closeModal);
+}
 
-productModal.addEventListener('click', (e) => {
-    if (e.target === productModal) {
-        closeModal();
-    }
-});
+if (productModal) {
+    productModal.addEventListener('click', (e) => {
+        if (e.target === productModal) {
+            closeModal();
+        }
+    });
+}
 
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeModal();
 });
 
-// Mobile menu toggle
-mobileMenuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-});
-
-// Close mobile menu on clicking links
-document.querySelectorAll('.mobile-link').forEach(link => {
-    link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
+// Menú móvil
+if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
     });
-});
 
-// Form Mock Handler
+    document.querySelectorAll('.mobile-link').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+    });
+}
+
+// Manejador del Formulario de Contacto & Cotización
 function handleFormSubmit(e) {
     e.preventDefault();
     const feedback = document.getElementById('form-feedback');
-    feedback.classList.remove('hidden');
-    e.target.reset();
-    setTimeout(() => {
-        feedback.classList.add('hidden');
-    }, 5000);
+    if (feedback) {
+        feedback.classList.remove('hidden');
+        e.target.reset();
+        setTimeout(() => {
+            feedback.classList.add('hidden');
+        }, 5000);
+    }
 }
 
-// ========================================================
+// ============================================================================
 // ANIMACIONES DINÁMICAS & MICRO-INTERACCIONES
-// ========================================================
+// ============================================================================
 
-// 1. Efecto 3D Tilt táctil para tarjetas del catálogo
+/**
+ * 1. Efecto 3D Tilt táctil para tarjetas del catálogo
+ * Optimizado para tarjetas inyectadas dinámicamente sin duplicar escuchadores
+ */
 function initCardTilt() {
-    // Solo aplicar en dispositivos con puntero fino (mouse) para evitar lag en táctil
+    // Solo aplicar en dispositivos con puntero fino (mouse) para evitar lag en pantallas táctiles
     if (window.matchMedia('(pointer: coarse)').matches) return;
 
-    const cards = document.querySelectorAll('.tilt-card');
+    const cards = document.querySelectorAll('.tilt-card:not([data-tilt-ready="true"])');
     cards.forEach(card => {
+        card.setAttribute('data-tilt-ready', 'true');
         let bounds = null;
 
         function handleMouseMove(e) {
@@ -403,7 +509,9 @@ function initCardTilt() {
     });
 }
 
-// 2. Entradas Escalonadas al Scroll (Scroll Reveal Observer)
+/**
+ * 2. Entradas Escalonadas al Scroll (Scroll Reveal Observer)
+ */
 function initScrollReveal() {
     const revealElements = document.querySelectorAll('.reveal-on-scroll');
     if (!('IntersectionObserver' in window)) {
@@ -426,7 +534,9 @@ function initScrollReveal() {
     revealElements.forEach(el => observer.observe(el));
 }
 
-// 3. Contadores Numéricos Animados (Animated Count-Up)
+/**
+ * 3. Contadores Numéricos Animados (Animated Count-Up)
+ */
 function initAnimatedCounters() {
     const counters = document.querySelectorAll('.counter-number');
     if (!counters.length) return;
@@ -445,13 +555,12 @@ function initAnimatedCounters() {
             }
 
             const target = parseInt(counter.getAttribute('data-target'), 10) || 0;
-            const duration = 2000; // 2 segundos de animación fluida
+            const duration = 2000;
             const startTime = performance.now();
 
             function update(now) {
                 const elapsed = now - startTime;
                 const progress = Math.min(elapsed / duration, 1);
-                // Función de aceleración suave (easeOutExpo)
                 const easeOut = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
                 const current = Math.floor(easeOut * target);
 
@@ -479,7 +588,7 @@ function initAnimatedCounters() {
         }, { threshold: 0.25 });
 
         const firstCounter = counters[0];
-        const container = firstCounter.closest('section');
+        const container = firstCounter ? firstCounter.closest('section') : null;
         if (container) {
             statsObserver.observe(container);
         } else {
@@ -490,11 +599,59 @@ function initAnimatedCounters() {
     }
 }
 
-// Initial render & animaciones
+/**
+ * ============================================================================
+ * INICIALIZACIÓN DINÁMICA DEL CATÁLOGO
+ * ============================================================================
+ */
+async function initDynamicCatalog() {
+    // 1. Mostrar skeleton loading inmediato en Marfil Textil (#FAECDA)
+    renderSkeletonLoading(8);
+
+    try {
+        if (window.CatalogService) {
+            // 2. Consultar categorías y productos de forma concurrente
+            const [categories, products] = await Promise.all([
+                CatalogService.getCategories(),
+                CatalogService.getProducts()
+            ]);
+
+            allCategories = categories || [];
+            allProducts = products || [];
+
+            // Exponer en window para retrocompatibilidad total
+            window.catalogItems = allProducts;
+
+            // 3. Renderizar filtros dinámicos y cuadrícula de prendas
+            renderCategoryFilters(allCategories);
+            renderCatalog(allProducts);
+        } else {
+            console.warn('[LOYLIZ Catálogo] CatalogService no detectado. Cargando contingencia...');
+            renderCatalog([]);
+        }
+    } catch (err) {
+        console.error('[LOYLIZ Catálogo] Error durante la carga dinámica:', err);
+        if (window.CatalogService && CatalogService.FALLBACK_PRODUCTOS) {
+            allProducts = CatalogService.FALLBACK_PRODUCTOS;
+            allCategories = CatalogService.FALLBACK_CATEGORIAS;
+            window.catalogItems = allProducts;
+            renderCategoryFilters(allCategories);
+            renderCatalog(allProducts);
+        }
+    }
+}
+
+// Exposición de funciones en window para que los botones con onclick inline funcionen siempre
+window.filterCatalog = filterCatalog;
+window.openProductModal = openProductModal;
+window.closeModal = closeModal;
+window.handleFormSubmit = handleFormSubmit;
+window.renderCatalog = renderCatalog;
+window.renderSkeletonLoading = renderSkeletonLoading;
+
+// Inicialización al cargar el DOM
 document.addEventListener('DOMContentLoaded', () => {
-    renderCatalog(catalogItems);
+    initDynamicCatalog();
     initScrollReveal();
     initAnimatedCounters();
-    initCardTilt();
 });
-
