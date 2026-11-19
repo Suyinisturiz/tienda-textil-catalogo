@@ -451,9 +451,13 @@
             if (trimmed.startsWith('storage/v1/object/public/')) {
                 return `${supabaseUrl}/${trimmed}`;
             }
-            // Asume bucket público "productos" por convención
             const cleanPath = trimmed.replace(/^\/+/, '');
-            return `${supabaseUrl}/storage/v1/object/public/${cleanPath}`;
+            // Si la ruta ya especifica el bucket oficial 'catalogo-loyliz' u otro bucket
+            if (cleanPath.startsWith('catalogo-loyliz/')) {
+                return `${supabaseUrl}/storage/v1/object/public/${cleanPath}`;
+            }
+            // Por defecto, vincular al bucket oficial de LOYLIZ: 'catalogo-loyliz'
+            return `${supabaseUrl}/storage/v1/object/public/catalogo-loyliz/${cleanPath}`;
         }
 
         return trimmed;
