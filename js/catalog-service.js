@@ -584,18 +584,18 @@
             code: refCode,
             category: categorySlug,
             rubroLabel: rubroLabel,
-            gender: raw.genero || raw.gender || 'Unisex / Confección Premium',
-            genero: raw.genero || raw.gender || 'Unisex / Confección Premium',
+            gender: raw.genero || raw.gender || especificacionesObj.genero || 'Unisex / Confección Premium',
+            genero: raw.genero || raw.gender || especificacionesObj.genero || 'Unisex / Confección Premium',
             desc: descPrenda,
             descripcion: descPrenda,
             fabric: telaPrenda,
             tela: telaPrenda,
             sizes: raw.sizes || raw.tallas || tallasArray.join(' - '),
             tallas: tallasArray,
-            colors: raw.colores || raw.colors || 'Variedad de tonos y combinaciones a elegir',
-            colores: raw.colores || raw.colors || 'Variedad de tonos y combinaciones a elegir',
-            use: raw.uso || raw.use || raw.uso_recomendado || 'Uso profesional, dotaciones corporativas y estilo casual diario.',
-            uso: raw.uso || raw.use || raw.uso_recomendado || 'Uso profesional, dotaciones corporativas y estilo casual diario.',
+            colors: raw.colores || raw.colors || especificacionesObj.colores || 'Variedad de tonos y combinaciones a elegir',
+            colores: raw.colores || raw.colors || especificacionesObj.colores || 'Variedad de tonos y combinaciones a elegir',
+            use: raw.uso || raw.use || raw.uso_recomendado || especificacionesObj.uso_recomendado || especificacionesObj.uso || 'Uso profesional, dotaciones corporativas y estilo casual diario.',
+            uso: raw.uso || raw.use || raw.uso_recomendado || especificacionesObj.uso_recomendado || especificacionesObj.uso || 'Uso profesional, dotaciones corporativas y estilo casual diario.',
             especificaciones: especificacionesObj,
             hasRealImages: hasRealImages,
             image: mainImage,
@@ -678,11 +678,11 @@
         try {
             let data = null;
             try {
-                // Intento estándar con filtro de activos
-                data = await fetchSupabase('categorias?select=*&activo=eq.true&order=orden.asc', creds);
+                // Intento estándar con filtro de activas (columna 'activa')
+                data = await fetchSupabase('categorias?select=id,slug,nombre,subtitulo,orden,activa&activa=eq.true&order=orden.asc', creds);
             } catch (queryErr) {
-                // Si la columna 'activo' no existe en la tabla, reintentar ordenando por orden
-                data = await fetchSupabase('categorias?select=*&order=orden.asc', creds);
+                // Si la columna 'activa' no existe o falla el filtro, reintentar ordenando por orden
+                data = await fetchSupabase('categorias?select=id,slug,nombre,subtitulo,orden,activa&order=orden.asc', creds);
             }
 
             if (!Array.isArray(data) || data.length === 0) {
@@ -719,7 +719,7 @@
 
         // 3. Consultar Supabase REST API con JOIN relacional
         const creds = getCredentials();
-        const selectQuery = 'select=*,categorias(slug,nombre,subtitulo),producto_imagenes(url_imagen,alt_text,es_principal,orden)';
+        const selectQuery = 'select=id,categoria_id,referencia,nombre,descripcion,tela,tallas,especificaciones,destacado,activo,created_at,categorias(id,nombre,slug),producto_imagenes(id,url_imagen,alt_text,es_principal,orden)';
 
         try {
             let data = null;

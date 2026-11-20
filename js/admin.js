@@ -4,12 +4,12 @@
  * ============================================================================
  * Panel seguro y minimalista para la gestión del catálogo textil LOYLIZ.
  * Integra:
- * - Autenticación con Supabase Auth (Email & Password).
+ * - Autenticación con Supabase Auth (Email & Contraseña).
  * - Compresión de imágenes en cliente a WebP mediante HTML5 Canvas (< 1400px, 82%).
- * - Subida y eliminación en Storage bucket 'catalogo-loyliz'.
- * - Operaciones CRUD completas sobre 'productos', 'categorias' y 'producto_imagenes'.
- * - Generador de especificaciones técnicas JSONB y selector de tallas.
- * - Limpieza instantánea de la caché del catálogo público.
+ * - Subida y eliminación en Storage bucket público 'catalogo-loyliz'.
+ * - Operaciones CRUD alineadas con el esquema PostgreSQL ('productos', 'categorias', 'producto_imagenes').
+ * - Empaquetado y desempaquetado de especificaciones técnicas JSONB.
+ * - Limpieza de caché pública en sessionStorage.
  */
 
 (function () {
@@ -35,9 +35,16 @@
     // 2. Estado Global de la Aplicación Administrativa
     let supabaseClient = null;
     let currentSession = null;
+    let isLoadingDashboard = false;
+    let isAuthInitialized = false;
+    let dashboardInitialized = false;
+
     let categoriesList = [];
     let productsList = [];
     let stagedImages = []; // Array de { id, file, blob, previewUrl, originalSize, compressedSize, isPrincipal, isExisting, url, storagePath }
+    let deletedImageIds = [];
+    let deletedImagePaths = [];
+
     let isEditingMode = false;
     let editingProductId = null;
     let pendingDeleteProduct = null;
@@ -86,7 +93,6 @@
 
     const formTitle = document.getElementById('form-title');
     const formSubtitle = document.getElementById('form-subtitle');
-    const formIcon = document.getElementById('form-icon');
     const btnCancelEdit = document.getElementById('btn-cancel-edit');
     const btnResetForm = document.getElementById('btn-reset-form');
     const btnSubmitProduct = document.getElementById('btn-submit-product');
@@ -155,18 +161,39 @@
     }
 
     // ========================================================================
-    // INICIALIZACIÓN DE SUPABASE CLIENT
+    // INICIALIZACIÓN UNIFICADA DE SUPABASE CLIENT
     // ========================================================================
+    function getSupabaseCredentials() {
+        let url = '';
+        let key = '';
+
+        if (typeof window !== 'undefined') {
+            url = window.SUPABASE_URL || (window.SUPABASE_CONFIG && window.SUPABASE_CONFIG.url) || '';
+            key = window.SUPABASE_ANON_KEY || (window.SUPABASE_CONFIG && window.SUPABASE_CONFIG.anonKey) || '';
+        }
+
+        if (!url && typeof globalThis !== 'undefined') {
+            url = globalThis.SUPABASE_URL || (globalThis.SUPABASE_CONFIG && globalThis.SUPABASE_CONFIG.url) || '';
+        }
+        if (!key && typeof globalThis !== 'undefined') {
+            key = globalThis.SUPABASE_ANON_KEY || (globalThis.SUPABASE_CONFIG && globalThis.SUPABASE_CONFIG.anonKey) || '';
+        }
+
+        return {
+            url: (url || '').trim(),
+            key: (key || '').trim()
+        };
+    }
+
     function initSupabase() {
-        const url = (window.SUPABASE_URL || (window.SUPABASE_CONFIG && window.SUPABASE_CONFIG.url) || '').trim();
-        const key = (window.SUPABASE_ANON_KEY || (window.SUPABASE_CONFIG && window.SUPABASE_CONFIG.anonKey) || '').trim();
+        const { url, key } = getSupabaseCredentials();
 
         if (!url || !key || url.includes('tu-proyecto') || key.includes('TU_SUPABASE')) {
             showToast('Credenciales de Supabase no configuradas en js/supabase-config.js', 'warning', 6000);
             return false;
         }
 
-        if (typeof window.supabase === 'undefined') {
+        if (typeof window.supabase === 'undefined' || typeof window.supabase.createClient !== 'function') {
             showToast('Librería de Supabase JS no pudo ser cargada desde el CDN.', 'error', 6000);
             return false;
         }
@@ -176,41 +203,85 @@
                 auth: {
                     persistSession: true,
                     autoRefreshToken: true,
+                    detectSessionInUrl: true,
                     storageKey: 'loyliz-admin-auth-session'
                 }
             });
             return true;
         } catch (e) {
             console.error('[LOYLIZ Admin] Error creando cliente Supabase:', e);
-            showToast('Error inicializando conexión con Supabase.', 'error');
+            showToast(`Error al inicializar conexión con Supabase: ${e.message || 'Error crítico'}`, 'error');
             return false;
         }
     }
 
     // ========================================================================
-    // GESTIÓN DE SESIÓN Y AUTENTICACIÓN
+    // GESTIÓN DE SESIÓN, AUTH & GUARD DE EJECUCIÓN DUPLICADA
     // ========================================================================
+    function isSessionExpiredError(err) {
+        if (!err) return false;
+        const msg = (err.message || '').toLowerCase();
+        const code = String(err.code || '');
+        return msg.includes('jwt expired') ||
+               msg.includes('invalid jwt') ||
+               msg.includes('token is expired') ||
+               code === 'PGRST301' ||
+               err.status === 401;
+    }
+
+    async function handleSessionExpired() {
+        console.warn('[LOYLIZ Admin] Sesión expirada o token inválido detectado. Redirigiendo a pantalla de acceso.');
+        showToast('Tu sesión ha expirado o el token es inválido. Por favor inicia sesión nuevamente.', 'warning', 6000);
+        try {
+            await supabaseClient.auth.signOut();
+        } catch (e) {}
+        handleAuthStateChange('SIGNED_OUT', null);
+    }
+
+    async function initDashboard() {
+        if (isLoadingDashboard) {
+            console.warn('[LOYLIZ Admin] Carga de dashboard ya en progreso. Evitando ejecución duplicada.');
+            return;
+        }
+        isLoadingDashboard = true;
+
+        try {
+            await Promise.all([loadCategories(), loadProducts()]);
+            dashboardInitialized = true;
+            if (window.lucide) lucide.createIcons();
+        } catch (err) {
+            console.error('[LOYLIZ Admin] Error al inicializar panel de inventario:', err);
+            showToast(`Error al inicializar inventario: ${err.message || 'Error de conexión'}`, 'error');
+        } finally {
+            isLoadingDashboard = false;
+        }
+    }
+
     async function initAuth() {
         if (!supabaseClient) return;
 
-        // 1. Verificar sesión persistida
+        // 1. Escuchar cambios de estado en Auth de forma reactiva
+        supabaseClient.auth.onAuthStateChange((event, session) => {
+            handleAuthStateChange(event, session);
+        });
+
+        // 2. Verificar sesión inicial persistida si aún no ha sido procesada
         try {
             const { data: { session }, error } = await supabaseClient.auth.getSession();
             if (error) throw error;
 
-            handleSessionChange(session);
+            if (!isAuthInitialized) {
+                handleAuthStateChange('INITIAL_GET_SESSION', session);
+            }
         } catch (err) {
-            console.warn('[LOYLIZ Admin] Error verificando sesión:', err);
-            handleSessionChange(null);
+            console.error('[LOYLIZ Admin] Error verificando sesión:', err);
+            showToast(`Error al verificar sesión: ${err.message || 'Error de conexión'}`, 'error');
+            handleAuthStateChange('SESSION_ERROR', null);
         }
-
-        // 2. Escuchar cambios de estado en Auth
-        supabaseClient.auth.onAuthStateChange((event, session) => {
-            handleSessionChange(session);
-        });
     }
 
-    function handleSessionChange(session) {
+    function handleAuthStateChange(event, session) {
+        isAuthInitialized = true;
         currentSession = session;
 
         if (session && session.user) {
@@ -218,11 +289,14 @@
             dashboardView.classList.remove('hidden');
             adminUserEmail.textContent = session.user.email || 'Admin';
 
-            // Cargar datos del panel
-            loadCategories();
-            loadProducts();
-            if (window.lucide) lucide.createIcons();
+            // Ejecutar carga del panel solo si no ha sido cargado aún o si es un inicio explícito de sesión
+            if (event === 'SIGNED_IN' || !dashboardInitialized) {
+                initDashboard();
+            } else if (window.lucide) {
+                lucide.createIcons();
+            }
         } else {
+            dashboardInitialized = false;
             dashboardView.classList.add('hidden');
             authView.classList.remove('hidden');
             loginEmailInput.value = '';
@@ -258,7 +332,7 @@
             });
 
             if (error) {
-                console.error('[LOYLIZ Admin] Error login:', error);
+                console.error('[LOYLIZ Admin] Error en inicio de sesión:', error);
                 if (error.message.includes('Invalid login credentials')) {
                     showLoginAlert('Credenciales incorrectas. Verifica tu correo y contraseña.');
                 } else if (error.message.includes('Email not confirmed')) {
@@ -266,13 +340,15 @@
                 } else {
                     showLoginAlert(error.message || 'Error de autenticación.');
                 }
-                showToast('Acceso denegado. Revisa tus credenciales.', 'error');
+                showToast(`Acceso denegado: ${error.message || 'Revisa tus credenciales'}`, 'error');
                 return;
             }
 
             showToast(`¡Bienvenido, ${data.user.email}!`, 'success');
         } catch (err) {
+            console.error('[LOYLIZ Admin] Excepción durante inicio de sesión:', err);
             showLoginAlert('Ocurrió un error de red al intentar conectar con Supabase.');
+            showToast(`Fallo de conexión: ${err.message || 'Error de red'}`, 'error');
         } finally {
             btnLoginSubmit.disabled = false;
             btnLoginSubmit.innerHTML = `
@@ -286,10 +362,12 @@
     // Cerrar Sesión
     async function handleLogout() {
         try {
-            await supabaseClient.auth.signOut();
+            const { error } = await supabaseClient.auth.signOut();
+            if (error) throw error;
             showToast('Sesión finalizada exitosamente.', 'info');
         } catch (err) {
-            console.error('[LOYLIZ Admin] Error cerrando sesión:', err);
+            console.error('[LOYLIZ Admin] Error al cerrar sesión:', err);
+            showToast(`Error al cerrar sesión: ${err.message || 'Error desconocido'}`, 'error');
         }
     }
 
@@ -303,7 +381,6 @@
         loginAlertText.textContent = '';
     }
 
-    // Alternar visibilidad de contraseña en login
     function togglePasswordVisibility() {
         const isPassword = loginPasswordInput.type === 'password';
         loginPasswordInput.type = isPassword ? 'text' : 'password';
@@ -312,15 +389,16 @@
     }
 
     // ========================================================================
-    // CARGA DE DATOS: CATEGORÍAS & PRODUCTOS
+    // CARGA DE DATOS ALINEADA CON EL ESQUEMA POSTGRESQL
     // ========================================================================
     async function loadCategories() {
         if (!supabaseClient) return;
 
         try {
+            // Esquema public.categorias: id, slug, nombre, subtitulo, orden, activa
             const { data, error } = await supabaseClient
                 .from('categorias')
-                .select('*')
+                .select('id, slug, nombre, subtitulo, orden, activa')
                 .order('orden', { ascending: true });
 
             if (error) throw error;
@@ -330,7 +408,11 @@
             renderTableCategoryFilter();
         } catch (err) {
             console.error('[LOYLIZ Admin] Error cargando categorías:', err);
-            showToast('No se pudieron cargar las categorías desde Supabase.', 'error');
+            if (isSessionExpiredError(err)) {
+                await handleSessionExpired();
+                return;
+            }
+            showToast(`Error al cargar categorías: ${err.message || 'Error de conexión'}`, 'error');
         }
     }
 
@@ -338,7 +420,7 @@
         prodCategoriaSelect.innerHTML = '<option value="" disabled selected>Selecciona una línea textil...</option>';
         categoriesList.forEach(cat => {
             const opt = document.createElement('option');
-            opt.value = cat.id;
+            opt.value = cat.id; // UUID como valor
             opt.dataset.slug = cat.slug;
             opt.textContent = `${cat.nombre} (${cat.slug})`;
             prodCategoriaSelect.appendChild(opt);
@@ -368,9 +450,10 @@
         `;
 
         try {
+            // Esquema public.productos alineado con columnas existentes
             const { data, error } = await supabaseClient
                 .from('productos')
-                .select('*, categorias(id, slug, nombre, subtitulo), producto_imagenes(*)')
+                .select('id, categoria_id, referencia, nombre, descripcion, tela, tallas, especificaciones, destacado, activo, created_at, categorias(id, nombre, slug), producto_imagenes(id, url_imagen, alt_text, es_principal, orden)')
                 .order('created_at', { ascending: false });
 
             if (error) throw error;
@@ -380,6 +463,10 @@
             renderInventoryTable();
         } catch (err) {
             console.error('[LOYLIZ Admin] Error cargando productos:', err);
+            if (isSessionExpiredError(err)) {
+                await handleSessionExpired();
+                return;
+            }
             inventoryTbody.innerHTML = `
                 <tr>
                     <td colspan="7" class="py-10 text-center text-rose-500 font-semibold">
@@ -389,7 +476,7 @@
                 </tr>
             `;
             if (window.lucide) lucide.createIcons();
-            showToast('Error cargando prendas del inventario.', 'error');
+            showToast(`Error al cargar productos: ${err.message || 'Error de conexión'}`, 'error');
         }
     }
 
@@ -411,20 +498,16 @@
         const selectedCat = tableFilterCat.value;
         const selectedStatus = tableFilterStatus.value;
 
-        // Filtrado en memoria
         const filtered = productsList.filter(prod => {
-            // Filtro por texto
-            const ref = (prod.referencia || prod.codigo || prod.code || '').toLowerCase();
-            const nom = (prod.nombre || prod.titulo || prod.title || '').toLowerCase();
-            const tel = (prod.tela || prod.fabric || '').toLowerCase();
+            const ref = (prod.referencia || '').toLowerCase();
+            const nom = (prod.nombre || '').toLowerCase();
+            const tel = (prod.tela || '').toLowerCase();
             const catNom = (prod.categorias?.nombre || '').toLowerCase();
 
             const matchesSearch = !searchTerm || ref.includes(searchTerm) || nom.includes(searchTerm) || tel.includes(searchTerm) || catNom.includes(searchTerm);
 
-            // Filtro por categoría
             const matchesCat = (selectedCat === 'all') || (String(prod.categoria_id) === String(selectedCat)) || (String(prod.categorias?.id) === String(selectedCat));
 
-            // Filtro por estado
             const isActive = prod.activo !== false;
             const matchesStatus = (selectedStatus === 'all') || (selectedStatus === 'active' && isActive) || (selectedStatus === 'paused' && !isActive);
 
@@ -451,7 +534,7 @@
             const tr = document.createElement('tr');
             tr.className = 'hover:bg-gray-50/80 transition-colors group';
 
-            // Resolver imagen principal
+            // Resolver imagen principal ordenada
             let mainImgUrl = FALLBACK_PLACEHOLDER;
             if (Array.isArray(prod.producto_imagenes) && prod.producto_imagenes.length > 0) {
                 const sorted = [...prod.producto_imagenes].sort((a, b) => {
@@ -460,23 +543,20 @@
                     if (bP !== aP) return bP - aP;
                     return (a.orden || 0) - (b.orden || 0);
                 });
-                mainImgUrl = sorted[0].url_imagen || sorted[0].url || FALLBACK_PLACEHOLDER;
-            } else if (prod.image || prod.imagen_url) {
-                mainImgUrl = prod.image || prod.imagen_url;
+                mainImgUrl = sorted[0].url_imagen || FALLBACK_PLACEHOLDER;
             }
 
-            const ref = prod.referencia || prod.codigo || prod.code || `LLZ-${prod.id}`;
-            const nombre = prod.nombre || prod.titulo || prod.title || 'Sin nombre';
-            const tela = prod.tela || prod.fabric || 'Confección Nacional';
+            const ref = prod.referencia || `LLZ-${prod.id}`;
+            const nombre = prod.nombre || 'Sin nombre';
+            const tela = prod.tela || 'Confección Nacional';
             const catNombre = prod.categorias?.nombre || 'General';
             const isActive = prod.activo !== false;
 
-            // Normalizar tallas para mostrar en tabla
             let tallasStr = '--';
             if (Array.isArray(prod.tallas) && prod.tallas.length > 0) {
                 tallasStr = prod.tallas.join(', ');
-            } else if (prod.sizes) {
-                tallasStr = Array.isArray(prod.sizes) ? prod.sizes.join(', ') : prod.sizes;
+            } else if (typeof prod.tallas === 'string') {
+                tallasStr = prod.tallas;
             }
 
             tr.innerHTML = `
@@ -512,7 +592,7 @@
 
                 <!-- Estado Activo / Pausado (Píldora interactiva) -->
                 <td class="py-3 px-4 text-center whitespace-nowrap">
-                    <button type="button" data-action="toggle-status" data-id="${prod.id}" data-active="${isActive}"
+                    <button type="button" data-action="toggle-status" data-id="${prod.id}"
                             class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold transition shadow-xs cursor-pointer ${
                                 isActive ? 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200' : 'bg-amber-100 text-amber-800 hover:bg-amber-200'
                             }" title="Clic para alternar estado">
@@ -579,48 +659,70 @@
             renderInventoryTable();
             showToast(`Modelo '${product.nombre || product.referencia}' ${newStatus ? 'activado' : 'pausado'} con éxito.`, 'success');
         } catch (err) {
-            console.error('[LOYLIZ Admin] Error cambiando estado:', err);
-            showToast('No se pudo actualizar el estado del modelo.', 'error');
+            console.error('[LOYLIZ Admin] Error cambiando estado del producto:', err);
+            showToast(`Error al actualizar estado: ${err.message || 'Error de conexión'}`, 'error');
         }
     }
 
-    // Iniciar edición de prenda
+    // ========================================================================
+    // EDICIÓN DE PRENDAS & DESEMPAQUETADO DE ESPECIFICACIONES JSONB
+    // ========================================================================
     function startEditProduct(product) {
         isEditingMode = true;
         editingProductId = product.id;
+        deletedImageIds = [];
+        deletedImagePaths = [];
 
-        // Actualizar UI del encabezado del formulario
+        // Actualizar UI del formulario
         formTitle.textContent = `Editar Modelo: ${product.nombre || product.referencia}`;
-        formSubtitle.textContent = `Modificando registro ID #${product.id} (REF: ${product.referencia || product.code})`;
+        formSubtitle.textContent = `Modificando registro ID #${product.id} (REF: ${product.referencia})`;
         btnCancelEdit.classList.remove('hidden');
         btnSubmitText.textContent = 'Actualizar Modelo';
 
-        // Llenar campos
+        // Llenar campos directos del esquema PostgreSQL
         prodIdInput.value = product.id;
         prodCategoriaSelect.value = product.categoria_id || '';
-        prodReferenciaInput.value = product.referencia || product.codigo || product.code || '';
-        prodNombreInput.value = product.nombre || product.titulo || product.title || '';
-        prodTelaInput.value = product.tela || product.fabric || '';
-        prodGeneroInput.value = product.genero || product.gender || '';
-        prodColoresInput.value = product.colores || product.colors || '';
-        prodUsoInput.value = product.uso || product.use || '';
-        prodDescripcionTextarea.value = product.descripcion || product.desc || '';
+        prodReferenciaInput.value = product.referencia || '';
+        prodNombreInput.value = product.nombre || '';
+        prodTelaInput.value = product.tela || '';
+        prodDescripcionTextarea.value = product.descripcion || '';
         prodActivoCheckbox.checked = product.activo !== false;
         prodDestacadoCheckbox.checked = Boolean(product.destacado);
+
+        // Desempaquetar especificaciones JSONB (genero, colores, uso_recomendado y pares clave-valor)
+        const specs = (product.especificaciones && typeof product.especificaciones === 'object')
+            ? product.especificaciones
+            : {};
+
+        prodGeneroInput.value = specs.genero || '';
+        prodColoresInput.value = specs.colores || '';
+        prodUsoInput.value = specs.uso_recomendado || specs.uso || '';
+
+        // Filtrar campos estándar de UI para no duplicarlos en la lista de especificaciones libres
+        const reservedKeys = ['genero', 'gender', 'colores', 'colors', 'uso_recomendado', 'uso', 'use'];
+        const customSpecs = {};
+        Object.entries(specs).forEach(([k, v]) => {
+            if (!reservedKeys.includes(k.toLowerCase().trim())) {
+                customSpecs[k] = v;
+            }
+        });
+        renderSpecsBuilder(customSpecs);
 
         // Llenar tallas
         let selectedSizes = [];
         if (Array.isArray(product.tallas)) {
             selectedSizes = product.tallas;
-        } else if (product.sizes) {
-            selectedSizes = Array.isArray(product.sizes) ? product.sizes : product.sizes.split(/[-–—,;/]+/).map(s => s.trim());
+        } else if (typeof product.tallas === 'string') {
+            try {
+                const parsed = JSON.parse(product.tallas);
+                selectedSizes = Array.isArray(parsed) ? parsed : [product.tallas];
+            } catch {
+                selectedSizes = product.tallas.split(/[-–—,;/]+/).map(s => s.trim());
+            }
         }
         document.querySelectorAll('input[name="prod_size"]').forEach(cb => {
             cb.checked = selectedSizes.includes(cb.value);
         });
-
-        // Llenar especificaciones técnicas
-        renderSpecsBuilder(product.especificaciones);
 
         // Llenar imágenes existentes
         stagedImages = [];
@@ -629,25 +731,27 @@
                 stagedImages.push({
                     id: img.id,
                     isExisting: true,
-                    url: img.url_imagen || img.url,
-                    previewUrl: img.url_imagen || img.url,
+                    url: img.url_imagen,
+                    previewUrl: img.url_imagen,
                     isPrincipal: Boolean(img.es_principal),
-                    orden: typeof img.orden === 'number' ? img.orden : idx,
+                    orden: typeof img.orden === 'number' ? img.orden : idx + 1,
                     altText: img.alt_text || ''
                 });
             });
         }
         renderStagedImages();
 
-        // Desplazamiento suave al formulario
+        // Desplazamiento al formulario
         document.getElementById('formulario-prenda').scrollIntoView({ behavior: 'smooth' });
-        showToast(`Cargados datos de '${product.nombre || product.referencia}' para edición.`, 'info');
+        showToast(`Datos de '${product.nombre || product.referencia}' cargados para edición.`, 'info');
         if (window.lucide) lucide.createIcons();
     }
 
     function cancelEditMode() {
         isEditingMode = false;
         editingProductId = null;
+        deletedImageIds = [];
+        deletedImagePaths = [];
         formTitle.textContent = 'Registrar Nuevo Modelo Textil';
         formSubtitle.textContent = 'Completa la ficha técnica para publicar la prenda en el catálogo público';
         btnCancelEdit.classList.add('hidden');
@@ -687,16 +791,18 @@
             // 1. Limpiar imágenes del bucket en Storage si existen
             if (Array.isArray(prod.producto_imagenes) && prod.producto_imagenes.length > 0) {
                 const pathsToDelete = prod.producto_imagenes
-                    .map(img => extractStoragePath(img.url_imagen || img.url))
+                    .map(img => extractStoragePath(img.url_imagen))
                     .filter(Boolean);
 
                 if (pathsToDelete.length > 0) {
-                    await supabaseClient.storage.from(BUCKET_NAME).remove(pathsToDelete);
+                    const { error: storageErr } = await supabaseClient.storage.from(BUCKET_NAME).remove(pathsToDelete);
+                    if (storageErr) console.warn('[LOYLIZ Admin] Advertencia purgando fotos en Storage:', storageErr);
                 }
             }
 
             // 2. Eliminar filas asociadas en 'producto_imagenes'
-            await supabaseClient.from('producto_imagenes').delete().eq('producto_id', prod.id);
+            const { error: imgDelError } = await supabaseClient.from('producto_imagenes').delete().eq('producto_id', prod.id);
+            if (imgDelError) console.warn('[LOYLIZ Admin] Advertencia eliminando filas de producto_imagenes:', imgDelError);
 
             // 3. Eliminar el producto de la tabla 'productos'
             const { error } = await supabaseClient.from('productos').delete().eq('id', prod.id);
@@ -709,7 +815,7 @@
             showToast(`Modelo '${prod.nombre || prod.referencia}' eliminado correctamente.`, 'success');
         } catch (err) {
             console.error('[LOYLIZ Admin] Error al eliminar producto:', err);
-            showToast('No se pudo eliminar el modelo o sus fotografías.', 'error');
+            showToast(`Error al eliminar modelo: ${err.message || 'Error de conexión'}`, 'error');
         }
     });
 
@@ -763,7 +869,7 @@
 
         const specs = (existingSpecs && typeof existingSpecs === 'object' && Object.keys(existingSpecs).length > 0)
             ? existingSpecs
-            : defaults;
+            : (existingSpecs !== null ? {} : defaults);
 
         Object.entries(specs).forEach(([k, v]) => {
             addSpecRow(k, v);
@@ -823,10 +929,10 @@
             const s = selectedOpt.dataset.slug.toUpperCase();
             if (s.includes('SANITAR') || s.includes('MED')) prefix = 'LLZ-MED';
             else if (s.includes('DEPORT') || s.includes('DEP')) prefix = 'LLZ-DEP';
-            else if (s.includes('CASUAL')) prefix = 'LLZ-CAS';
+            else if (s.includes('CASUAL') || s.includes('TEMAT')) prefix = 'LLZ-CAS';
             else if (s.includes('FRANEL') || s.includes('BAS')) prefix = 'LLZ-BAS';
             else if (s.includes('CORP')) prefix = 'LLZ-CORP';
-            else if (s.includes('INFANT')) prefix = 'LLZ-KID';
+            else if (s.includes('INFANT') || s.includes('JUV')) prefix = 'LLZ-KID';
             else prefix = `LLZ-${s.substring(0, 3)}`;
         }
 
@@ -883,9 +989,9 @@
                         });
                     }, 'image/webp', quality);
                 };
-                img.onerror = reject;
+                img.onerror = () => reject(new Error('Error al procesar el archivo de imagen.'));
             };
-            reader.onerror = reject;
+            reader.onerror = () => reject(new Error('Error al leer el archivo.'));
         });
     }
 
@@ -941,7 +1047,7 @@
                 });
             } catch (err) {
                 console.error('[LOYLIZ Admin] Error comprimiendo imagen:', err);
-                showToast(`Error al comprimir ${file.name}`, 'error');
+                showToast(`Error al comprimir ${file.name}: ${err.message}`, 'error');
             }
         }
 
@@ -971,7 +1077,6 @@
                 img.isPrincipal ? 'border-brand-gold ring-2 ring-brand-gold/40' : 'border-gray-200'
             }`;
 
-            // Calcular ahorro de compresión
             let sizePill = '';
             if (!img.isExisting && img.originalSize && img.compressedSize) {
                 const savings = Math.round((1 - (img.compressedSize / img.originalSize)) * 100);
@@ -1010,7 +1115,13 @@
             });
 
             card.querySelector('button[data-action="remove-thumb"]').addEventListener('click', () => {
-                stagedImages.splice(idx, 1);
+                const removed = stagedImages.splice(idx, 1)[0];
+                if (removed && removed.isExisting && removed.id) {
+                    deletedImageIds.push(removed.id);
+                    if (removed.url) {
+                        deletedImagePaths.push(extractStoragePath(removed.url));
+                    }
+                }
                 renderStagedImages();
             });
 
@@ -1028,7 +1139,7 @@
 
         const referencia = prodReferenciaInput.value.trim().toUpperCase();
         const nombre = prodNombreInput.value.trim();
-        const categoriaId = prodCategoriaSelect.value;
+        const categoriaId = prodCategoriaSelect.value; // UUID string
         const tela = prodTelaInput.value.trim();
         const genero = prodGeneroInput.value.trim() || 'Unisex / Confección Premium';
         const colores = prodColoresInput.value.trim() || 'A convenir';
@@ -1037,7 +1148,6 @@
         const activo = prodActivoCheckbox.checked;
         const destacado = prodDestacadoCheckbox.checked;
         const tallas = getSelectedSizes();
-        const especificaciones = getSpecsObject();
 
         if (!referencia || !nombre || !categoriaId || !tela) {
             showToast('Por favor completa los campos obligatorios (*).', 'warning');
@@ -1056,23 +1166,26 @@
         `;
 
         try {
-            const productPayload = {
-                referencia: referencia,
-                codigo: referencia,
-                nombre: nombre,
-                titulo: nombre,
-                categoria_id: parseInt(categoriaId, 10),
-                tela: tela,
-                composicion: tela,
+            // Empaquetar genero, colores y uso_recomendado junto a las especificaciones clave-valor
+            const customSpecs = getSpecsObject();
+            const especificaciones = {
+                ...customSpecs,
                 genero: genero,
                 colores: colores,
-                uso: uso,
+                uso_recomendado: uso
+            };
+
+            // Payload alineado 100% con las columnas de public.productos
+            const productPayload = {
+                categoria_id: categoriaId,
+                referencia: referencia,
+                nombre: nombre,
                 descripcion: descripcion,
-                activo: activo,
-                destacado: destacado,
+                tela: tela,
                 tallas: tallas,
-                sizes: tallas.join(' - '),
-                especificaciones: especificaciones
+                especificaciones: especificaciones,
+                destacado: Boolean(destacado),
+                activo: Boolean(activo)
             };
 
             let savedProduct = null;
@@ -1083,7 +1196,7 @@
                     .from('productos')
                     .update(productPayload)
                     .eq('id', editingProductId)
-                    .select()
+                    .select('id, categoria_id, referencia, nombre, descripcion, tela, tallas, especificaciones, destacado, activo, created_at')
                     .single();
 
                 if (error) throw error;
@@ -1094,7 +1207,7 @@
                 const { data, error } = await supabaseClient
                     .from('productos')
                     .insert([productPayload])
-                    .select()
+                    .select('id, categoria_id, referencia, nombre, descripcion, tela, tallas, especificaciones, destacado, activo, created_at')
                     .single();
 
                 if (error) throw error;
@@ -1102,14 +1215,34 @@
                 showToast(`Nuevo modelo '${nombre}' publicado con éxito.`, 'success');
             }
 
-            // Subir nuevas imágenes al Storage y guardar en producto_imagenes
+            // Purgar imágenes existentes que fueron eliminadas del staged grid
+            if (isEditingMode && deletedImageIds.length > 0) {
+                try {
+                    const { error: delImgsErr } = await supabaseClient
+                        .from('producto_imagenes')
+                        .delete()
+                        .in('id', deletedImageIds);
+                    if (delImgsErr) throw delImgsErr;
+
+                    const paths = deletedImagePaths.filter(Boolean);
+                    if (paths.length > 0) {
+                        await supabaseClient.storage.from(BUCKET_NAME).remove(paths);
+                    }
+                } catch (delErr) {
+                    console.error('[LOYLIZ Admin] Error eliminando imágenes anteriores:', delErr);
+                    showToast(`Advertencia al remover imágenes anteriores: ${delErr.message}`, 'warning');
+                }
+            }
+
+            // Subir nuevas imágenes al Storage y registrar en producto_imagenes
             const newImagesToUpload = stagedImages.filter(img => !img.isExisting && img.file);
             if (newImagesToUpload.length > 0) {
                 showToast(`Subiendo ${newImagesToUpload.length} foto(s) a Supabase Storage (${BUCKET_NAME})...`, 'info', 3000);
 
                 for (let i = 0; i < newImagesToUpload.length; i++) {
                     const imgItem = newImagesToUpload[i];
-                    const filePath = `productos/${referencia.toLowerCase()}-${Date.now()}-${i + 1}.webp`;
+                    const cleanRef = referencia.toLowerCase().replace(/[^a-z0-9_-]/g, '-');
+                    const filePath = `productos/${cleanRef}-${Date.now()}-${i + 1}.webp`;
 
                     const { error: uploadError } = await supabaseClient
                         .storage
@@ -1120,47 +1253,64 @@
                         });
 
                     if (uploadError) {
-                        console.error('[LOYLIZ Admin] Error subiendo a Storage:', uploadError);
+                        console.error('[LOYLIZ Admin] Error subiendo foto a Storage:', uploadError);
                         showToast(`Fallo al subir foto ${i + 1} a Storage: ${uploadError.message}`, 'error');
                         continue;
                     }
 
                     // Obtener URL pública absoluta
-                    const { data: { publicUrl } } = supabaseClient
+                    const { data: urlData } = supabaseClient
                         .storage
                         .from(BUCKET_NAME)
                         .getPublicUrl(filePath);
 
+                    const publicUrl = urlData?.publicUrl || '';
+
                     // Insertar fila en 'producto_imagenes'
-                    await supabaseClient.from('producto_imagenes').insert([{
-                        producto_id: savedProduct.id,
-                        url_imagen: publicUrl,
-                        alt_text: `${nombre} vista ${i + 1}`,
-                        es_principal: Boolean(imgItem.isPrincipal),
-                        orden: i + 1
-                    }]);
-                }
-            }
-
-            // Si se editó la foto principal de imágenes existentes
-            if (isEditingMode) {
-                for (const existingImg of stagedImages.filter(img => img.isExisting)) {
-                    await supabaseClient
+                    const globalIndex = stagedImages.indexOf(imgItem);
+                    const { error: imgInsertError } = await supabaseClient
                         .from('producto_imagenes')
-                        .update({ es_principal: Boolean(existingImg.isPrincipal) })
-                        .eq('id', existingImg.id);
+                        .insert([{
+                            producto_id: savedProduct.id,
+                            url_imagen: publicUrl,
+                            alt_text: `${nombre} - Vista ${i + 1}`,
+                            es_principal: Boolean(imgItem.isPrincipal),
+                            orden: globalIndex >= 0 ? globalIndex + 1 : i + 1
+                        }]);
+
+                    if (imgInsertError) {
+                        console.error('[LOYLIZ Admin] Error registrando foto en base de datos:', imgInsertError);
+                        showToast(`Error al asociar foto en BD: ${imgInsertError.message}`, 'error');
+                    }
                 }
             }
 
-            // Limpiar caché pública para reflejar cambios inmediatos
+            // Si se editó la foto principal u orden de imágenes existentes
+            if (isEditingMode) {
+                for (let idx = 0; idx < stagedImages.length; idx++) {
+                    const item = stagedImages[idx];
+                    if (item.isExisting && item.id) {
+                        const { error: updErr } = await supabaseClient
+                            .from('producto_imagenes')
+                            .update({
+                                es_principal: Boolean(item.isPrincipal),
+                                orden: idx + 1
+                            })
+                            .eq('id', item.id);
+                        if (updErr) console.warn('[LOYLIZ Admin] Error actualizando orden de imagen:', updErr);
+                    }
+                }
+            }
+
+            // Limpiar caché pública de sessionStorage para reflejar cambios inmediatos
             invalidatePublicCache();
 
-            // Resetear formulario y recargar lista
+            // Resetear formulario y recargar inventario
             cancelEditMode();
             await loadProducts();
         } catch (err) {
             console.error('[LOYLIZ Admin] Error guardando producto:', err);
-            showToast(`Error al guardar: ${err.message || 'Verifica permisos RLS'}`, 'error', 6000);
+            showToast(`Error al guardar modelo: ${err.message || 'Verifica permisos RLS'}`, 'error', 6000);
         } finally {
             btnSubmitProduct.disabled = false;
             btnSubmitProduct.innerHTML = `
@@ -1177,6 +1327,8 @@
         prodActivoCheckbox.checked = true;
         prodDestacadoCheckbox.checked = false;
         stagedImages = [];
+        deletedImageIds = [];
+        deletedImagePaths = [];
         renderStagedImages();
         renderSizesCheckboxes();
         renderSpecsBuilder();
@@ -1187,8 +1339,10 @@
         try {
             sessionStorage.removeItem(CACHE_KEYS.PRODUCTOS);
             sessionStorage.removeItem(CACHE_KEYS.CATEGORIAS);
-            console.info('[LOYLIZ Admin] Caché pública de sessionStorage limpiada.');
-        } catch (e) {}
+            console.info('[LOYLIZ Admin] Caché pública de sessionStorage limpiada exitosamente.');
+        } catch (e) {
+            console.warn('[LOYLIZ Admin] No se pudo acceder a sessionStorage:', e);
+        }
     }
 
     // ========================================================================
