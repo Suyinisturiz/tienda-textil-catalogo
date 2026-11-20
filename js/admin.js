@@ -222,9 +222,15 @@
         if (!err) return false;
         const msg = (err.message || '').toLowerCase();
         const code = String(err.code || '');
+        const details = (err.details || '').toLowerCase();
         return msg.includes('jwt expired') ||
                msg.includes('invalid jwt') ||
                msg.includes('token is expired') ||
+               msg.includes('invalid refresh token') ||
+               msg.includes('user not found') ||
+               msg.includes('unauthorized') ||
+               msg.includes('not authenticated') ||
+               details.includes('jwt') ||
                code === 'PGRST301' ||
                err.status === 401;
     }
