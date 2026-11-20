@@ -184,46 +184,95 @@
                     </div>
                 </div>
 
-                <!-- Hero Right Visual Showcase (Espacio preparado para foto lifestyle vertical/cuadrada) -->
+                <!-- Hero Right Visual Showcase: Carrusel Interactivo LOYLIZ -->
                 <div class="lg:col-span-5 relative">
                     <div class="relative mx-auto max-w-md lg:max-w-none">
-                        <!-- Primary Lifestyle Image Card -->
-                        <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white group">
-                            <!-- Prop de imagen preparada para lifestyle vertical/cuadrada -->
-                            <img id="hero-lifestyle-img" 
-                                 src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=900&q=80" 
-                                 alt="LOYLIZ - Confección Premium & Asesoría de Imagen" 
-                                 class="w-full h-[480px] object-cover object-center group-hover:scale-105 transition-transform duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/85 via-transparent to-transparent"></div>
+                        <!-- Card Principal del Carrusel Hero -->
+                        <div id="hero-carousel" 
+                             class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-brand-navyDark aspect-[4/5] sm:aspect-auto sm:h-[500px] lg:h-[520px] group select-none focus:outline-none focus:ring-2 focus:ring-brand-gold/60"
+                             role="region" 
+                             aria-roledescription="carrusel" 
+                             aria-label="Muestrario de Líneas Textiles LOYLIZ">
                             
-                            <!-- Overlay Card Details -->
-                            <div class="absolute bottom-6 left-6 right-6 text-white">
-                                <span class="inline-block px-3 py-1 bg-brand-gold text-brand-navy font-bold text-xs uppercase tracking-wider rounded-md mb-2">
-                                    LOYLIZ · Colección 2026
-                                </span>
-                                <h3 class="text-xl font-display font-bold">Uniformes Médicos & Confección</h3>
-                                <p class="text-xs text-gray-200 mt-1">Bioseguridad, estética clínica y confort en cada guardia.</p>
+                            <!-- Contenedor de Diapositivas (Slides Track) -->
+                            <div id="hero-slides-track" class="relative w-full h-full overflow-hidden">
+                                <!-- Diapositiva 1 (Renderizada estáticamente para CLS cero, SEO y carga instantánea) -->
+                                <div class="hero-slide absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out opacity-100 pointer-events-auto z-10"
+                                     role="group" 
+                                     aria-roledescription="diapositiva" 
+                                     aria-label="1 de 4: Línea Sanitaria & Quirúrgica"
+                                     aria-hidden="false"
+                                     data-index="0">
+                                    <img src="img/hero-1.jpg" 
+                                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=900&q=80';"
+                                         alt="LOYLIZ - Línea Sanitaria & Quirúrgica" 
+                                         loading="eager" 
+                                         fetchpriority="high"
+                                         class="hero-slide-img w-full h-full object-cover object-center transform transition-transform duration-1000 ease-out scale-100">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-brand-navyDark/95 via-brand-navy/40 to-transparent"></div>
+                                    
+                                    <!-- Overlay Card Details con despeje total de badges flotantes (Cero Solapamiento) -->
+                                    <div class="hero-slide-caption absolute bottom-0 inset-x-0 p-6 sm:p-8 pb-24 sm:pb-20 text-white z-10 flex flex-col justify-end transition-all duration-500 transform translate-y-0 opacity-100">
+                                        <span class="inline-block self-start px-2.5 py-1 bg-brand-gold text-brand-navy font-bold text-[10px] sm:text-xs uppercase tracking-wider rounded-md mb-2 shadow-xs">
+                                            LOYLIZ · COLECCIÓN 2026
+                                        </span>
+                                        <h3 class="text-xl sm:text-2xl font-display font-extrabold text-white leading-tight">
+                                            Línea Sanitaria & Quirúrgica
+                                        </h3>
+                                        <p class="text-xs sm:text-sm text-gray-200 mt-1.5 max-w-md font-normal leading-relaxed">
+                                            Bioseguridad, estética clínica y confort en cada guardia médica.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Botones de Navegación Chevrons (Aparecen al hacer hover / focus) -->
+                            <button id="hero-carousel-prev" 
+                                    type="button" 
+                                    class="absolute left-3.5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-brand-navy/70 hover:bg-brand-navy text-white hover:text-brand-gold border border-white/20 backdrop-blur-md flex items-center justify-center shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 focus:opacity-100 hover:scale-105 active:scale-95"
+                                    aria-label="Diapositiva anterior">
+                                <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                            </button>
+                            <button id="hero-carousel-next" 
+                                    type="button" 
+                                    class="absolute right-3.5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-brand-navy/70 hover:bg-brand-navy text-white hover:text-brand-gold border border-white/20 backdrop-blur-md flex items-center justify-center shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 focus:opacity-100 hover:scale-105 active:scale-95"
+                                    aria-label="Siguiente diapositiva">
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </button>
+
+                            <!-- Puntos de Paginación Minimalistas (Esquina inferior derecha) -->
+                            <div id="hero-carousel-dots" 
+                                 class="absolute bottom-5 right-5 z-20 flex items-center gap-1.5 p-1.5 rounded-full bg-brand-navy/70 backdrop-blur-md border border-white/15"
+                                 role="tablist" 
+                                 aria-label="Selector de diapositivas">
+                            </div>
+
+                            <!-- Barra de Progreso Discreta -->
+                            <div class="absolute top-0 left-0 right-0 h-1 bg-white/10 z-20 overflow-hidden">
+                                <div id="hero-carousel-progress" class="h-full bg-gradient-to-r from-brand-gold to-brand-goldHover w-0"></div>
                             </div>
                         </div>
 
-                        <!-- Floating Badges -->
-                        <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl border border-gray-100 flex items-center gap-3 animate-bounce-subtle">
-                            <div class="w-12 h-12 rounded-xl bg-brand-gold/30 flex items-center justify-center text-brand-navy">
-                                <i data-lucide="sparkles" class="w-6 h-6"></i>
+                        <!-- Floating Badges con z-index corregido -->
+                        <!-- Badge 1: Inferior Izquierda (Asesoría de Imagen) -->
+                        <div class="absolute -bottom-6 -left-3 sm:-left-6 bg-white p-3.5 sm:p-4 rounded-2xl shadow-xl border border-gray-100 flex items-center gap-3 animate-bounce-subtle z-30">
+                            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-brand-gold/30 flex items-center justify-center text-brand-navy shrink-0">
+                                <i data-lucide="sparkles" class="w-5 h-5 sm:w-6 sm:h-6 text-brand-navy"></i>
                             </div>
-                            <div>
-                                <span class="block text-sm font-bold text-brand-navy">Asesoría de Imagen</span>
-                                <span class="text-xs text-gray-500">Acompañamiento integral</span>
+                            <div class="pr-1">
+                                <span class="block text-xs sm:text-sm font-bold text-brand-navy leading-tight">Asesoría de Imagen</span>
+                                <span class="text-[11px] sm:text-xs text-gray-500">Acompañamiento integral</span>
                             </div>
                         </div>
 
-                        <div class="absolute -top-4 -right-4 bg-brand-navy text-white p-4 rounded-2xl shadow-xl border-2 border-brand-gold/40 flex items-center gap-3 hidden sm:flex">
-                            <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-brand-gold">
-                                <i data-lucide="shield-check" class="w-5 h-5"></i>
+                        <!-- Badge 2: Superior Derecha (Doble Pespunte) -->
+                        <div class="absolute -top-4 -right-4 bg-brand-navy text-white p-3.5 sm:p-4 rounded-2xl shadow-xl border-2 border-brand-gold/40 flex items-center gap-3 hidden sm:flex z-30">
+                            <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-brand-gold shrink-0">
+                                <i data-lucide="shield-check" class="w-5 h-5 text-brand-gold"></i>
                             </div>
                             <div>
-                                <span class="block text-xs uppercase text-brand-gold font-bold tracking-wider">Confección</span>
-                                <span class="text-sm font-bold">Doble Pespunte</span>
+                                <span class="block text-[10px] uppercase text-brand-gold font-bold tracking-wider leading-none mb-1">Confección</span>
+                                <span class="text-xs sm:text-sm font-bold">Doble Pespunte</span>
                             </div>
                         </div>
                     </div>
@@ -1041,11 +1090,12 @@
         <span class="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 text-xs font-bold whitespace-nowrap text-white pr-1">Asesoría WhatsApp</span>
     </a>
 
-    <!-- Scripts: Configuración Supabase, Servicio de Catálogo y Lógica LOYLIZ -->
+    <!-- Scripts: Configuración Supabase, Servicio de Catálogo, Carrusel Hero y Lógica LOYLIZ -->
     <script src="js/supabase-config.js"></script>
     <script src="js/catalog-service.js"></script>
     <script src="js/main.js"></script>
     <script src="js/theme-switcher.js"></script>
+    <script src="js/hero-carousel.js"></script>
     <script>
         // Init Lucide Icons
         lucide.createIcons();
